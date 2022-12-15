@@ -1,0 +1,137 @@
+.productDetailsWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.nav {
+    margin-left: 35px;
+    margin-bottom: 20px;
+    color: darkslategray;
+}
+
+.nav a {
+    color: darkslategray;
+}
+
+.nav a:hover {
+    color: #599b9b;
+}
+
+.nav a::after {
+    content: ' / ';
+    color: darkslategray;
+}
+
+.productDetails {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+}
+
+.productImg {
+    width: 80%;
+}
+
+.productImg img {
+    width: 100%;
+}
+
+.infoWrapper {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.infoWrapper p {
+    margin: 10px 0;
+}
+
+.favorite {
+    margin-left: 16px;
+    color: salmon;
+}
+
+.favorite:hover {
+    cursor: pointer;
+}
+
+.price {
+    font-size: 18px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.counter>.sub,
+.counter>.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 0;
+}
+
+.count {
+    font-size: 18px;
+    margin: 0 10px;
+    width: 50px;
+    text-align: center;
+    border: none;
+}
+
+.buyButtons button {
+    border: none;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    background-color: darkslategray;
+    border-radius: 6px;
+    color: #fff;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.buyButtons button:hover {
+    background-color: #599b9b;
+}
+
+@media only screen and (min-width: 768px) {
+    .nav {
+        margin: 30px 80px;
+        padding-top: 20px;
+    }
+
+    .productDetails {
+        flex-flow: row;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+
+    .productImg {
+        width: 40%;
+    }
+
+    .productDetails img {
+        width: 100%;
+    }
+
+    .infoWrapper {
+        width: 40%;
+        text-align: left;
+        margin-top: 2px;
+    }
+
+}

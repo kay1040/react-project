@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+  bottom: 0;
+  overflow: hidden;
+}
+
+
+.imgs img {
+  width: 100px;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.imgs:first-child{
+  transform: translateY(16px);
+}
+
+.imgs img:hover {
+  transform: translateY(-20px);
+
+}

@@ -1,0 +1,43 @@
+.profileNav {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.tabs{
+    height: 40px;
+    padding: 0;
+    margin-right: 0;
+    margin-top: 50px;
+    margin-bottom: 0;
+    display: flex;
+
+}
+
+.tabs li {
+    text-align: center;
+    position: relative;
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    border: 0;
+
+}
+
+.tabs li:first-child {
+    border-right: 0;
+}
+
+.tabs li a {
+    border: none;
+    display: block;
+    color: #000;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    border: 1px solid #fff;
+    border-bottom: 0;
+    border-top: 4px solid #f1f1f1;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}

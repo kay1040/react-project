@@ -1,0 +1,28 @@
+.search{
+    position: relative;
+}
+
+.searchInput{
+    width: 160px;
+    height: 35px;
+    padding-top: 4px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 0 40px 0 20px ;
+    outline: none
+}
+.searchInput:focus{
+    border: 1px solid darkslategray;
+}
+.searchButton{
+    position: absolute;
+    left: 130px;
+    top: 5px;
+    color: darkslategray;
+    font-size: 16px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer
+}

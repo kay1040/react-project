@@ -1,0 +1,9 @@
+.ant-steps-item-finish .ant-steps-item-icon { 
+    position: relative;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon{
+    position: absolute;
+    left: 8px;
+    top: 5px;
+}
