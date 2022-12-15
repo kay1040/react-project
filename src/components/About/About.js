@@ -10,7 +10,7 @@ const About = () => {
             <p className="text-base mt-2 leading-loose px-12 ">
                 我們致力於推廣纏花這項快要失傳的傳統工藝，讓更多人能夠認識纏花
             </p>
-            <img src="/imgs/about_img.png" className="mt-8 w-screen" />
+            <img src="/flower-field/imgs/about_img.png" className="mt-8 w-screen" />
         </div>
     );
 };

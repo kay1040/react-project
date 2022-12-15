@@ -14,10 +14,10 @@ import "./Carousel.css";
 import { Autoplay, EffectFade, Navigation, Pagination,  Scrollbar } from "swiper";
 
 const carouselImgs = [
-    '/imgs/carousel/01.png',
-    '/imgs/carousel/02.png',
-    '/imgs/carousel/03.png',
-    '/imgs/carousel/04.png'
+    '/flower-field/imgs/carousel/01.png',
+    '/flower-field/imgs/carousel/02.png',
+    '/flower-field/imgs/carousel/03.png',
+    '/flower-field/imgs/carousel/04.png'
 ];
 
 

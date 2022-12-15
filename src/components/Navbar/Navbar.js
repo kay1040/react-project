@@ -52,7 +52,7 @@ const NavBar = () => {
            
             {/* logo */}
             <div className={styles.logo}>
-                <Link to="/"><img src="/imgs/logo.png" alt="logo" /></Link>
+                <Link to="/"><img src="/flower-field/imgs/logo.png" alt="logo" /></Link>
             </div>
             {/* 購物車 */}
             <div className={styles.cart}> 

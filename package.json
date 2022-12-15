@@ -2,7 +2,7 @@
   "name": "flower-field",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kay1040.github.io/flower-field",
+  "homepage": "https://kay1040.github.io/flower-field/",
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",

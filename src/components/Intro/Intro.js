@@ -14,7 +14,7 @@ const Intro = () => {
                     </p>
                 </div>
                 <div>
-                    <img src="/imgs/info.jpg" className="w-screen" />
+                    <img src="/flower-field/imgs/info.jpg" className="w-screen" />
                 </div>
                 <div>
                     <h2>不同地區的纏花</h2>
