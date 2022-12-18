@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 export const coursesApi = createApi({
     reducerPath: 'coursesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:1337/api/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://groovy-momentum-371809.appspot.com/api/' }),
     tagTypes: ['courses'],
     endpoints: (builder) => ({
         getCourses: builder.query({
