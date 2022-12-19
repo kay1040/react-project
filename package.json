@@ -34,7 +34,8 @@
     "build": "craco build",
     "test": "craco test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "eslint src/*.js"
   },
   "eslintConfig": {
     "extends": [
