@@ -11,10 +11,10 @@ function CourseCard(props) {
       className="w-64 mt-16"
       cover={(
         <img
-          alt={filterCourseData.attributes.title}
           src={filterCourseData.attributes.imgSrc}
+          alt={filterCourseData.attributes.title}
         />
-)}
+      )}
     >
       <Meta
         title={filterCourseData.attributes.title}

@@ -83,10 +83,10 @@ function AuthForm() {
                     </div>
                     )}
         <div>
-          <button type="button" className="btn-primary w-64 h-10 text-base font-bold">{isLoginForm ? '登入' : '註冊'}</button>
+          <button className="btn-primary w-64 h-10 text-base font-bold">{isLoginForm ? '登入' : '註冊'}</button>
           <div className="mt-4 mb-56">
-            <button
-              type="button"
+            <a
+              href="#"
               className="text-base text-darkslategray transition-all duration-300 hover:text-[#599b9b]"
               onClick={(e) => {
                 e.preventDefault();
@@ -94,7 +94,7 @@ function AuthForm() {
               }}
             >
               {isLoginForm ? '沒有帳號? 點擊註冊' : '已有帳號? 點擊登入'}
-            </button>
+            </a>
           </div>
         </div>
       </form>
