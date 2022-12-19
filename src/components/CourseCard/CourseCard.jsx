@@ -3,14 +3,23 @@ import { Card } from 'antd';
 
 const { Meta } = Card;
 
-const CourseCard = (props) => {
+function CourseCard(props) {
+  const filterCourseData = { props };
   return (
     <Card
       hoverable
       className="w-64 mt-16"
-      cover={<img alt="example" src={props.filterCourseData.attributes.imgSrc} />}
+      cover={(
+        <img
+          alt={filterCourseData.attributes.title}
+          src={filterCourseData.attributes.imgSrc}
+        />
+)}
     >
-      <Meta title={props.filterCourseData.attributes.title} description={props.filterCourseData.attributes.category} />
+      <Meta
+        title={filterCourseData.attributes.title}
+        description={filterCourseData.attributes.category}
+      />
     </Card>
   );
 }
