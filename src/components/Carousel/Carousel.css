@@ -38,3 +38,11 @@
 .swiper-pagination-bullet{
   background-color: #ddd;
 }
+
+@media screen and (max-width: 992px) {
+  .swiper-slide img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
