@@ -4,7 +4,7 @@ import { Card } from 'antd';
 const { Meta } = Card;
 
 function CourseCard(props) {
-  const filterCourseData = { props };
+  const { filterCourseData } = props;
   return (
     <Card
       hoverable
