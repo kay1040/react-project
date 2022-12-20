@@ -88,9 +88,9 @@ function App() {
               </Button>
               )}
               {current < steps.length - 1 && (
-              <Button type="primary" style={buttonStyle} onClick={nextHandler} htmlType="submit">
-                下一步
-              </Button>
+                <Button type="primary" style={buttonStyle} onClick={nextHandler} htmlType="submit">
+                  下一步
+                </Button>
               )}
             </div>
           </>

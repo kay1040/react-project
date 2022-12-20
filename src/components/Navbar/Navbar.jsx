@@ -44,7 +44,7 @@ function NavBar() {
             <li><Link to="/course" onClick={showLeftMenuHandler}>纏花製作</Link></li>
             <li><Link to="/shop" onClick={showLeftMenuHandler}>購買纏花</Link></li>
             <li className={styles.search}>
-              <SearchProduct />
+              <SearchProduct showLeftMenuHandler={showLeftMenuHandler} />
             </li>
           </ul>
         </div>

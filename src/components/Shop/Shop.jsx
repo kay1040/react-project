@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ProductFilter from '../ProductFilter/ProductFilter';
-
 import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading/Loading';
 import ProductList from '../ProductList/ProductList';

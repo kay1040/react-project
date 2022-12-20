@@ -30,7 +30,7 @@ function App() {
         <Route path="course/:id" element={<CourseDetailsPage />} />
         <Route path="shop" element={<ShopPage />} />
         <Route path="shop/product/:id" element={<ProductDetailsPage />} />
-        <Route path="shop/cart" element={<NeedAuth><CartPage /></NeedAuth>} />
+        <Route path="shop/cart" element={<CartPage />} />
         <Route path="auth_form" element={<AuthPage />} />
         <Route path="profile" element={<NeedAuth><ProfilePage /></NeedAuth>}>
           <Route path="account" element={<Profile />} />
