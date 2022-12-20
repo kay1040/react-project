@@ -21,3 +21,9 @@
   transform: translateY(-20px);
 
 }
+
+@media screen and (max-width: 992px) {
+  .wrapper {
+      display: none;
+  }
+}
