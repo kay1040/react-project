@@ -38,11 +38,11 @@ function NavBar() {
 
           {/* 菜單 */}
           <ul className={showLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
-            <li className={styles.login}><Link to="/profile/account">{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
-            <li><Link to="/about">關於我們</Link></li>
-            <li><Link to="/intro">認識纏花</Link></li>
-            <li><Link to="/course">纏花製作</Link></li>
-            <li><Link to="/shop">購買纏花</Link></li>
+            <li className={styles.login}><Link to="/profile/account" onClick={showLeftMenuHandler}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
+            <li><Link to="/about" onClick={showLeftMenuHandler}>關於我們</Link></li>
+            <li><Link to="/intro" onClick={showLeftMenuHandler}>認識纏花</Link></li>
+            <li><Link to="/course" onClick={showLeftMenuHandler}>纏花製作</Link></li>
+            <li><Link to="/shop" onClick={showLeftMenuHandler}>購買纏花</Link></li>
             <li className={styles.search}>
               <SearchProduct />
             </li>
@@ -51,7 +51,7 @@ function NavBar() {
 
         {/* logo */}
         <div className={styles.logo}>
-          <Link to="/"><img src="/flower-field/imgs/logo.png" alt="logo" /></Link>
+          <Link to="/" onClick={() => setShowLeftMenu(false)}><img src="/flower-field/imgs/logo.png" alt="logo" /></Link>
         </div>
         {/* 購物車 */}
         <div className={styles.cart}>
