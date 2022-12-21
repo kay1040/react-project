@@ -1,1 +1,23 @@
-@layer base{h1{@apply text-4xl;}h2{@apply text-3xl;}h3{@apply text-2xl;}input{@apply px-5 py-2 rounded border border-inherit transition-all duration-300 focus:shadow-input focus:outline-none focus:border-0;}button{@apply bg-darkslategray text-white rounded transition-all duration-300 hover:bg-[#599b9b];}}/*# sourceMappingURL=./index.css.map */
+@layer base {
+    h1 {
+        @apply text-4xl;
+    }
+
+    h2 {
+        @apply text-3xl;
+    }
+
+    h3 {
+        @apply text-2xl;
+    }
+
+    input {
+        @apply px-5 py-2 rounded border border-inherit transition-all duration-300 focus: shadow-input focus:outline-none focus:border-0;
+    }
+
+    button {
+        @apply bg-darkslategray text-white rounded transition-all duration-300 hover: bg-[#599b9b];
+    }
+}
+
+/*# sourceMappingURL=./index.css.map */

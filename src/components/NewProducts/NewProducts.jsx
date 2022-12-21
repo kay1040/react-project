@@ -16,7 +16,7 @@ function NewProducts() {
       {isSuccess
             && (
             <>
-              <h2 className="text-center mb-0 mt-20">新品上架</h2>
+              <h2 className="text-center mb-0 mt-12">新品上架</h2>
               <ProductList products={newProducts} />
             </>
             )}

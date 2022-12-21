@@ -1,3 +1,3 @@
-react exercise
+### React 練習作品 - 一畝花田
 
-demo: https://kay1040.github.io/flower-field/
+Demo: https://kay1040.github.io/flower-field/

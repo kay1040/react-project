@@ -13,12 +13,15 @@ import ProfilePage from './pages/ProfilePage';
 import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
 import useAutoLogout from './hooks/useAutoLogout';
+import useScrollToTop from './hooks/useScrollToTop';
 import FavoriteList from './components/FavoriteList/FavoriteList';
 import Profile from './components/Profile/Profile';
 
 function App() {
   // 自動登出
   useAutoLogout();
+  // 路由跳轉回到頁面頂端
+  useScrollToTop();
 
   return (
     <Layout>

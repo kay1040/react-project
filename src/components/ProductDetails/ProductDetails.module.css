@@ -1,7 +1,6 @@
 .productDetailsWrapper {
     max-width: 1200px;
-    margin: 24px auto;
-    margin-bottom: 50px;
+    margin: 0 auto;
 }
 
 .nav {
@@ -111,7 +110,7 @@
 @media only screen and (min-width: 768px) {
     .nav {
         margin: 30px 80px;
-        padding-top: 20px;
+
     }
 
     .productDetails {

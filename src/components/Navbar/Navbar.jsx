@@ -16,8 +16,13 @@ function NavBar() {
     setShowLeftMenu(!showLeftMenu);
   };
 
+  const closeCartPreviewHandler = () => {
+    setShowCartPreview(false);
+  };
+
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
+
   return (
   // 導航條外層
     <header className={styles.navbarWrapper}>
@@ -54,8 +59,11 @@ function NavBar() {
           <Link to="/" onClick={() => setShowLeftMenu(false)}><img src="/flower-field/imgs/logo.png" alt="logo" /></Link>
         </div>
         {/* 購物車 */}
-        <div className={styles.cart}>
-
+        <button
+          type="button"
+          className={styles.cart}
+          onClick={() => setShowCartPreview(!showCartPreview)}
+        >
           {cart.totalQuantity === 0
             ? null
             : (
@@ -63,19 +71,18 @@ function NavBar() {
                 {cart.totalQuantity}
               </div>
             ) }
-          <Link to="/shop/cart">
-            <FontAwesomeIcon icon={faCartShopping} />
-          </Link>
-        </div>
+          <i><FontAwesomeIcon icon={faCartShopping} /></i>
+        </button>
         {/* 右側導航 */}
         <div className={styles.rightNav}>
           <div className={styles.search}>
             <SearchProduct />
           </div>
-          <div
+          <button
+            type="button"
             className={styles.cart}
-            onMouseEnter={() => setShowCartPreview(true)}
-            onMouseLeave={() => setShowCartPreview(false)}
+            // 不能設定成flase??
+            onClick={() => setShowCartPreview(!showCartPreview)}
           >
             {cart.totalQuantity === 0
               ? null
@@ -84,11 +91,9 @@ function NavBar() {
                   {cart.totalQuantity}
                 </div>
               ) }
-            <Link to="/shop/cart">
-              <FontAwesomeIcon icon={faCartShopping} />
-            </Link>
-            {showCartPreview && <CartPreview className={styles.cartPreview} />}
-          </div>
+            <i><FontAwesomeIcon icon={faCartShopping} /></i>
+            {showCartPreview && <CartPreview className={styles.cartPreview} onClose={closeCartPreviewHandler} />}
+          </button>
           <div className={styles.user}>
             <Link to="/profile/account">
               <FontAwesomeIcon icon={faUser} />

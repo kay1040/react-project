@@ -5,7 +5,7 @@ import Backdrop from '../Backdrop/Backdrop';
 function ConfirmModal(props) {
   const { confirmText, onConfirm, onCancel } = props;
   return (
-    <Backdrop>
+    <Backdrop className={styles.confirmOuter} onClick={onCancel}>
       <div className={styles.confirmModal}>
         <div className={styles.confirmText}>
           <p>{confirmText}</p>
