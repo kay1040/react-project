@@ -11,15 +11,20 @@ function CartPreview(props) {
   const { onClose, showCartPreview } = props;
   const [isShow, setIsShow] = useState(showCartPreview);
 
-  useEffect(() => { 
-    setIsShow(showCartPreview) 
-  }, [showCartPreview]) 
+  const closeHandler = (e) => {
+    setIsShow(false);
+    setTimeout(() => onClose(e), 300);
+  };
+
+  useEffect(() => {
+    setIsShow(showCartPreview);
+  }, [showCartPreview]);
 
   return (
-    <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={onClose}>
+    <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={closeHandler}>
       <div
         className={isShow ? `${styles.cartPreview} ${styles.cartPreviewActive}` : `${styles.cartPreview}`}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.title}>
           <h2>購物車</h2>
