@@ -150,6 +150,11 @@
     color: #599b9b;
 }
 
+.cartPreview{
+    display: block;
+}
+
+
 @media screen and (max-width: 992px) {
     .navActive {
         display: block;
@@ -213,29 +218,8 @@
     .cart {
         height: 70px;
         line-height: 70px;
-        position: relative;
     }
 
-    .cart::after{
-        display: none;
-        width: 0;
-        height: 0;
-        position: absolute;
-        content: '';
-        border: 12px solid transparent;
-        border-top: none;
-        border-bottom-color: #ddd;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-    
-    .cart:hover .cartPreview,
-    .cart:hover::after{
-        display: block;
-    }
-    
     .totalQuantity {
         top: 20px;
     }

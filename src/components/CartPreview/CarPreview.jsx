@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +8,19 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 
 function CartPreview(props) {
   const cart = useSelector((state) => state.cart);
-  const { onClose } = props;
+  const { onClose, showCartPreview } = props;
+  const [isShow, setIsShow] = useState(showCartPreview);
+
+  useEffect(() => { 
+    setIsShow(showCartPreview) 
+  }, [showCartPreview]) 
 
   return (
-    <Backdrop className={styles.outer} onClick={onClose}>
-      <div className={styles.cartPreview} onClick={e => e.stopPropagation()}>
+    <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={onClose}>
+      <div
+        className={isShow ? `${styles.cartPreview} ${styles.cartPreviewActive}` : `${styles.cartPreview}`}
+        onClick={e => e.stopPropagation()}
+      >
         <div className={styles.title}>
           <h2>購物車</h2>
           <button type="button" onClick={onClose}>

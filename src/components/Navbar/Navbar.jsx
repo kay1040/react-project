@@ -16,8 +16,9 @@ function NavBar() {
     setShowLeftMenu(!showLeftMenu);
   };
 
-  const closeCartPreviewHandler = () => {
+  const closeCartPreviewHandler = (e) => {
     setShowCartPreview(false);
+    e.stopPropagation();
   };
 
   const cart = useSelector((state) => state.cart);
@@ -62,7 +63,7 @@ function NavBar() {
         <button
           type="button"
           className={styles.cart}
-          onClick={() => setShowCartPreview(!showCartPreview)}
+          onClick={() => setShowCartPreview(true)}
         >
           {cart.totalQuantity === 0
             ? null
@@ -81,8 +82,7 @@ function NavBar() {
           <button
             type="button"
             className={styles.cart}
-            // 不能設定成flase??
-            onClick={() => setShowCartPreview(!showCartPreview)}
+            onClick={() => setShowCartPreview(true)}
           >
             {cart.totalQuantity === 0
               ? null
@@ -92,7 +92,11 @@ function NavBar() {
                 </div>
               ) }
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
-            {showCartPreview && <CartPreview className={styles.cartPreview} onClose={closeCartPreviewHandler} />}
+            <CartPreview
+              className={styles.cartPreview}
+              onClose={closeCartPreviewHandler}
+              showCartPreview={showCartPreview}
+            />
           </button>
           <div className={styles.user}>
             <Link to="/profile/account">

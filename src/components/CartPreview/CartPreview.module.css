@@ -1,30 +1,43 @@
 .outer{
-    z-index: 9999;
+    display: none;
 }
 
 .cartPreview {
-    width: 500px;
-    height: 100%;
+    width: 450px;
+    height: 100vh;
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow:  0 3px 3px rgba(0, 0, 0, .1);
     position: absolute;
     top: 0;
-    right: 0;
+    right: -500px;
     padding: 10px;
+    transition: all .5s;
+    overflow: auto;
     z-index: 9999;
+}
+
+.cartPreviewActive{
+    right: 0;
+}
+
+.cartPreview a:hover{
+    color: #599b9b;
 }
 
 .title {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    height: 60px;
+    line-height: 60px;
+    padding: 10px;
     font-weight: bold;
+    align-items: center;
     border-bottom: 1px solid #ddd;
 }
 
 .title button {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .cartPreview a{
@@ -35,21 +48,20 @@
 
 .cartData{
     display: flex;
-    height: 120px;
+    height: 100px;
     padding: 10px;
-    justify-content: left;
-    align-content: center;
+    align-content: space-around;
     border-bottom: 1px solid #ddd;
     background-color: #fff;
 }
 
 .imgWrapper{
-    width: 180px;
+    width: 140px;
     margin-right: 20px;
 }
-.cartData p{
-    margin-top: 3px;
-    margin-bottom: 10px;
+
+.textWrapper {
+    text-align: left;
 }
 
 .checkout{
@@ -58,11 +70,8 @@
 
 .goShop a,
 .checkout a{
-    font-size: 16px;
-}
-
-.goShop:last-child,
-.checkout:last-child{
-    height: 36px;
-    line-height: 46px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 48px;
+    line-height: 48px;
 }
