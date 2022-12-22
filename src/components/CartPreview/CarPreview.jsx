@@ -9,7 +9,7 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 function CartPreview(props) {
   const cart = useSelector((state) => state.cart);
   const { onClose, showCartPreview } = props;
-  const [isShow, setIsShow] = useState(showCartPreview);
+  const [isShow, setIsShow] = useState(false);
 
   const closeHandler = (e) => {
     setIsShow(false);
@@ -27,8 +27,8 @@ function CartPreview(props) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.title}>
-          <h2>購物車</h2>
-          <button type="button" onClick={onClose}>
+          <h3>購物車</h3>
+          <button type="button" onClick={closeHandler}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
@@ -36,13 +36,13 @@ function CartPreview(props) {
           ? (
             <div style={{ textAlign: 'center' }}>
               <div style={{ borderBottom: '1px solid #ddd' }}>您的購物車內沒有商品</div>
-              <div className={styles.goShop}><Link to="/shop/" onClick={onClose}>前往商店</Link></div>
+              <div className={styles.goShop}><Link to="/shop/" onClick={closeHandler}>前往商店</Link></div>
             </div>
           )
           : (
             <div>
               {cart.cartItems.map((item) => (
-                <Link to={`/shop/product/${item.id}`} key={item.id} onClick={onClose}>
+                <Link to={`/shop/product/${item.id}`} key={item.id} onClick={closeHandler}>
                   <div className={styles.cartData}>
                     <div className={styles.imgWrapper}>
                       <img src={item.attributes.imgSrc} alt={item.attributes.title} />
@@ -61,7 +61,7 @@ function CartPreview(props) {
                   </div>
                 </Link>
               ))}
-              <div className={styles.checkout}><Link to="/shop/cart" onClick={onClose}>前往結帳</Link></div>
+              <div className={styles.checkout}><Link to="/shop/cart" onClick={closeHandler}>前往結帳</Link></div>
             </div>
           )}
       </div>

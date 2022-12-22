@@ -19,7 +19,6 @@ function NavBar() {
   const closeCartPreviewHandler = (e) => {
     setShowCartPreview(false);
     e.stopPropagation();
-    console.log('onclose被呼叫了');
   };
 
   const cart = useSelector((state) => state.cart);
@@ -93,10 +92,7 @@ function NavBar() {
                 </div>
               ) }
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
-            <CartPreview
-              onClose={closeCartPreviewHandler}
-              showCartPreview={showCartPreview}
-            />
+            {showCartPreview && <CartPreview onClose={closeCartPreviewHandler} showCartPreview={showCartPreview} />}
           </button>
           <div className={styles.user}>
             <Link to="/profile/account">

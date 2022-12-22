@@ -1,12 +1,10 @@
 import React from 'react';
-import styles from './Backdrop.module.css';
 import ReactDOM from 'react-dom';
 
-// 獲取Backdrop的根元素
 const backdropRoot = document.getElementById('backdrop-root');
 
 const Backdrop = (props) => {
-  return ReactDOM.createPortal(<div {...props} className={`${styles.backdrop} ${props.className}`}>
+  return ReactDOM.createPortal(<div {...props} className={`fixed inset-0 bg-black/[.3] z-[9999] ${props.className}`}>
       {props.children}
   </div>, backdropRoot);
 };
