@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -8,6 +8,7 @@ import {
 } from '../../store/reducer/cartSlice';
 import styles from './CartDetails.module.css';
 import Confirm from '../UI/ConfirmModal/ConfirmModal';
+import Counter from '../UI/Counter/Couner';
 
 function CartDetails(props) {
   const cart = useSelector((state) => state.cart);
@@ -44,38 +45,34 @@ function CartDetails(props) {
   return (
     <>
       {showConfirm && <Confirm confirmText="確定要刪除此商品嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
-      <tr>
-        <td>
+      <div className="flex p-2.5 content-evenly border-b border-inherit bg-white">
+        <div className="w-36 mb:w-52">
           <Link to={`/shop/product/${item.id}`}>
             <img
-              className={styles.productImg}
+              className="w-full"
               src={item.attributes.imgSrc}
               alt={item.attributes.title}
             />
-            <p className={styles.productTitle}>{item.attributes.title}</p>
           </Link>
-        </td>
-        <td>
+        </div>
+        {/* <td>
           NT$
           {item.attributes.price.toLocaleString('en-US')}
-        </td>
-        <td>
-          <div className={styles.counter}>
-            <button type="button" className={styles.sub} onClick={decreaseButtonHandler}>
-              <FontAwesomeIcon icon={faMinus} />
-            </button>
-            <input type="text" value={cart.cartItems[index].quantity} onChange={inputChangeHandler} className={styles.count} />
-            <button type="button" className={styles.add} onClick={increaseButtonHandler}>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
+        </td> */}
+        <div className="flex-auto">
+          <p>{item.attributes.title}</p>
+          <div>
+            NT$
+            {cart.cartItems[index].subtotal.toLocaleString('en-US')}
           </div>
-
-        </td>
-        <td className={styles.total}>
-          NT$
-          {cart.cartItems[index].subtotal.toLocaleString('en-US')}
-        </td>
-        <td>
+          <Counter
+            index={index}
+            onIncrease={increaseButtonHandler}
+            onDecrease={decreaseButtonHandler}
+            onInputChange={inputChangeHandler}
+          />
+        </div>
+        <div>
           <button
             type="button"
             className={styles.delete}
@@ -84,8 +81,8 @@ function CartDetails(props) {
           >
             <FontAwesomeIcon icon={faXmark} />
           </button>
-        </td>
-      </tr>
+        </div>
+      </div>
     </>
   );
 }

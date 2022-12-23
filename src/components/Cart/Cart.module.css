@@ -11,19 +11,19 @@
     margin: 0 auto;
 }
 
-.cart th {
+.cart div {
     color: #666;
 }
 
-.cart th,
-.cart td {
+.cart div,
+.cart div {
     border: none;
     text-align: center;
     border-bottom: 1px solid #ccc;
     padding: 20px 20px;
 }
 
-.cart td:first-child{
+.cart div:first-child{
     text-align: left;
 }
 
