@@ -45,8 +45,8 @@ function CartDetails(props) {
   return (
     <>
       {showConfirm && <Confirm confirmText="確定要刪除此商品嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
-      <div className="flex p-2.5 content-evenly border-b border-inherit bg-white">
-        <div className="w-36 mb:w-52">
+      <div className="flex p-2.5 border-b border-inherit bg-white">
+        <div className="w-40 mb:w-52 mr-4">
           <Link to={`/shop/product/${item.id}`}>
             <img
               className="w-full"
@@ -55,22 +55,19 @@ function CartDetails(props) {
             />
           </Link>
         </div>
-        {/* <td>
-          NT$
-          {item.attributes.price.toLocaleString('en-US')}
-        </td> */}
         <div className="flex-auto">
-          <p>{item.attributes.title}</p>
-          <div>
-            NT$
-            {cart.cartItems[index].subtotal.toLocaleString('en-US')}
+          <div>{item.attributes.title}</div>
+          <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
+            <div className="before:content-['NT$_'] before:text-sm my-2 text-lg">
+              {cart.cartItems[index].subtotal.toLocaleString('en-US')}
+            </div>
+            <Counter
+              index={index}
+              onIncrease={increaseButtonHandler}
+              onDecrease={decreaseButtonHandler}
+              onInputChange={inputChangeHandler}
+            />
           </div>
-          <Counter
-            index={index}
-            onIncrease={increaseButtonHandler}
-            onDecrease={decreaseButtonHandler}
-            onInputChange={inputChangeHandler}
-          />
         </div>
         <div>
           <button

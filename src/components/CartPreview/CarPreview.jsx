@@ -56,17 +56,18 @@ function CartPreview(props) {
                     </Link>
                   </div>
                   <div className={styles.textWrapper}>
-                    <p>{item.attributes.title}</p>
-                    <p>
-                      NT$
-                      {cart.cartItems[index].subtotal.toLocaleString('en-US')}
-                    </p>
-                    <Counter
-                      index={index}
-                      onIncrease={() => { dispatch(increaseItem(item)) }}
-                      onDecrease={() => { dispatch(decreaseItem(item)) }}
-                      onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])) }}
-                    />
+                    <div className={styles.itemName}>{item.attributes.title}</div>
+                    <div className={styles.priceWrapper}>
+                      <div className={styles.price}>
+                        {cart.cartItems[index].subtotal.toLocaleString('en-US')}
+                      </div>
+                      <Counter
+                        index={index}
+                        onIncrease={() => { dispatch(increaseItem(item)) }}
+                        onDecrease={() => { dispatch(decreaseItem(item)) }}
+                        onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])) }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
