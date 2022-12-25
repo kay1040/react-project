@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import {
   increaseItem, decreaseItem, getInputValue, removeItem,
 } from '../../store/reducer/cartSlice';
-import styles from './CartDetails.module.css';
 import Confirm from '../UI/ConfirmModal/ConfirmModal';
 import Counter from '../UI/Counter/Couner';
 
@@ -56,7 +55,7 @@ function CartDetails(props) {
           </Link>
         </div>
         <div className="flex-auto">
-          <div>{item.attributes.title}</div>
+          <div className="md:text-lg">{item.attributes.title}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
             <div className="before:content-['NT$_'] before:text-sm my-2 text-lg">
               {cart.cartItems[index].subtotal.toLocaleString('en-US')}
@@ -72,7 +71,7 @@ function CartDetails(props) {
         <div>
           <button
             type="button"
-            className={styles.delete}
+            className="text-gray-500"
             onClick={showConfirmHandler}
             onKeyDown={showConfirmHandler}
           >

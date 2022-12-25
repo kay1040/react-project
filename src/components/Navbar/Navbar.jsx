@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -7,25 +7,30 @@ import styles from './Navbar.module.css';
 import SearchProduct from '../SearchProduct/SearchProduct';
 import CartPreview from '../CartPreview/CarPreview';
 
-function NavBar() {
+function NavBar(props) {
   // 設定是否顯示左側菜單
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
+
+  const { onScroll } = props;
 
   const showLeftMenuHandler = () => {
     setShowLeftMenu(!showLeftMenu);
   };
 
-  const closeCartPreviewHandler = (e) => {
+  const closeCartPreviewHandler = () => {
     setShowCartPreview(false);
-    e.stopPropagation();
   };
 
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    onScroll(showCartPreview);
+  }, [showCartPreview]);
+
   return (
-  // 導航條外層
+    // 導航條外層
     <header className={styles.navbarWrapper}>
       <div className={styles.navbar}>
         {/* 左側菜單 */}
@@ -63,7 +68,7 @@ function NavBar() {
         <button
           type="button"
           className={styles.cart}
-          onClick={() => setShowCartPreview(true)}
+          onClick={(e) => { setShowCartPreview(true); e.stopPropagation(); }}
         >
           {cart.totalQuantity === 0
             ? null
@@ -71,7 +76,7 @@ function NavBar() {
               <div className={styles.totalQuantity}>
                 {cart.totalQuantity}
               </div>
-            ) }
+            )}
           <i><FontAwesomeIcon icon={faCartShopping} /></i>
         </button>
         {/* 右側導航 */}
@@ -82,7 +87,7 @@ function NavBar() {
           <button
             type="button"
             className={styles.cart}
-            onClick={() => setShowCartPreview(true)}
+            onClick={(e) => { setShowCartPreview(true); e.stopPropagation(); }}
           >
             {cart.totalQuantity === 0
               ? null
@@ -90,7 +95,7 @@ function NavBar() {
                 <div className={styles.totalQuantity}>
                   {cart.totalQuantity}
                 </div>
-              ) }
+              )}
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
             {showCartPreview && <CartPreview onClose={closeCartPreviewHandler} showCartPreview={showCartPreview} />}
           </button>

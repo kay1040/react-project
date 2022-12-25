@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
 function Layout(props) {
   const { children } = props;
+
+  const [isScroll, setIsScroll] = useState(true);
+  useEffect(() => {
+    if (isScroll) {
+      document.body.style.overflowY = 'auto';
+    } else {
+      document.body.style.overflowY = 'hidden';
+    }
+  }, [isScroll]);
+
   return (
     <div className="h-screen">
-      <Navbar />
-      <main className="mt-28">{children}</main>
+      <Navbar onScroll={(show) => { setIsScroll(!show); }} />
+      <main>{children}</main>
       <Footer />
     </div>
   );
