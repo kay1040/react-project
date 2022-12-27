@@ -86,7 +86,6 @@ function ProductDetails() {
                 </h3>
                 <p>{product.attributes.description}</p>
                 <div className={styles.price}>
-                  <span>NT$ </span>
                   {product.attributes.price.toLocaleString('en-US')}
                 </div>
                 <div className="my-5">

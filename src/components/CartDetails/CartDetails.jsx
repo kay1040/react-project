@@ -55,9 +55,9 @@ function CartDetails(props) {
           </Link>
         </div>
         <div className="flex-auto">
-          <div className="md:text-lg">{item.attributes.title}</div>
+          <div className="text-basic md:mt-2">{item.attributes.title}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
-            <div className="before:content-['NT$_'] before:text-sm my-2 text-lg">
+            <div className="before:content-['NT$'] font-bold my-3 md:my-0">
               {cart.cartItems[index].subtotal.toLocaleString('en-US')}
             </div>
             <Counter

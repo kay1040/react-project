@@ -1,7 +1,6 @@
 .ant-form {
-    margin-top: 50px;
     margin-bottom: 50px;
-    width: 60%;
+    width: 90%;
 }
 
 .ant-form .ant-form-item:last-child label {
@@ -40,4 +39,11 @@
     outline: none;
     box-shadow: 0 0 0 2px #2f4f4f;
     border: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .ant-form {
+        width: 60%;
+        margin-top: 30px;
+    }
 }

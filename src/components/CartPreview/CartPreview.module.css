@@ -77,13 +77,12 @@
 }
 
 .price{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 .price::before{
-    content: 'NT$ ';
-    font-size: 16px;
+    content: 'NT$';
 }
 
 .checkout,
@@ -93,10 +92,11 @@
 
 .goShop a,
 .checkout a{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     height: 48px;
     line-height: 48px;
+    color: #2f4f4f;
 }
 
 @media only screen and (min-width: 420px) {

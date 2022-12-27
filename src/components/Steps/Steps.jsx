@@ -69,7 +69,7 @@ function App() {
         )
         : (
           <>
-            <Steps current={current} style={{ margin: '0 auto', width: '60%' }}>
+            <Steps current={current} className="mx-auto w-4/5 md:w-3/5">
               {steps.map((item) => (
                 <Step key={item.title} title={item.title} />
               ))}

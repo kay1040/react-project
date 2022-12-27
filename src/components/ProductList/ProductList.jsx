@@ -22,8 +22,7 @@ function ProductList(props) {
                 />
               </div>
               <h3 className="mt-3 text-sm text-gray-700">{product.attributes.title}</h3>
-              <p className="mt-2 text-base font-medium text-gray-900">
-                NT$
+              <p className="mt-2 text-base font-bold text-gray-900 before:content-['NT$']">
                 {product.attributes.price.toLocaleString('en-US')}
               </p>
             </Link>

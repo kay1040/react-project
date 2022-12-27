@@ -1,11 +1,11 @@
 .navbarWrapper {
     background-color: #fff;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 70px;
-    z-index: 9999;
+    z-index: 999;
     user-select: none;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Navbar.module.css';
 import SearchProduct from '../SearchProduct/SearchProduct';
@@ -28,6 +28,12 @@ function NavBar(props) {
   useEffect(() => {
     onScroll(showCartPreview);
   }, [showCartPreview]);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setShowLeftMenu(false);
+  }, [pathname]);
 
   return (
     // 導航條外層

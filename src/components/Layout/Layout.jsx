@@ -17,7 +17,7 @@ function Layout(props) {
   return (
     <div className="h-screen">
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main>{children}</main>
+      <main className="mt-28">{children}</main>
       <Footer />
     </div>
   );

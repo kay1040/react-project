@@ -6,7 +6,7 @@ import {
 
 function Footer() {
   return (
-    <footer className="mx-auto bg-darkslategray h-96 text-center flex justify-center items-center top-[100vh] sticky">
+    <footer className="mx-auto bg-darkslategray h-80 text-center flex justify-center items-center top-[100vh] sticky">
 
       <p className="text-white text-base font-bold">
         since 2016
