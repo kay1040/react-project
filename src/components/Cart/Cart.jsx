@@ -8,7 +8,7 @@ function Cart() {
     <div className="w-11/12 md:w-3/5 mx-auto mt-6 md:mt-12 flex flex-col border-t border-inherit">
       {cart.cartItems.map((item, index) => (
         <CartDetails
-          ey={item.id}
+          key={item.id}
           item={item}
           index={index}
         />

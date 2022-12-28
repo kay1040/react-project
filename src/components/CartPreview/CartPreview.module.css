@@ -1,4 +1,4 @@
-.outer{
+.outer {
     display: none;
 }
 
@@ -6,7 +6,7 @@
     width: 100%;
     height: 100vh;
     background-color: #fff;
-    box-shadow:  0 3px 3px rgba(0, 0, 0, .1);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .1);
     position: absolute;
     top: 0;
     right: -100%;
@@ -16,12 +16,8 @@
     z-index: 9999;
 }
 
-.cartPreviewActive{
+.cartPreviewActive {
     right: 0;
-}
-
-.cartPreview a:hover{
-    color: #599b9b;
 }
 
 .title {
@@ -39,13 +35,7 @@
     font-size: 24px;
 }
 
-.cartPreview a{
-    color: black;
-    font-weight: normal;
-    font-size: 16px;
-}
-
-.cartData{
+.cartData {
     display: flex;
     height: 100px;
     padding: 10px;
@@ -54,11 +44,11 @@
     background-color: #fff;
 }
 
-.noData{
+.noData {
     margin-top: 25px;
 }
 
-.imgWrapper{
+.imgWrapper {
     width: 140px;
     margin-right: 20px;
 }
@@ -69,38 +59,51 @@
     font-size: 16px;
 }
 
-.priceWrapper{
+.priceWrapper {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
 }
 
-.price{
+.price {
     font-size: 16px;
     font-weight: bold;
 }
 
-.price::before{
+.price::before {
     content: 'NT$';
 }
 
-.checkout,
-.goShop{
+.goShop,
+.checkout{
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    background-color: darkslategray;
+    color: #fff;
+    font-weight: bold;
     text-align: center;
+    border-radius: 6px;
+    margin: 20px auto;
+    justify-content: center;
+    transition: all .3s;
 }
 
-.goShop a,
-.checkout a{
-    font-size: 18px;
-    font-weight: bold;
-    height: 48px;
-    line-height: 48px;
-    color: #2f4f4f;
+.goShop:hover,
+.checkout:hover {
+    background-color: #599b9b;
 }
 
 @media only screen and (min-width: 420px) {
     .cartPreview {
         width: 420px;
+    }
+
+    .goShop,
+    .checkout {
+        width: 384px;
+        margin-left: 8px;
     }
 }

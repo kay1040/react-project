@@ -41,7 +41,7 @@
     border: none;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 768px) {
     .ant-form {
         width: 60%;
         margin-top: 30px;

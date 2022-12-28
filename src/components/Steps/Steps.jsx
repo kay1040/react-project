@@ -3,6 +3,7 @@ import './Steps.css';
 import {
   Form, Button, message, Steps,
 } from 'antd';
+import { SmileOutlined, SolutionOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cart from '../Cart/Cart';
@@ -11,9 +12,7 @@ import Order from '../Order/Order';
 
 // 參考: https://stackoverflow.com/questions/68889542/ant-design-automatically-submit-form-inside-of-steps-before-going-to-next-step
 
-const { Step } = Steps;
-
-function App() {
+function ShoppingSteps() {
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
 
@@ -50,13 +49,19 @@ function App() {
     {
       title: '填寫收件者資料',
       content: <CheckoutForm form={form} />,
+      icon: <SolutionOutlined />,
     },
     {
       title: '完成訂單',
-
       content: <Order />,
+      icon: <SmileOutlined />,
     },
   ];
+
+  const items = steps.map((item) => ({
+    key: item.title,
+    title: item.title,
+  }));
 
   return (
     <div className="max-w-screen-xl mx-auto my-16 md:my-24">
@@ -69,23 +74,19 @@ function App() {
         )
         : (
           <>
-            <Steps current={current} className="mx-auto w-4/5 md:w-3/5">
-              {steps.map((item) => (
-                <Step key={item.title} title={item.title} />
-              ))}
-            </Steps>
+            <Steps current={current} items={items} className="mx-auto w-4/5 md:w-3/5" />
             <div className="steps-content">{steps[current].content}</div>
             <div className="steps-action flex justify-around">
               {current > 0 && (
-              <Button style={buttonStyle} onClick={prevHandler}>
-                上一步
-              </Button>
+                <Button style={buttonStyle} onClick={prevHandler}>
+                  上一步
+                </Button>
               )}
 
               {current === steps.length - 1 && (
-              <Button type="primary" style={buttonStyle} onClick={() => message.success('完成訂單!')}>
-                完成訂單
-              </Button>
+                <Button type="primary" style={buttonStyle} onClick={() => message.success('完成訂單!')}>
+                  完成訂單
+                </Button>
               )}
               {current < steps.length - 1 && (
                 <Button type="primary" style={buttonStyle} onClick={nextHandler} htmlType="submit">
@@ -99,4 +100,4 @@ function App() {
   );
 }
 
-export default App;
+export default ShoppingSteps;

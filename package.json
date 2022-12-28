@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kay1040.github.io/flower-field/",
   "dependencies": {
+    "@ant-design/icons": "^4.8.0",
     "@craco/craco": "^6.4.5",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",

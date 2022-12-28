@@ -43,15 +43,17 @@ function CartPreview(props) {
               <div className={styles.cartData}>
                 <p className={styles.noData}>您的購物車內沒有商品</p>
               </div>
-              <div className={styles.goShop}><Link to="/shop/" onClick={closeHandler}>前往商店</Link></div>
+              <Link to="/shop/" onClick={closeHandler}>
+                <button type="button" className={styles.goShop}>前往商店</button>
+              </Link>
             </div>
           )
           : (
             <div>
               {cart.cartItems.map((item, index) => (
-                <div className={styles.cartData}>
+                <div className={styles.cartData} key={item.id}>
                   <div className={styles.imgWrapper}>
-                    <Link to={`/shop/product/${item.id}`} key={item.id} onClick={closeHandler}>
+                    <Link to={`/shop/product/${item.id}`} onClick={closeHandler}>
                       <img src={item.attributes.imgSrc} alt={item.attributes.title} />
                     </Link>
                   </div>
@@ -71,7 +73,9 @@ function CartPreview(props) {
                   </div>
                 </div>
               ))}
-              <div className={styles.checkout}><Link to="/shop/cart" onClick={closeHandler}>前往結帳</Link></div>
+              <Link to="/shop/cart" onClick={closeHandler}>
+                <button type="button" className={styles.checkout}>前往結帳</button>
+              </Link>
             </div>
           )}
       </div>
