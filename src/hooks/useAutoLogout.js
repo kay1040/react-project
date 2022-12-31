@@ -22,6 +22,7 @@ const useAutoLogout = () => {
 
     return () => {
       clearTimeout(timer);
+      return null;
     };
   }, [auth]);
 };

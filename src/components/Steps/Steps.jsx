@@ -67,7 +67,7 @@ function ShoppingSteps() {
     <div className="max-w-screen-xl mx-auto my-16 md:my-24">
       {cart.cartItems.length === 0
         ? (
-          <div className="text-center text-base">
+          <div className="text-center text-base mt-48">
             <p className="mb-3">您的購物車內沒有商品</p>
             <Link to="/shop" className="font-bold text-[#599b9b]">立即選購</Link>
           </div>

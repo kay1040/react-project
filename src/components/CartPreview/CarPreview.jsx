@@ -7,7 +7,7 @@ import styles from './CartPreview.module.css';
 import Backdrop from '../UI/Backdrop/Backdrop';
 import Counter from '../UI/Counter/Couner';
 import {
-  increaseItem, decreaseItem, getInputValue, removeItem,
+  increaseItem, decreaseItem, getInputValue,
 } from '../../store/reducer/cartSlice';
 
 function CartPreview(props) {
@@ -65,9 +65,9 @@ function CartPreview(props) {
                       </div>
                       <Counter
                         index={index}
-                        onIncrease={() => { dispatch(increaseItem(item)) }}
-                        onDecrease={() => { dispatch(decreaseItem(item)) }}
-                        onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])) }}
+                        onIncrease={() => { dispatch(increaseItem(item)); }}
+                        onDecrease={() => { dispatch(decreaseItem(item)); }}
+                        onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])); }}
                       />
                     </div>
                   </div>

@@ -11,6 +11,7 @@ import { addToFavoriteList, removeFromFavoriteList } from '../../store/reducer/p
 import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading/Loading';
 import Counter from '../UI/Counter/Couner';
+import Message from '../UI/Message/Message';
 
 function ProductDetails() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
@@ -22,6 +23,8 @@ function ProductDetails() {
   const [count, setCount] = useState(1);
   const favoriteList = useSelector((state) => state.products.favoriteList);
   const [favorite, setFavorite] = useState(false);
+
+  const [showCartMessage, setShowCartMessage] = useState(false);
 
   let index;
   if (isSuccess) index = favoriteList.findIndex((item) => item.id === product.id);
@@ -47,7 +50,10 @@ function ProductDetails() {
   const addToCartHandler = () => {
     dispatch(addToCart([product, count]));
     setCount(1);
-    // alert('商品已加到購物車!');
+    setShowCartMessage(true);
+    setTimeout(() => {
+      setShowCartMessage(false);
+    }, 1000);
   };
 
   const addToFavoriteHandler = () => {
@@ -61,8 +67,8 @@ function ProductDetails() {
   };
 
   return (
-
     <div className={styles.productDetailsWrapper}>
+      {showCartMessage && <Message message="商品已添加到購物車！" />}
       {isLoading && <div className="mt-48"><Loading /></div>}
       {isSuccess
         && (

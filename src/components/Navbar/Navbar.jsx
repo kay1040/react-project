@@ -11,7 +11,6 @@ function NavBar(props) {
   // 設定是否顯示左側菜單
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
-
   const { onScroll } = props;
 
   const showLeftMenuHandler = () => {
