@@ -1,7 +1,7 @@
 .profile{
     display: flex;
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     flex-flow: column;
     align-items: left;
     border: 1px solid #ddd;
@@ -18,13 +18,16 @@
     font-size: 14px;
     font-weight: bold;
     background-color: darkslategray;
-    border-radius: 6px;
-}
-
-.profile a{
     color: #fff;
+    border-radius: 6px;
 }
 
 .profile button:hover{
     background-color: #599b9b;
+}
+
+@media only screen and (min-width: 768px) {
+    .profile {
+        width: 80%;
+    }
 }

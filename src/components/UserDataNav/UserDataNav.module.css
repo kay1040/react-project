@@ -1,5 +1,5 @@
 .profileNav {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -17,11 +17,10 @@
 .tabs li {
     text-align: center;
     position: relative;
-    width: 120px;
+    width: 90px;
     height: 36px;
     line-height: 36px;
     border: 0;
-
 }
 
 .tabs li:first-child {
@@ -40,4 +39,15 @@
     border-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .profileNav {
+        width: 80%;
+    }
+
+    .tabs li {
+        width: 120px;
+    }
 }

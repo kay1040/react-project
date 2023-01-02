@@ -9,13 +9,14 @@ import Layout from './components/Layout/Layout';
 import CourseDetailsPage from './pages/CourseDetailsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import CartPage from './pages/CartPage';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/UserPage';
 import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
 import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
 import FavoriteList from './components/FavoriteList/FavoriteList';
 import Profile from './components/Profile/Profile';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
   // 自動登出
@@ -35,8 +36,9 @@ function App() {
         <Route path="shop/product/:id" element={<ProductDetailsPage />} />
         <Route path="shop/cart" element={<CartPage />} />
         <Route path="auth_form" element={<AuthPage />} />
-        <Route path="profile" element={<NeedAuth><ProfilePage /></NeedAuth>}>
-          <Route path="account" element={<Profile />} />
+        <Route path="user" element={<NeedAuth><ProfilePage /></NeedAuth>}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="profile/change-password" element={<ChangePassword />} />
           <Route path="favorite" element={<FavoriteList />} />
         </Route>
       </Routes>

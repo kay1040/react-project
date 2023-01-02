@@ -32,7 +32,7 @@ function FavoriteList() {
   return (
     <>
       {showConfirm && <Confirm confirmText="確定要移除收藏嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
-      <div className="mx-auto w-4/5 border border-gray-100 rounded rounded-tl-none p-8">
+      <div className="mx-auto w-[90%] md:w-4/5 border border-[#ddd] rounded rounded-tl-none p-8">
         {favoriteList.length === 0
           ? (
             <div className="leading-loose">

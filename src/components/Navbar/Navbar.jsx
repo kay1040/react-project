@@ -54,7 +54,7 @@ function NavBar(props) {
 
           {/* 菜單 */}
           <ul className={showLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
-            <li className={styles.login}><Link to="/profile/account" onClick={showLeftMenuHandler}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
+            <li className={styles.login}><Link to="/user/profile" onClick={showLeftMenuHandler}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
             <li><Link to="/about" onClick={showLeftMenuHandler}>關於我們</Link></li>
             <li><Link to="/intro" onClick={showLeftMenuHandler}>認識纏花</Link></li>
             <li><Link to="/course" onClick={showLeftMenuHandler}>纏花製作</Link></li>
@@ -105,7 +105,7 @@ function NavBar(props) {
             {showCartPreview && <CartPreview onClose={closeCartPreviewHandler} showCartPreview={showCartPreview} />}
           </button>
           <div className={styles.user}>
-            <Link to="/profile/account">
+            <Link to="/user/profile">
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </div>
