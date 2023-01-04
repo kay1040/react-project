@@ -1,23 +1,16 @@
-.profileNav {
-    width: 90%;
-    margin: 0 auto;
-}
-
-
-.tabs{
+.tabs {
     height: 40px;
     padding: 0;
     margin-right: 0;
     margin-top: 50px;
     margin-bottom: 0;
     display: flex;
-
+    position: relative;
 }
 
 .tabs li {
     text-align: center;
-    position: relative;
-    width: 90px;
+    width: 80px;
     height: 36px;
     line-height: 36px;
     border: 0;
@@ -27,7 +20,14 @@
     border-right: 0;
 }
 
-.tabs li a {
+.tabs li:last-child {
+    width: 50px;
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+}
+
+.tabs li:not(:last-child) a {
     border: none;
     display: block;
     color: #000;
@@ -41,12 +41,7 @@
     border-bottom-right-radius: 0;
 }
 
-
 @media only screen and (min-width: 768px) {
-    .profileNav {
-        width: 80%;
-    }
-
     .tabs li {
         width: 120px;
     }

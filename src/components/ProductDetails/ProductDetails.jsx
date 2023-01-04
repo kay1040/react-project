@@ -68,7 +68,7 @@ function ProductDetails() {
 
   return (
     <div className={styles.productDetailsWrapper}>
-      {showCartMessage && <Message message="商品已添加到購物車！" />}
+      {showCartMessage && <Message message="商品已添加到購物車" />}
       {isLoading && <div className="mt-48"><Loading /></div>}
       {isSuccess
         && (

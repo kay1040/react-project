@@ -1,56 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Profile.module.css';
-import { useGetUserDataQuery, useUpdateUserDataMutation } from '../../store/api/authApi';
+import React, { useState } from 'react';
+import { useGetUserDataQuery } from '../../store/api/authApi';
+import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
 function Profile() {
-  const [updateUserData] = useUpdateUserDataMutation();
+  const [isEdit, setIsEdit] = useState(false);
   const { data: userData, isSuccess } = useGetUserDataQuery();
 
-  const updateHandler = () => {
-    updateUserData({
-      address: Math.floor(Math.random() * 100) + 1,
-    });
+  const cancelEdit = () => {
+    setIsEdit(false);
   };
 
   return (
-    <div className={styles.profile}>
-      {isSuccess
+    <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
+      {(!isEdit && isSuccess)
         && (
-          <table>
-            <tbody>
-              <tr>
-                <td>帳號</td>
-                <td>{userData.username}</td>
-              </tr>
-              <tr>
-                <td>電子信箱</td>
-                <td>{userData.email}</td>
-              </tr>
-              <tr>
-                <td>密碼</td>
-                <td>
-                  <Link
-                    to="/user/profile/change-password"
-                    className="text-blue-800"
-                  >
-                    修改密碼
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>地址</td>
-                <td>{userData.address}</td>
-                <td><button type="button" onClick={updateHandler}>修改</button></td>
-              </tr>
-              <tr>
-                <td>電話</td>
-                <td>{userData.phone}</td>
-              </tr>
-            </tbody>
-          </table>
+          <>
+            <div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">帳號</div>
+                <div>{userData.username}</div>
+              </div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">密碼</div>
+                <div>********</div>
+              </div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">e-mail</div>
+                <div>{userData.email}</div>
+              </div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">姓名</div>
+                <div>{userData.name}</div>
+              </div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">地址</div>
+                <div>{userData.address}</div>
+              </div>
+              <div className="flex my-5 items-center">
+                <div className="w-24">電話</div>
+                <div>{userData.phone}</div>
+              </div>
+            </div>
+            <br />
+            <button
+              className="btn-primary w-32 h-8 font-bold"
+              type="button"
+              onClick={() => setIsEdit(true)}
+            >
+              編輯資料
+            </button>
+          </>
         )}
-      <br />
+      {isEdit && <ProfileEdit onCancel={cancelEdit} userData={userData} />}
     </div>
   );
 }

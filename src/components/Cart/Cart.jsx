@@ -16,9 +16,9 @@ function Cart() {
       <div style={{ margin: '15px auto' }}>
         <p>
           共
-          <span id="totalCount">{cart.totalQuantity}</span>
-          件商品；總金額：
-          <span id="totalPrice" className="total-price">
+          <span className="font-bold after:content-['_'] before:content-['_']">{cart.totalQuantity}</span>
+          件商品，總金額：
+          <span className="font-bold">
             NT$
             {cart.totalAmount.toLocaleString('en-US')}
           </span>

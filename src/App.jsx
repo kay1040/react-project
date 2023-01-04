@@ -16,7 +16,6 @@ import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
 import FavoriteList from './components/FavoriteList/FavoriteList';
 import Profile from './components/Profile/Profile';
-import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
   // 自動登出
@@ -38,7 +37,6 @@ function App() {
         <Route path="auth_form" element={<AuthPage />} />
         <Route path="user" element={<NeedAuth><ProfilePage /></NeedAuth>}>
           <Route path="profile" element={<Profile />} />
-          <Route path="profile/change-password" element={<ChangePassword />} />
           <Route path="favorite" element={<FavoriteList />} />
         </Route>
       </Routes>

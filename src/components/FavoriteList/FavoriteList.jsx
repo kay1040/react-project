@@ -32,7 +32,7 @@ function FavoriteList() {
   return (
     <>
       {showConfirm && <Confirm confirmText="確定要移除收藏嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
-      <div className="mx-auto w-[90%] md:w-4/5 border border-[#ddd] rounded rounded-tl-none p-8">
+      <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-8">
         {favoriteList.length === 0
           ? (
             <div className="leading-loose">
@@ -44,7 +44,7 @@ function FavoriteList() {
           : (
             <table className="overflow-hidden box-border border-collapse w-full">
               <thead className="hidden md:table-header-group">
-                <tr className="text-left border">
+                <tr className="text-left border bg-gray-100">
                   <th className="px-6 py-2">商品</th>
                   <th className="px-6 py-2">價格</th>
                   <th className="px-6 py-2">操作</th>
@@ -56,13 +56,12 @@ function FavoriteList() {
                   <tr key={item.id} item={item} className="relative border flex flex-col mb-6 md:table-row">
                     <td className="mt-4 mx-4 md:px-4 md:py-6">
                       <Link to={`/shop/product/${item.id}`} className="md:flex items-center">
-                        <img className="w-full mb-2 md:w-48 md:mr-4" src={item.attributes.imgSrc} alt={item.attributes.title} />
+                        <img className="w-full mb-2 md:w-40 md:mr-4" src={item.attributes.imgSrc} alt={item.attributes.title} />
                         <p className="text-base">{item.attributes.title}</p>
                       </Link>
                     </td>
-                    <td className="p-4 md:p-6">
+                    <td className="p-4 md:p-6 font-bold">
                       NT$
-                      {' '}
                       {item.attributes.price.toLocaleString('en-US')}
                     </td>
                     <td className="md:p-6">

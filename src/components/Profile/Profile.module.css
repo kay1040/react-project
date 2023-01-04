@@ -3,27 +3,11 @@
     margin: 0 auto;
     width: 90%;
     flex-flow: column;
-    align-items: left;
     border: 1px solid #ddd;
     border-radius: 5px;
     border-top-left-radius: 0;
     padding: 30px;
-    margin-bottom: 100px;
-}
-
-.profile button{
-    border: none;
-    width: 80px;
-    height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: darkslategray;
-    color: #fff;
-    border-radius: 6px;
-}
-
-.profile button:hover{
-    background-color: #599b9b;
+    margin-bottom: 60px;
 }
 
 @media only screen and (min-width: 768px) {

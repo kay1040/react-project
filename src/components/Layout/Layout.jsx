@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 function Layout(props) {
   const { children } = props;
 
+  // 設定是否禁止滾動
   const [isScroll, setIsScroll] = useState(true);
   useEffect(() => {
     if (isScroll) {
