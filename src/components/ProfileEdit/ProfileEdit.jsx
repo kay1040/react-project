@@ -14,19 +14,25 @@ function ProfileEdit(props) {
     address: '',
     phone: '',
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setInputData(userData);
+    }
+  }, [isSuccess]);
+
   const [updateUserData] = useUpdateUserDataMutation();
   const inputChangeHandler = (key, e) => {
     setInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
-  const [changePassword, { error }] = useChangePasswordMutation();
+  const [changePassword, { isError }] = useChangePasswordMutation();
   const currentPasswordInput = useRef();
   const passwordInput = useRef();
   const passwordConfirmationInput = useRef();
 
   const updateHandler = () => {
     updateUserData(inputData);
-    setInputData(userData);
 
     if (showChangePassword) {
       const currentPassword = currentPasswordInput.current.value;
@@ -56,18 +62,12 @@ function ProfileEdit(props) {
     }
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      setInputData(userData);
-    }
-  }, [isSuccess]);
-
   return (
     <>
-      {showMessage && <Message message={error ? '密碼更新失敗' : '密碼更新成功'} />}
+      {showMessage && <Message message={isError ? '密碼更新失敗' : '密碼更新成功'} />}
       {isSuccess && (
         <div>
-          <div className="flex my-5 items-center">
+          <div className="flex mb-5 items-center">
             <div className="w-24">帳號</div>
             <div>{inputData.username}</div>
           </div>
@@ -91,7 +91,7 @@ function ProfileEdit(props) {
                   <div className="w-24">原密碼</div>
                   <input
                     type="password"
-                    placeholder="原密碼"
+                    placeholder="請輸入當前密碼"
                     ref={currentPasswordInput}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />
@@ -100,7 +100,7 @@ function ProfileEdit(props) {
                   <div className="w-24">新密碼</div>
                   <input
                     type="password"
-                    placeholder="新密碼"
+                    placeholder="請輸入6-20位元的英數字組合"
                     ref={passwordInput}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />
@@ -109,7 +109,7 @@ function ProfileEdit(props) {
                   <div className="w-24">新密碼確認</div>
                   <input
                     type="password"
-                    placeholder="新密碼確認"
+                    placeholder="請再輸入一次新密碼"
                     ref={passwordConfirmationInput}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />

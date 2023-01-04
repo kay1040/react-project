@@ -16,7 +16,7 @@ function Profile() {
         && (
           <>
             <div>
-              <div className="flex my-5 items-center">
+              <div className="flex mb-5 items-center">
                 <div className="w-24">帳號</div>
                 <div>{userData.username}</div>
               </div>
