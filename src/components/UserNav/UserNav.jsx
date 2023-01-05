@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import styles from './UserDataNav.module.css';
+import styles from './UserNav.module.css';
 import { logout } from '../../store/reducer/authSlice';
 
 function ProfileNav() {

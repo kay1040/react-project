@@ -16,9 +16,9 @@ function Layout(props) {
   }, [isScroll]);
 
   return (
-    <div className="h-screen">
+    <div className="m-h-full">
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main className="mt-28">{children}</main>
+      <main className="pt-12 pb-[280px]">{children}</main>
       <Footer />
     </div>
   );

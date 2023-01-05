@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .wrapper {
+      min-height: 100%;
+    }
+
+    .content {
+      padding-bottom: 50px;
+      /*隨footer高度需做調整*/
+    }
+
+    .footer {
+      height: 50px;
+      /*設定footer本身高度*/
+      margin-top: -50px;
+      /*隨footer高度需做調整*/
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="content">
+      內容區塊
+    </div>
+  </div>
+  <footer class="footer"></footer>
+</body>
+
+</html>

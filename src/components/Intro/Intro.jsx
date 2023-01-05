@@ -2,7 +2,7 @@ import React from 'react';
 
 function Intro() {
   return (
-    <div className="max-w-screen-xl mx-auto my-8 md:my-16 text-left">
+    <div className="max-w-screen-xl mx-auto my-12 md:my-16 text-left">
       <div className="mx-8 md:mx-32">
         <h2>纏花的由來</h2>
         <div>

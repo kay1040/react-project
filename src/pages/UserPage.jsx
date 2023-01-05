@@ -1,11 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import ProfileNav from '../components/UserDataNav/UserDataNav';
+import UserNav from '../components/UserNav/UserNav';
 
 function ProfilePage() {
   return (
     <div className="max-w-screen-xl mx-auto">
-      <ProfileNav />
+      <UserNav />
       <Outlet />
     </div>
   );

@@ -7,7 +7,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Footer() {
   return (
-    <footer className="mx-auto bg-darkslategray h-48 flex justify-center items-center top-[clac(100vh - 70px)] sticky">
+    <footer className="bg-darkslategray h-[280px] flex justify-center items-center mt-[-280px]">
       <div className="text-white text-base font-bold text-center">
         <div className="font-mono text-basic mb:text-large">聯絡我們</div>
         <div className="text-xl md:text-2xl mt-3">
