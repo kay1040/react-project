@@ -21,10 +21,6 @@ function Profile() {
                 <div>{userData.username}</div>
               </div>
               <div className="flex my-5 items-center">
-                <div className="w-24">密碼</div>
-                <div>********</div>
-              </div>
-              <div className="flex my-5 items-center">
                 <div className="w-24">e-mail</div>
                 <div>{userData.email}</div>
               </div>

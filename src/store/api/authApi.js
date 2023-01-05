@@ -5,7 +5,6 @@ export const authApi = createApi({
   // baseQuery: fetchBaseQuery({ baseUrl: 'https://groovy-momentum-371809.appspot.com/api/' }),
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:1337/api/',
-    tagTypes: ['user'],
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token
       if (token) {
@@ -14,6 +13,7 @@ export const authApi = createApi({
       return headers
     },
   }),
+  tagTypes: ['userData'],
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (user) => ({
@@ -33,7 +33,7 @@ export const authApi = createApi({
       query: () => ({
         url: 'users/me',
       }),
-      providesTags: [{type:'user', id:'LIST'}]
+      providesTags: ['userData']
     }),
     updateUserData: builder.mutation({
       query: (user) => ({
@@ -41,8 +41,7 @@ export const authApi = createApi({
         method: 'PUT',
         body: user,
       }),
-      invalidatesTags: (result, error, user)=>
-      [{type:'user', id:user.id},{type:'user', id:'LIST'}]
+      invalidatesTags: ['userData']
     }),
     changePassword: builder.mutation({
       query: (password) => ({

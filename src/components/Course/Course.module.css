@@ -1,9 +1,0 @@
-.courseList{
-    max-width: 1200px;
-    margin: 100px auto;
-}
-
-.cardWrapper{
-    display: flex;
-    justify-content: space-between;
-}

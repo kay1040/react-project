@@ -17,8 +17,8 @@ function Cart() {
         <p>
           共
           <span className="font-bold after:content-['_'] before:content-['_']">{cart.totalQuantity}</span>
-          件商品，總金額：
-          <span className="font-bold">
+          件商品，總金額
+          <span className="font-bold before:content-['_']">
             NT$
             {cart.totalAmount.toLocaleString('en-US')}
           </span>

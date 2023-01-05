@@ -7,9 +7,9 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Footer() {
   return (
-    <footer className="mx-auto bg-darkslategray h-72 md:h-48 flex justify-center items-center top-[100vh] sticky">
+    <footer className="mx-auto bg-darkslategray h-48 flex justify-center items-center top-[clac(100vh - 70px)] sticky">
       <div className="text-white text-base font-bold text-center">
-        <div className="font-mono text-lg">聯絡我們</div>
+        <div className="font-mono text-basic mb:text-large">聯絡我們</div>
         <div className="text-xl md:text-2xl mt-3">
           <a href="mailto:info@ChanHuaTian.com.tw" className="mx-2 hover:text-zinc-300">
             <FontAwesomeIcon icon={faEnvelope} />
