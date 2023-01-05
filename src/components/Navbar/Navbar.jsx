@@ -37,7 +37,7 @@ function NavBar(props) {
   return (
     // 導航條外層
     <header className={styles.navbarWrapper}>
-      <div className={styles.navbar}>
+      <nav className={styles.navbar}>
         {/* 左側菜單 */}
         <div className={styles.leftMenu}>
           {/*  菜單圖標 */}
@@ -110,7 +110,7 @@ function NavBar(props) {
             </Link>
           </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

@@ -16,11 +16,13 @@ function Layout(props) {
   }, [isScroll]);
 
   return (
-    <div className="m-h-full">
+    <>
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main className="pt-12 pb-[280px]">{children}</main>
+      <main style={{ minHeight: '100%' }}>
+        <div className="pt-[70px] pb-[210px]">{children}</div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

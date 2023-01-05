@@ -59,7 +59,7 @@ function AuthForm() {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto my-24 md:my-48 flex-col flex">
+    <div className="max-w-screen-xl mx-auto my-24 xxl:my-48 flex-col flex">
       <h2 className="mb-6 text-3xl font-bold text-darkslategray text-center">
         {isLoginForm ? '會員登入' : '會員註冊'}
       </h2>
