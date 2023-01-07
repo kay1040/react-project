@@ -18,7 +18,7 @@ function Layout(props) {
   return (
     <>
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main style={{ minHeight: '100%' }}>
+      <main className="min-h-full">
         <div className="pt-[70px] pb-[210px]">{children}</div>
       </main>
       <Footer />
