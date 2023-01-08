@@ -6,13 +6,14 @@ function Carousel() {
     
   }
   
-  // 參考:https://cloud.tencent.com/developer/article/2134761
+  // 參考: https://cloud.tencent.com/developer/article/2134761
 
   const carouselImgs = [
-    '/flower-field/imgs/carousel/01.png',
-    '/flower-field/imgs/carousel/02.png',
-    '/flower-field/imgs/carousel/03.png',
-    '/flower-field/imgs/carousel/04.png',
+    '/flower-field/imgs/carousel/01.jpg',
+    '/flower-field/imgs/carousel/02.jpg',
+    '/flower-field/imgs/carousel/03.jpg',
+    '/flower-field/imgs/carousel/04.jpg',
+    '/flower-field/imgs/carousel/05.jpg',
   ];
 
   return (
