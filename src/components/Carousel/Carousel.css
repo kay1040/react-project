@@ -27,6 +27,7 @@
   display: block;
   width: 100%;
   object-fit: cover;
+  height: 300px;
 }
 
 /* .swiper-button-prev, .swiper-button-next{
@@ -39,8 +40,8 @@
   background-color: #ddd;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .swiper-slide img {
-    height: 300px;
+    height: calc(100vh - 70px);
   }
 }

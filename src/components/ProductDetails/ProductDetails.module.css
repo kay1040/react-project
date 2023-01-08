@@ -5,6 +5,7 @@
 }
 
 .nav {
+    margin-top: 20px;
     margin-left: 35px;
     margin-bottom: 20px;
     color: darkslategray;
@@ -114,7 +115,7 @@
 
 @media only screen and (min-width: 768px) {
     .nav {
-        margin: 30px 80px;
+        margin: 30px;
     }
 
     .productDetails {
@@ -132,7 +133,7 @@
     }
 
     .infoWrapper {
-        width: 40%;
+        width: 50%;
         text-align: left;
         margin-top: 2px;
     }

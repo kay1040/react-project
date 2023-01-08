@@ -33,7 +33,6 @@ function ProfileEdit(props) {
 
   const updateHandler = () => {
     updateUserData(inputData);
-
     if (showChangePassword) {
       const currentPassword = currentPasswordInput.current.value;
       const password = passwordInput.current.value;
@@ -64,7 +63,7 @@ function ProfileEdit(props) {
 
   return (
     <>
-      {showMessage && <Message message={isError ? '密碼更新失敗' : '密碼更新成功'} />}
+      {showMessage && <Message message={isError ? '原密碼錯誤或新密碼不一致' : '密碼更新成功'} />}
       {isSuccess && (
         <div>
           <div className="flex mb-5 items-center">

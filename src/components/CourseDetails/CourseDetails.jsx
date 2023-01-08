@@ -14,7 +14,7 @@ function CourseDetails() {
       {isLoading && <div className="my-48"><Loading /></div>}
       {isSuccess
                 && (
-                <div className="max-w-screen-xl mx-auto mt-8 mb-24 md:my-32 text-center">
+                <div className="max-w-screen-xl mx-auto mt-8 md:mt-16 mb-24 text-center">
                   <h2>
                     {course.attributes.category}
                     {' '}

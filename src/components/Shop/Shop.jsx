@@ -39,7 +39,7 @@ function Shop() {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto my-8 md:my-16">
+    <div className="max-w-screen-xl mx-auto mt-6 md:mt-8 mb-8 md:mb-16">
       {isLoading && <div className="my-48"><Loading /></div>}
       {isSuccess && (filterProducts.length === 0
         ? (
@@ -49,13 +49,13 @@ function Shop() {
           </div>
         )
         : (
-          <>
+          <div className="md:mx-8">
             <ProductFilter
               onCategoryChange={changeCategoryHandler}
               onSortChange={changeSortHandler}
             />
             <ProductList products={filterProducts} />
-          </>
+          </div>
         )
       )}
     </div>

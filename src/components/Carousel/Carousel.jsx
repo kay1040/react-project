@@ -16,19 +16,22 @@ import {
 } from 'swiper';
 
 const carouselImgs = [
-  '/flower-field/imgs/carousel/01.png',
-  '/flower-field/imgs/carousel/02.png',
-  '/flower-field/imgs/carousel/03.png',
-  '/flower-field/imgs/carousel/04.png',
+  '/flower-field/imgs/carousel/01.jpg',
+  '/flower-field/imgs/carousel/02.jpg',
+  '/flower-field/imgs/carousel/03.jpg',
+  '/flower-field/imgs/carousel/04.jpg',
+  '/flower-field/imgs/carousel/05.jpg',
 ];
 
 export default function Carousel() {
   return (
     <Swiper
+      slidesPerView={1}
       spaceBetween={30}
+      loop={true}
       centeredSlides
       autoplay={{
-        delay: 3000,
+        delay: 2500,
         disableOnInteraction: false,
       }}
       scrollbar={{
