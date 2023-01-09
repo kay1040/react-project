@@ -4,15 +4,22 @@ import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
 function Profile() {
   const [isEdit, setIsEdit] = useState(false);
-  const { data: userData, isSuccess } = useGetUserDataQuery();
+  const {
+    data: userData,
+    isSuccess,
+    isFetching,
+    refetch,
+  } = useGetUserDataQuery();
 
   const cancelEdit = () => {
     setIsEdit(false);
+    refetch();
   };
 
   return (
     <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
-      {(!isEdit && isSuccess)
+      {!isEdit && isFetching && <div>資料載入中...</div>}
+      {(!isEdit && isSuccess && !isFetching)
         && (
           <>
             <div>

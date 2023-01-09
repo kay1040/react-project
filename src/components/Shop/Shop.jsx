@@ -6,7 +6,12 @@ import Loading from '../UI/Loading/Loading';
 import ProductList from '../ProductList/ProductList';
 
 function Shop() {
-  const { data: products, isSuccess, isLoading } = useGetProductsQuery();
+  const {
+    data: products,
+    isSuccess,
+    isLoading,
+    isError,
+  } = useGetProductsQuery();
   const [category, setCategory] = useState('所有商品');
   const { state: keyword } = useLocation();
   const [sort, setSort] = useState(null);
@@ -40,7 +45,8 @@ function Shop() {
 
   return (
     <div className="max-w-screen-xl mx-auto mt-6 md:mt-8 mb-8 md:mb-16">
-      {isLoading && <div className="my-48"><Loading /></div>}
+      {isLoading && <Loading />}
+      {isError && <div className="mt-24 text-center text-lg mb-3">商品資料載入失敗</div>}
       {isSuccess && (filterProducts.length === 0
         ? (
           <div className="mt-24 text-center">

@@ -22,6 +22,7 @@ function ProfileNav() {
     <div className="mx-auto w-11/12 md:w-3/4">
       <ul className={styles.tabs}>
         <li><NavLink to="/user/profile" style={({ isActive }) => (isActive ? active : null)}>會員資料</NavLink></li>
+        <li><NavLink to="/user/order" style={({ isActive }) => (isActive ? active : null)}>我的訂單</NavLink></li>
         <li><NavLink to="/user/favorite" style={({ isActive }) => (isActive ? active : null)}>我的收藏</NavLink></li>
         <li>
           <button

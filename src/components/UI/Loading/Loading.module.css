@@ -1,5 +1,9 @@
 .loading {
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -24px;
+  margin-left: -24px;
   width: 48px;
   height: 48px;
   border: 6px rgba(18, 119, 114, 0.25) solid;

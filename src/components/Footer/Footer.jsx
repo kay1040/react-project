@@ -11,7 +11,7 @@ function Footer() {
       <div className="text-white text-base font-bold text-center">
         <div className="font-mono text-basic mb:text-large">聯絡我們</div>
         <div className="text-xl md:text-2xl mt-3">
-          <a href="mailto:info@ChanHuaTian.com.tw" className="mx-2 hover:text-zinc-300">
+          <a href="mailto:info@chanhuatian.com.tw" className="mx-2 hover:text-zinc-300">
             <FontAwesomeIcon icon={faEnvelope} />
           </a>
           <a href="https://www.youtube.com/channel/UCb160bphD2_cRkntcMHVwcQ" className="mx-2 hover:text-zinc-300">

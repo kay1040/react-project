@@ -30,11 +30,6 @@
   height: 300px;
 }
 
-/* .swiper-button-prev, .swiper-button-next{
-  color: #fff;
-  background: #5e5f5e;
-} */
-
 /* 當前圓點的樣式 */
 .swiper-pagination-bullet{
   background-color: #ddd;
