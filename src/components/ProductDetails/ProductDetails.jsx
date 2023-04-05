@@ -33,21 +33,21 @@ function ProductDetails() {
     if (index !== -1) setFavorite(true);
   }, [favoriteList]);
 
-  const increaseButtonHandler = () => {
+  const handleIncreaseButton = () => {
     setCount((prevCount) => prevCount + 1);
   };
 
-  const decreaseButtonHandler = () => {
+  const handleDecreaseButton = () => {
     if (count > 1) setCount((prevCount) => prevCount - 1);
   };
 
-  const inputChangeHandler = (e) => {
+  const handleInputChange = (e) => {
     if (e.target.value > 0) {
       setCount(+e.target.value);
     }
   };
 
-  const addToCartHandler = () => {
+  const handleAddToCart = () => {
     dispatch(addToCart([product, count]));
     setCount(1);
     setShowCartMessage(true);
@@ -56,7 +56,7 @@ function ProductDetails() {
     }, 1000);
   };
 
-  const addToFavoriteHandler = () => {
+  const handleAddToFavorite = () => {
     if (favorite) {
       dispatch(removeFromFavoriteList(product));
       setFavorite(false);
@@ -86,7 +86,7 @@ function ProductDetails() {
                 <h3>
                   {product.attributes.title}
                   {' '}
-                  <button type="button" className={styles.favorite} onClick={addToFavoriteHandler}>
+                  <button type="button" className={styles.favorite} onClick={handleAddToFavorite}>
                     <FontAwesomeIcon icon={favorite ? heartActive : faHeart} />
                   </button>
                 </h3>
@@ -97,15 +97,15 @@ function ProductDetails() {
                 <div className="my-5">
                   <Counter
                     count={count}
-                    onIncrease={increaseButtonHandler}
-                    onDecrease={decreaseButtonHandler}
-                    onInputChange={inputChangeHandler}
+                    onIncrease={handleIncreaseButton}
+                    onDecrease={handleDecreaseButton}
+                    onInputChange={handleInputChange}
                   />
                 </div>
                 <div className={styles.buyButtons}>
-                  <button type="button" onClick={addToCartHandler}>加入購物車</button>
+                  <button type="button" onClick={handleAddToCart}>加入購物車</button>
                   <Link to="/shop/cart" state={product}>
-                    <button type="button" onClick={addToCartHandler}>立即購買</button>
+                    <button type="button" onClick={handleAddToCart}>立即購買</button>
                   </Link>
                 </div>
               </div>

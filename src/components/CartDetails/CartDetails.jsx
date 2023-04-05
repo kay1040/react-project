@@ -16,34 +16,34 @@ function CartDetails(props) {
 
   const { item, index } = props;
 
-  const increaseButtonHandler = () => {
+  const handleIncreaseButton = () => {
     dispatch(increaseItem(item));
   };
 
-  const decreaseButtonHandler = () => {
+  const handleDecreaseButton = () => {
     dispatch(decreaseItem(item));
   };
 
-  const inputChangeHandler = (e) => {
+  const handleInputChange = (e) => {
     dispatch(getInputValue([item, +e.target.value]));
   };
 
-  const showConfirmHandler = () => {
+  const handleShowConfirm = () => {
     setShowConfirm(true);
   };
 
-  const cancelHandler = (e) => {
+  const handleCancel = (e) => {
     e.stopPropagation();
     setShowConfirm(false);
   };
 
-  const confirmHandler = () => {
+  const handleConfirm = () => {
     dispatch(removeItem(item));
   };
 
   return (
     <>
-      {showConfirm && <Confirm confirmText="確定要刪除此商品嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
+      {showConfirm && <Confirm confirmText="確定要刪除此商品嗎？" onCancel={handleCancel} onConfirm={handleConfirm} />}
       <div className="flex p-2.5 border-b border-inherit bg-white">
         <div className="w-40 mb:w-52 mr-4">
           <Link to={`/shop/product/${item.id}`}>
@@ -62,9 +62,9 @@ function CartDetails(props) {
             </div>
             <Counter
               index={index}
-              onIncrease={increaseButtonHandler}
-              onDecrease={decreaseButtonHandler}
-              onInputChange={inputChangeHandler}
+              onIncrease={handleIncreaseButton}
+              onDecrease={handleDecreaseButton}
+              onInputChange={handleInputChange}
             />
           </div>
         </div>
@@ -72,8 +72,8 @@ function CartDetails(props) {
           <button
             type="button"
             className="text-gray-500"
-            onClick={showConfirmHandler}
-            onKeyDown={showConfirmHandler}
+            onClick={handleShowConfirm}
+            onKeyDown={handleShowConfirm}
           >
             <FontAwesomeIcon icon={faXmark} />
           </button>

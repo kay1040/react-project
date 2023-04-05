@@ -16,7 +16,7 @@ function CartPreview(props) {
   const { onClose, showCartPreview } = props;
   const [isShow, setIsShow] = useState(false);
 
-  const closeHandler = (e) => {
+  const handleClose = (e) => {
     setIsShow(false);
     setTimeout(() => onClose(e), 300);
   };
@@ -26,14 +26,14 @@ function CartPreview(props) {
   }, [showCartPreview]);
 
   return (
-    <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={closeHandler}>
+    <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={handleClose}>
       <div
         className={isShow ? `${styles.cartPreview} ${styles.cartPreviewActive}` : `${styles.cartPreview}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.title}>
           <h3>購物車</h3>
-          <button type="button" onClick={closeHandler}>
+          <button type="button" onClick={handleClose}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
@@ -43,7 +43,7 @@ function CartPreview(props) {
               <div className={styles.cartData}>
                 <p className={styles.noData}>您的購物車內沒有商品</p>
               </div>
-              <Link to="/shop/" onClick={closeHandler}>
+              <Link to="/shop/" onClick={handleClose}>
                 <button type="button" className={styles.goShop}>前往商店</button>
               </Link>
             </div>
@@ -53,7 +53,7 @@ function CartPreview(props) {
               {cart.cartItems.map((item, index) => (
                 <div className={styles.cartData} key={item.id}>
                   <div className={styles.imgWrapper}>
-                    <Link to={`/shop/product/${item.id}`} onClick={closeHandler}>
+                    <Link to={`/shop/product/${item.id}`} onClick={handleClose}>
                       <img src={item.attributes.imgSrc} alt={item.attributes.title} />
                     </Link>
                   </div>
@@ -73,7 +73,7 @@ function CartPreview(props) {
                   </div>
                 </div>
               ))}
-              <Link to="/shop/cart" onClick={closeHandler}>
+              <Link to="/shop/cart" onClick={handleClose}>
                 <button type="button" className={styles.checkout}>前往結帳</button>
               </Link>
             </div>

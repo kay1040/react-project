@@ -7,26 +7,26 @@ import styles from './SearchProduct.module.css';
 function SearchProduct(props) {
   const keywordInput = useRef();
   const navigate = useNavigate();
-  const { showLeftMenuHandler } = props;
+  const { handleShowLeftMenu } = props;
 
-  const searchProductHandler = (e) => {
+  const handleSearchProduct = (e) => {
     e.preventDefault();
     const keyword = keywordInput.current.value.trim();
     navigate('/shop', { state: keyword });
     keywordInput.current.value = '';
-    showLeftMenuHandler();
+    handleShowLeftMenu();
   };
 
   return (
     <div className={styles.search}>
-      <form onSubmit={searchProductHandler}>
+      <form onSubmit={handleSearchProduct}>
         <input
           className={styles.searchInput}
           ref={keywordInput}
           type="text"
           placeholder="搜尋商品"
         />
-        <button type="button" className={styles.searchButton} onClick={searchProductHandler}>
+        <button type="button" className={styles.searchButton} onClick={handleSearchProduct}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>

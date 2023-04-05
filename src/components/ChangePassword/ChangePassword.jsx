@@ -7,7 +7,7 @@ function ChangePassword() {
   const passwordInput = useRef();
   const passwordConfirmationInput = useRef();
 
-  // const changePasswordHandler = () => {
+  // const handleChangePassword = () => {
   //   const currentPassword = currentPasswordInput.current.value;
   //   const password = passwordInput.current.value;
   //   const passwordConfirmation = passwordConfirmationInput.current.value;

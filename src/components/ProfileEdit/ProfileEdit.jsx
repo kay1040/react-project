@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetUserDataQuery, useUpdateUserDataMutation, useChangePasswordMutation } from '../../store/api/authApi';
 import Message from '../UI/Message/Message';
 
@@ -13,6 +13,9 @@ function ProfileEdit(props) {
     email: '',
     address: '',
     phone: '',
+    currentPassword: '',
+    newPassword: '',
+    passwordConfirmation: '',
   });
 
   useEffect(() => {
@@ -22,25 +25,19 @@ function ProfileEdit(props) {
   }, [isSuccess]);
 
   const [updateUserData] = useUpdateUserDataMutation();
-  const inputChangeHandler = (key, e) => {
+  const handleInputChange = (key, e) => {
     setInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
   const [changePassword, { isError }] = useChangePasswordMutation();
-  const currentPasswordInput = useRef();
-  const passwordInput = useRef();
-  const passwordConfirmationInput = useRef();
 
-  const updateHandler = () => {
+  const handleUpdate = () => {
     updateUserData(inputData);
     if (showChangePassword) {
-      const currentPassword = currentPasswordInput.current.value;
-      const password = passwordInput.current.value;
-      const passwordConfirmation = passwordConfirmationInput.current.value;
       changePassword({
-        currentPassword,
-        password,
-        passwordConfirmation,
+        currentPassword: inputData.currentPassword,
+        password: inputData.newPassword,
+        passwordConfirmation: inputData.passwordConfirmation,
       }).then((res) => {
         if (!res.error) {
           setShowMessage(true);
@@ -91,7 +88,7 @@ function ProfileEdit(props) {
                   <input
                     type="password"
                     placeholder="請輸入當前密碼"
-                    ref={currentPasswordInput}
+                    onChange={(e) => handleInputChange('currentPassword', e)}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />
                 </div>
@@ -100,7 +97,7 @@ function ProfileEdit(props) {
                   <input
                     type="password"
                     placeholder="請輸入6-20位元的英數字組合"
-                    ref={passwordInput}
+                    onChange={(e) => handleInputChange('newPassword', e)}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />
                 </div>
@@ -109,7 +106,7 @@ function ProfileEdit(props) {
                   <input
                     type="password"
                     placeholder="請再輸入一次新密碼"
-                    ref={passwordConfirmationInput}
+                    onChange={(e) => handleInputChange('passwordConfirmation', e)}
                     className="input-primary p-1 w-48 md:w-72 h-8"
                   />
                 </div>
@@ -120,7 +117,7 @@ function ProfileEdit(props) {
             <input
               className="input-primary p-1 w-48 md:w-72 h-8"
               type="text"
-              onChange={(e) => { inputChangeHandler('email', e); }}
+              onChange={(e) => handleInputChange('email', e)}
               value={inputData.email || ''}
             />
           </div>
@@ -129,7 +126,7 @@ function ProfileEdit(props) {
             <input
               className="input-primary p-1 w-48 md:w-72 h-8"
               type="text"
-              onChange={(e) => { inputChangeHandler('name', e); }}
+              onChange={(e) => handleInputChange('name', e)}
               value={inputData.name || ''}
             />
           </div>
@@ -138,7 +135,7 @@ function ProfileEdit(props) {
             <input
               className="input-primary p-1 w-48 md:w-72 h-8"
               type="text"
-              onChange={(e) => { inputChangeHandler('address', e); }}
+              onChange={(e) => handleInputChange('address', e)}
               value={inputData.address || ''}
             />
           </div>
@@ -147,7 +144,7 @@ function ProfileEdit(props) {
             <input
               className="input-primary p-1 w-48 md:w-72 h-8"
               type="text"
-              onChange={(e) => { inputChangeHandler('phone', e); }}
+              onChange={(e) => handleInputChange('phone', e)}
               value={inputData.phone || ''}
             />
           </div>
@@ -164,7 +161,7 @@ function ProfileEdit(props) {
       <button
         className="btn-primary w-24 h-8 font-bold"
         type="button"
-        onClick={updateHandler}
+        onClick={handleUpdate}
       >
         儲存
       </button>

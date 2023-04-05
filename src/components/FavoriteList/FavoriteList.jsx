@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { removeFromFavoriteList } from '../../store/reducer/productsSlice';
 import { addToCart } from '../../store/reducer/cartSlice';
-import Confirm from '../UI/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../UI/ConfirmModal/ConfirmModal';
 
 function FavoriteList() {
   const favoriteList = useSelector((state) => state.products.favoriteList);
@@ -14,24 +14,30 @@ function FavoriteList() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
 
-  const showConfirmHandler = (item) => {
+  const handleShowConfirm = (item) => {
     setShowConfirm(true);
     setDeleteItem({ ...item });
   };
 
-  const cancelHandler = (e) => {
+  const handleCancel = (e) => {
     e.stopPropagation();
     setShowConfirm(false);
   };
 
-  const confirmHandler = () => {
+  const handleConfirm = () => {
     dispatch(removeFromFavoriteList(deleteItem));
     setShowConfirm(false);
   };
 
   return (
     <>
-      {showConfirm && <Confirm confirmText="確定要移除收藏嗎？" onCancel={cancelHandler} onConfirm={confirmHandler} />}
+      {showConfirm && (
+        <ConfirmModal
+          confirmText="確定要移除收藏嗎？"
+          onCancel={handleCancel}
+          onConfirm={handleConfirm}
+        />
+      )}
       <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-8">
         {favoriteList.length === 0
           ? (
@@ -80,7 +86,7 @@ function FavoriteList() {
                       <FontAwesomeIcon
                         icon={faXmark}
                         className="text-stone-400"
-                        onClick={() => showConfirmHandler(item)}
+                        onClick={() => handleShowConfirm(item)}
                       />
                     </td>
                   </tr>

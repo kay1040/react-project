@@ -36,10 +36,10 @@ function Shop() {
     }
   }
 
-  const changeCategoryHandler = (newCategory) => {
+  const handleChangeCategory = (newCategory) => {
     setCategory(newCategory);
   };
-  const changeSortHandler = (newSort) => {
+  const handleChangeSort = (newSort) => {
     setSort(newSort);
   };
 
@@ -57,8 +57,8 @@ function Shop() {
         : (
           <div className="md:mx-8">
             <ProductFilter
-              onCategoryChange={changeCategoryHandler}
-              onSortChange={changeSortHandler}
+              onCategoryChange={handleChangeCategory}
+              onSortChange={handleChangeSort}
             />
             <ProductList products={filterProducts} />
           </div>

@@ -20,7 +20,7 @@ function AuthForm() {
   const prevPage = location.state?.preLocation?.pathname || '/';
   const [passwordSame, setPasswordSame] = useState(true);
 
-  const submitHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
@@ -72,7 +72,7 @@ function AuthForm() {
       <p className="text-[#f00] text-center">
         {!passwordSame && '兩次輸入密碼不一致'}
       </p>
-      <form className="mx-auto" onSubmit={submitHandler}>
+      <form className="mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
           <input className="input-primary w-64 h-10" ref={usernameInput} type="text" placeholder="請輸入帳號" />
         </div>

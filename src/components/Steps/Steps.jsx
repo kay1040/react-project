@@ -29,11 +29,11 @@ function ShoppingSteps() {
     color: '#fff',
   };
 
-  const prevHandler = () => {
+  const handlePrev = () => {
     setCurrent(current - 1);
   };
 
-  const nextHandler = () => {
+  const handleNext = () => {
     form
       .validateFields()
       .then(() => {
@@ -78,7 +78,7 @@ function ShoppingSteps() {
             <div className="steps-content">{steps[current].content}</div>
             <div className="steps-action flex justify-around">
               {current > 0 && (
-                <Button style={buttonStyle} onClick={prevHandler}>
+                <Button style={buttonStyle} onClick={handlePrev}>
                   上一步
                 </Button>
               )}
@@ -89,7 +89,7 @@ function ShoppingSteps() {
                 </Button>
               )}
               {current < steps.length - 1 && (
-                <Button type="primary" style={buttonStyle} onClick={nextHandler} htmlType="submit">
+                <Button type="primary" style={buttonStyle} onClick={handleNext} htmlType="submit">
                   下一步
                 </Button>
               )}

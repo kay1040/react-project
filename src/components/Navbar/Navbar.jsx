@@ -13,11 +13,11 @@ function NavBar(props) {
   const [showCartPreview, setShowCartPreview] = useState(false);
   const { onScroll } = props;
 
-  const showLeftMenuHandler = () => {
+  const handleShowLeftMenu = () => {
     setShowLeftMenu(!showLeftMenu);
   };
 
-  const closeCartPreviewHandler = () => {
+  const handleCloseCartPreview = () => {
     setShowCartPreview(false);
   };
 
@@ -44,8 +44,8 @@ function NavBar(props) {
           <ul
             role="menu"
             className={styles.menuIcon}
-            onClick={showLeftMenuHandler}
-            onKeyDown={showLeftMenuHandler}
+            onClick={handleShowLeftMenu}
+            onKeyDown={handleShowLeftMenu}
           >
             <li className={showLeftMenu ? `${styles.line1} ${styles.line1Active}` : styles.line1} />
             <li className={showLeftMenu ? ` ${styles.line2Active}` : styles.line2} />
@@ -54,13 +54,13 @@ function NavBar(props) {
 
           {/* 菜單 */}
           <ul className={showLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
-            <li className={styles.login}><Link to="/user/profile" onClick={showLeftMenuHandler}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
-            <li><Link to="/about" onClick={showLeftMenuHandler}>關於我們</Link></li>
-            <li><Link to="/intro" onClick={showLeftMenuHandler}>認識纏花</Link></li>
-            <li><Link to="/course" onClick={showLeftMenuHandler}>纏花製作</Link></li>
-            <li><Link to="/shop" onClick={showLeftMenuHandler}>購買纏花</Link></li>
+            <li className={styles.login}><Link to="/user/profile" onClick={handleShowLeftMenu}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
+            <li><Link to="/about" onClick={handleShowLeftMenu}>關於我們</Link></li>
+            <li><Link to="/intro" onClick={handleShowLeftMenu}>認識纏花</Link></li>
+            <li><Link to="/course" onClick={handleShowLeftMenu}>纏花製作</Link></li>
+            <li><Link to="/shop" onClick={handleShowLeftMenu}>購買纏花</Link></li>
             <li className={styles.search}>
-              <SearchProduct showLeftMenuHandler={showLeftMenuHandler} />
+              <SearchProduct handleShowLeftMenu={handleShowLeftMenu} />
             </li>
           </ul>
         </div>
@@ -102,7 +102,7 @@ function NavBar(props) {
                 </div>
               )}
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
-            {showCartPreview && <CartPreview onClose={closeCartPreviewHandler} showCartPreview={showCartPreview} />}
+            {showCartPreview && <CartPreview onClose={handleCloseCartPreview} showCartPreview={showCartPreview} />}
           </button>
           <div className={styles.user}>
             <Link to="/user/profile">

@@ -24,7 +24,7 @@ function Course() {
     filterCourseData = coursesData.filter((item) => item.attributes.category === category);
   }
 
-  const changeCategoryHandler = (newCategory) => {
+  const handleChangeCategory = (newCategory) => {
     setCategory(newCategory);
   };
 
@@ -35,7 +35,7 @@ function Course() {
       {isSuccess
         && (
           <>
-            <CourseFilter onCategoryChange={changeCategoryHandler} />
+            <CourseFilter onCategoryChange={handleChangeCategory} />
             <Row
               justify="center"
               gutter={{
