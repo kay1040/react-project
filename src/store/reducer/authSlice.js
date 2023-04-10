@@ -28,6 +28,7 @@ const authSlice = createSlice({
       state.token = null;
       state.user = null;
       localStorage.removeItem('authData', JSON.stringify(state));
+      
     },
   },
 });

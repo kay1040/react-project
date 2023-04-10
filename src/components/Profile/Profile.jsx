@@ -7,19 +7,17 @@ export default function Profile() {
   const {
     data: userData,
     isSuccess,
-    isFetching,
-    refetch,
-  } = useGetUserDataQuery();
+    isLoading,
+  } = useGetUserDataQuery({}, { refetchOnMountOrArgChange: true });
 
   const cancelEdit = () => {
     setIsEdit(false);
-    refetch();
   };
 
   return (
     <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
-      {!isEdit && isFetching && <div>資料載入中...</div>}
-      {(!isEdit && isSuccess && !isFetching)
+      {!isEdit && isLoading && <div>資料載入中...</div>}
+      {(!isEdit && isSuccess)
         && (
           <>
             <div>
