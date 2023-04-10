@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ConfirmModal.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 
-function ConfirmModal(props) {
+export default function ConfirmModal(props) {
   const { confirmText, onConfirm, onCancel } = props;
   return (
     <Backdrop className={styles.confirmOuter} onClick={onCancel}>
@@ -18,5 +18,3 @@ function ConfirmModal(props) {
     </Backdrop>
   );
 }
-
-export default ConfirmModal;

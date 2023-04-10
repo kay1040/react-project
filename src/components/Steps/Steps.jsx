@@ -9,14 +9,16 @@ import { Link } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import CheckoutForm from '../CheckoutForm/CheckoutForm';
 import Order from '../Order/Order';
+import { useUpdateUserDataMutation } from '../../store/api/authApi';
 
 // 參考: https://stackoverflow.com/questions/68889542/ant-design-automatically-submit-form-inside-of-steps-before-going-to-next-step
 
-function ShoppingSteps() {
+export default function ShoppingSteps() {
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
 
   const cart = useSelector((state) => state.cart);
+  const [updateUserData] = useUpdateUserDataMutation();
 
   const buttonStyle = {
     margin: '0 8px',
@@ -29,6 +31,15 @@ function ShoppingSteps() {
     color: '#fff',
   };
 
+  const createOrder = (orderNum) => {
+    updateUserData({
+      order: [{
+        number: orderNum,
+        shippingList: '',
+      }],
+    });
+  };
+
   const handlePrev = () => {
     setCurrent(current - 1);
   };
@@ -38,6 +49,10 @@ function ShoppingSteps() {
       .validateFields()
       .then(() => {
         setCurrent(current + 1);
+        if (current === 1) {
+          const orderNum = Date.now();
+          createOrder(orderNum);
+        }
       });
   };
 
@@ -99,5 +114,3 @@ function ShoppingSteps() {
     </div>
   );
 }
-
-export default ShoppingSteps;

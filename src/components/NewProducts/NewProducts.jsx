@@ -3,7 +3,7 @@ import { useGetProductsQuery } from '../../store/api/productsApi';
 import ProductList from '../ProductList/ProductList';
 import Loading from '../UI/Loading/Loading';
 
-function NewProducts() {
+export default function NewProducts() {
   const {
     data: products,
     isSuccess,
@@ -29,4 +29,3 @@ function NewProducts() {
     </div>
   );
 }
-export default NewProducts;

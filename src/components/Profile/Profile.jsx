@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useGetUserDataQuery } from '../../store/api/authApi';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
-function Profile() {
+export default function Profile() {
   const [isEdit, setIsEdit] = useState(false);
   const {
     data: userData,
@@ -58,5 +58,3 @@ function Profile() {
     </div>
   );
 }
-
-export default Profile;

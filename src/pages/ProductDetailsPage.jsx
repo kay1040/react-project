@@ -1,12 +1,10 @@
 import React from 'react';
 import ProductDetails from '../components/ProductDetails/ProductDetails';
 
-function ProductDetailsPage() {
+export default function ProductDetailsPage() {
   return (
     <div>
       <ProductDetails />
     </div>
   );
 }
-
-export default ProductDetailsPage;

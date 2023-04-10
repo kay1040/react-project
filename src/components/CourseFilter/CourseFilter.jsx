@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CourseFilter(props) {
+export default function CourseFilter(props) {
   const { onCategoryChange, category } = props;
   const handleChange = (e) => {
     onCategoryChange(e.target.value);
@@ -17,5 +17,3 @@ function CourseFilter(props) {
     </div>
   );
 }
-
-export default CourseFilter;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductFilter(props) {
+export default function ProductFilter(props) {
   const { onCategoryChange, onSortChange } = props;
   const handleCategoryFilter = (e) => {
     onCategoryChange(e.target.value);
@@ -31,5 +31,3 @@ function ProductFilter(props) {
     </div>
   );
 }
-
-export default ProductFilter;

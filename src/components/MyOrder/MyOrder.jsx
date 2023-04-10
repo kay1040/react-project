@@ -1,20 +1,19 @@
 import React from 'react';
-import { useGetOrdersQuery } from '../../store/api/ordersApi';
+import { useGetUserDataQuery } from '../../store/api/authApi';
 
-function MyOrder() {
-  const { data, isSuccess } = useGetOrdersQuery();
-  let orderNum = '';
-  if (isSuccess) {
-    orderNum = data.number;
-  }
+export default function MyOrder() {
+  const { data, isSuccess } = useGetUserDataQuery();
+
   return (
     <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
-      <div>
-        訂單號碼：
-        {orderNum}
-      </div>
+      {isSuccess
+        ? (
+          <div>
+            訂單號碼：
+            {data.order[0].number}
+          </div>
+        )
+        : (<div>尚無訂單</div>)}
     </div>
   );
 }
-
-export default MyOrder;

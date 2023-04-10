@@ -6,7 +6,7 @@ import CourseFilter from '../CourseFilter/CourseFilter';
 import { useGetCoursesQuery } from '../../store/api/coursesApi';
 import Loading from '../UI/Loading/Loading';
 
-function Course() {
+export default function Course() {
   const {
     data: coursesData,
     isSuccess,
@@ -55,5 +55,3 @@ function Course() {
     </div>
   );
 }
-
-export default Course;

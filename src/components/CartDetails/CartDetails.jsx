@@ -7,9 +7,9 @@ import {
   increaseItem, decreaseItem, getInputValue, removeItem,
 } from '../../store/reducer/cartSlice';
 import Confirm from '../UI/ConfirmModal/ConfirmModal';
-import Counter from '../UI/Counter/Couner';
+import Counter from '../UI/Counter/Counter';
 
-function CartDetails(props) {
+export default function CartDetails(props) {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
@@ -82,5 +82,3 @@ function CartDetails(props) {
     </>
   );
 }
-
-export default CartDetails;

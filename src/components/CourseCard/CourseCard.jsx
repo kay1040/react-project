@@ -3,7 +3,7 @@ import { Card } from 'antd';
 
 const { Meta } = Card;
 
-function CourseCard(props) {
+export default function CourseCard(props) {
   const { filterCourseData } = props;
   return (
     <Card
@@ -23,5 +23,3 @@ function CourseCard(props) {
     </Card>
   );
 }
-
-export default CourseCard;

@@ -7,7 +7,7 @@ import styles from './Navbar.module.css';
 import SearchProduct from '../SearchProduct/SearchProduct';
 import CartPreview from '../CartPreview/CarPreview';
 
-function NavBar(props) {
+export default function NavBar(props) {
   // 設定是否顯示左側菜單
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
@@ -114,5 +114,3 @@ function NavBar(props) {
     </header>
   );
 }
-
-export default NavBar;

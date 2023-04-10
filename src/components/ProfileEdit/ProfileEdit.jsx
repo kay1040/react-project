@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useGetUserDataQuery, useUpdateUserDataMutation, useChangePasswordMutation } from '../../store/api/authApi';
 import Message from '../UI/Message/Message';
 
-function ProfileEdit(props) {
+export default function ProfileEdit(props) {
   const { onCancel } = props;
   const [showChangePassword, setShowChangePassword] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
@@ -22,7 +22,7 @@ function ProfileEdit(props) {
     if (isSuccess) {
       setInputData(userData);
     }
-  }, [isSuccess]);
+  }, [isSuccess, userData]);
 
   const [updateUserData] = useUpdateUserDataMutation();
   const handleInputChange = (key, e) => {
@@ -168,5 +168,3 @@ function ProfileEdit(props) {
     </>
   );
 }
-
-export default ProfileEdit;

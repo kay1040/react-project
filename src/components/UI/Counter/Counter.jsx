@@ -4,7 +4,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import styles from './Counter.module.css';
 
-function Counter(props) {
+export default function Counter(props) {
   const cart = useSelector((state) => state.cart);
   const {
     index, onDecrease, onIncrease, onInputChange,
@@ -25,5 +25,3 @@ function Counter(props) {
     </div>
   );
 }
-
-export default Counter;

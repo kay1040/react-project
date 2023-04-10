@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchProduct.module.css';
 
-function SearchProduct(props) {
+export default function SearchProduct(props) {
   const keywordInput = useRef();
   const navigate = useNavigate();
   const { handleShowLeftMenu } = props;
@@ -33,5 +33,3 @@ function SearchProduct(props) {
     </div>
   );
 }
-
-export default SearchProduct;

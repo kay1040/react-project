@@ -7,7 +7,7 @@ import { removeFromFavoriteList } from '../../store/reducer/productsSlice';
 import { addToCart } from '../../store/reducer/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal/ConfirmModal';
 
-function FavoriteList() {
+export default function FavoriteList() {
   const favoriteList = useSelector((state) => state.products.favoriteList);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -98,5 +98,3 @@ function FavoriteList() {
     </>
   );
 }
-
-export default FavoriteList;

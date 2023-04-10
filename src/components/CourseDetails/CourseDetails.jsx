@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetCoursesQuery } from '../../store/api/coursesApi';
 import Loading from '../UI/Loading/Loading';
 
-function CourseDetails() {
+export default function CourseDetails() {
   const { data: coursesData, isSuccess, isLoading } = useGetCoursesQuery();
   const { id } = useParams();
   let course;
@@ -35,5 +35,3 @@ function CourseDetails() {
     </>
   );
 }
-
-export default CourseDetails;

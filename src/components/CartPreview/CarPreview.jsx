@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './CartPreview.module.css';
 import Backdrop from '../UI/Backdrop/Backdrop';
-import Counter from '../UI/Counter/Couner';
+import Counter from '../UI/Counter/Counter';
 import {
   increaseItem, decreaseItem, getInputValue,
 } from '../../store/reducer/cartSlice';
 
-function CartPreview(props) {
+export default function CartPreview(props) {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { onClose, showCartPreview } = props;
@@ -82,5 +82,3 @@ function CartPreview(props) {
     </Backdrop>
   );
 }
-
-export default CartPreview;

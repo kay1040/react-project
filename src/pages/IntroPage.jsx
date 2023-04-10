@@ -1,12 +1,10 @@
 import React from 'react';
 import Intro from '../components/Intro/Intro';
 
-function IntroPage() {
+export default function IntroPage() {
   return (
     <div>
       <Intro />
     </div>
   );
 }
-
-export default IntroPage;

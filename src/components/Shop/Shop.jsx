@@ -5,7 +5,7 @@ import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading/Loading';
 import ProductList from '../ProductList/ProductList';
 
-function Shop() {
+export default function Shop() {
   const {
     data: products,
     isSuccess,
@@ -67,4 +67,3 @@ function Shop() {
     </div>
   );
 }
-export default Shop;

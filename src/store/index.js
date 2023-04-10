@@ -4,7 +4,6 @@ import { authApi } from './api/authApi';
 import authReducer from './reducer/authSlice';
 import coursesApi from './api/coursesApi';
 import productsApi from './api/productsApi';
-import ordersApi from './api/ordersApi';
 import cartReducer from './reducer/cartSlice';
 import productsReducer from './reducer/productsSlice';
 
@@ -14,7 +13,6 @@ const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [coursesApi.reducerPath]: coursesApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
-    [ordersApi.reducerPath]: ordersApi.reducer,
     auth: authReducer,
     products: productsReducer,
     cart: cartReducer,
@@ -23,7 +21,6 @@ const store = configureStore({
     authApi.middleware,
     coursesApi.middleware,
     productsApi.middleware,
-    ordersApi.middleware,
   ),
 });
 

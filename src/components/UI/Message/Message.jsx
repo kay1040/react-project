@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Message(props) {
+export default function Message(props) {
   const { message } = props;
   return (
     <div
@@ -11,5 +11,3 @@ function Message(props) {
     </div>
   );
 }
-
-export default Message;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function About() {
+export default function About() {
   return (
     <div className="max-w-screen-xl mx-auto mt-12 md:mt-20 text-center">
       <h2 className="font-bold text-darkslategray">關於我們</h2>
@@ -14,5 +14,3 @@ function About() {
     </div>
   );
 }
-
-export default About;

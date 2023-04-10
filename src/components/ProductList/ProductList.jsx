@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ProductList(props) {
+export default function ProductList(props) {
   const { products } = props;
 
   return (
@@ -32,5 +32,3 @@ function ProductList(props) {
     </div>
   );
 }
-
-export default ProductList;

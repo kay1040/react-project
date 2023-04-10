@@ -18,7 +18,7 @@ import FavoriteList from './components/FavoriteList/FavoriteList';
 import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
 
-function App() {
+export default function App() {
   // 自動登出
   useAutoLogout();
   // 路由跳轉回到頁面頂端
@@ -45,5 +45,3 @@ function App() {
     </Layout>
   );
 }
-
-export default App;

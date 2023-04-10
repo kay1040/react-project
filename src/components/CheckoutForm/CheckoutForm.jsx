@@ -2,7 +2,7 @@ import { Form, Input } from 'antd';
 import React from 'react';
 import './CheckoutForm.css';
 
-function CheckoutForm(props) {
+export default function CheckoutForm(props) {
   const { Item } = Form;
   const { form } = props;
   return (
@@ -24,5 +24,3 @@ function CheckoutForm(props) {
     </div>
   );
 }
-
-export default CheckoutForm;

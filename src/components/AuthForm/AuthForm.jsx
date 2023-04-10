@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useRegisterMutation, useLoginMutation } from '../../store/api/authApi';
 import { login } from '../../store/reducer/authSlice';
 
-function AuthForm() {
+export default function AuthForm() {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [registerFn, { error: registerError }] = useRegisterMutation();
   const [loginFn, { error: loginError }] = useLoginMutation();
@@ -108,5 +108,3 @@ function AuthForm() {
     </div>
   );
 }
-
-export default AuthForm;

@@ -6,7 +6,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import styles from './UserNav.module.css';
 import { logout } from '../../store/reducer/authSlice';
 
-function ProfileNav() {
+export default function ProfileNav() {
   const dispatch = useDispatch();
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
@@ -39,5 +39,3 @@ function ProfileNav() {
     </div>
   );
 }
-
-export default ProfileNav;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartActive } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -10,10 +9,10 @@ import styles from './ProductDetails.module.css';
 import { addToFavoriteList, removeFromFavoriteList } from '../../store/reducer/productsSlice';
 import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading/Loading';
-import Counter from '../UI/Counter/Couner';
+import Counter from '../UI/Counter/Counter';
 import Message from '../UI/Message/Message';
 
-function ProductDetails() {
+export default function ProductDetails() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
   const { id } = useParams();
   let product;
@@ -115,5 +114,3 @@ function ProductDetails() {
     </div>
   );
 }
-
-export default ProductDetails;

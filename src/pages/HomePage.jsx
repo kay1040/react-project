@@ -3,7 +3,7 @@ import Carousel from '../components/Carousel/Carousel';
 import NewProducts from '../components/NewProducts/NewProducts';
 import Traditions from '../components/Traditions/Traditions';
 
-function HomePage() {
+export default function HomePage() {
   return (
     <div>
       <Carousel />
@@ -12,5 +12,3 @@ function HomePage() {
     </div>
   );
 }
-
-export default HomePage;

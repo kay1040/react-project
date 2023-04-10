@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Intro() {
+export default function Intro() {
   return (
     <div className="max-w-screen-xl mx-auto mt-8 md:mt-12 mb-16 text-left">
       <div className="mx-8 md:mx-32">
@@ -45,5 +45,3 @@ function Intro() {
     </div>
   );
 }
-
-export default Intro;
