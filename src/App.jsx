@@ -17,6 +17,7 @@ import MyOrder from './components/User/MyOrder';
 import FavoriteList from './components/User/FavoriteList';
 import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   // 自動登出
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="order" element={<MyOrder />} />
           <Route path="favorite" element={<FavoriteList />} />
         </Route>
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );
