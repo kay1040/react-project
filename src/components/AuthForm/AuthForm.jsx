@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRegisterMutation, useLoginMutation } from '../../store/api/authApi';
 import { login } from '../../store/reducer/authSlice';
-import Message from '../UI/Message/Message';
+import Message from '../UI/Message';
 
 export default function AuthForm() {
   const [showMessage, setShowMessage] = useState(false);
@@ -109,7 +109,7 @@ export default function AuthForm() {
             className="text-base text-darkslategray transition-all duration-300 hover:text-[#599b9b]"
             onClick={() => { setIsLoginForm((prevState) => !prevState); }}
           >
-            {isLoginForm ? '沒有帳號? 點擊註冊' : '已有帳號? 點擊登入'}
+            {isLoginForm ? '沒有帳號? 點此註冊' : '已有帳號? 點此登入'}
           </button>
         </div>
       </div>

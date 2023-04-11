@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import {
   increaseItem, decreaseItem, getInputValue, removeItem,
 } from '../../store/reducer/cartSlice';
-import Confirm from '../UI/ConfirmModal/ConfirmModal';
-import Counter from '../UI/Counter/Counter';
+import Confirm from '../UI/ConfirmModal';
+import Counter from '../UI/Counter';
 
 export default function CartDetails(props) {
   const cart = useSelector((state) => state.cart);

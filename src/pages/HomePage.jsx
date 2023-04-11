@@ -1,7 +1,7 @@
 import React from 'react';
-import Carousel from '../components/Carousel/Carousel';
-import NewProducts from '../components/NewProducts/NewProducts';
-import Traditions from '../components/Traditions/Traditions';
+import Carousel from '../components/Home/Carousel';
+import NewProducts from '../components/Home/NewProducts';
+import Traditions from '../components/Home/Traditions';
 
 export default function HomePage() {
   return (

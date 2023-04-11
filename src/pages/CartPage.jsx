@@ -1,5 +1,5 @@
 import React from 'react';
-import Steps from '../components/Steps/Steps';
+import Steps from '../components/Cart/Steps';
 
 export default function CartDetailsPage() {
   return (

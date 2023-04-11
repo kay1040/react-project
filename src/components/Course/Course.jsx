@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row } from 'antd';
-import CourseCard from '../CourseCard/CourseCard';
-import CourseFilter from '../CourseFilter/CourseFilter';
+import CourseCard from './CourseCard';
+import CourseFilter from './CourseFilter';
 import { useGetCoursesQuery } from '../../store/api/coursesApi';
-import Loading from '../UI/Loading/Loading';
+import Loading from '../UI/Loading';
 
 export default function Course() {
   const {

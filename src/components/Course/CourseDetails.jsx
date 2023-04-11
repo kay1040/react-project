@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetCoursesQuery } from '../../store/api/coursesApi';
-import Loading from '../UI/Loading/Loading';
+import Loading from '../UI/Loading';
 
 export default function CourseDetails() {
   const { data: coursesData, isSuccess, isLoading } = useGetCoursesQuery();

@@ -26,7 +26,7 @@ export default function Footer() {
           <a href="https://twitter.com/" className="mx-2 hover:text-zinc-300">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
-          <a href="https://line.me/zh-hant/" className="mx-2 hover:text-zinc-300">
+          <a href="https://line.me/" className="mx-2 hover:text-zinc-300">
             <FontAwesomeIcon icon={faLine} />
           </a>
         </div>

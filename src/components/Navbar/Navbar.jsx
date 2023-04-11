@@ -4,8 +4,8 @@ import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Navbar.module.css';
-import SearchProduct from '../SearchProduct/SearchProduct';
-import CartPreview from '../CartPreview/CarPreview';
+import SearchProduct from '../Shop/SearchProduct';
+import CartPreview from '../Cart/CartPreview';
 
 export default function NavBar(props) {
   // 設定是否顯示左側菜單

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './CartPreview.module.css';
-import Backdrop from '../UI/Backdrop/Backdrop';
-import Counter from '../UI/Counter/Counter';
+import Backdrop from '../UI/Backdrop';
+import Counter from '../UI/Counter';
 import {
   increaseItem, decreaseItem, getInputValue,
 } from '../../store/reducer/cartSlice';

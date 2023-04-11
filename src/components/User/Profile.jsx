@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGetUserDataQuery } from '../../store/api/authApi';
-import ProfileEdit from '../ProfileEdit/ProfileEdit';
+import ProfileEdit from './ProfileEdit';
 
 export default function Profile() {
   const [isEdit, setIsEdit] = useState(false);

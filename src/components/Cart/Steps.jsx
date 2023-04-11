@@ -4,21 +4,27 @@ import {
   Form, Button, message, Steps,
 } from 'antd';
 import { SmileOutlined, SolutionOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Cart from '../Cart/Cart';
-import CheckoutForm from '../CheckoutForm/CheckoutForm';
-import Order from '../Order/Order';
-import { useUpdateUserDataMutation } from '../../store/api/authApi';
+import Cart from './Cart';
+import { clearCart } from '../../store/reducer/cartSlice';
+import CheckoutForm from './CheckoutForm';
+import Order from './Order';
+import { useGetUserDataQuery, useUpdateUserDataMutation } from '../../store/api/authApi';
 
 // 參考: https://stackoverflow.com/questions/68889542/ant-design-automatically-submit-form-inside-of-steps-before-going-to-next-step
 
 export default function ShoppingSteps() {
   const [current, setCurrent] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const [newOrder, setNewOrder] = useState('');
   const [form] = Form.useForm();
 
   const cart = useSelector((state) => state.cart);
+  const { data } = useGetUserDataQuery({}, { refetchOnMountOrArgChange: true });
   const [updateUserData] = useUpdateUserDataMutation();
+
+  const dispatch = useDispatch();
 
   const buttonStyle = {
     margin: '0 8px',
@@ -32,12 +38,15 @@ export default function ShoppingSteps() {
   };
 
   const createOrder = (orderNum) => {
+    const order = {
+      number: orderNum,
+      items: cart.cartItems,
+    };
     updateUserData({
-      order: [{
-        number: orderNum,
-        shippingList: '',
-      }],
+      order: [order, ...(data?.order || [])],
     });
+    setIsComplete(true);
+    setNewOrder(order);
   };
 
   const handlePrev = () => {
@@ -52,6 +61,7 @@ export default function ShoppingSteps() {
         if (current === 1) {
           const orderNum = Date.now();
           createOrder(orderNum);
+          dispatch(clearCart());
         }
       });
   };
@@ -68,7 +78,7 @@ export default function ShoppingSteps() {
     },
     {
       title: '完成訂單',
-      content: <Order />,
+      content: <Order newOrder={newOrder} />,
       icon: <SmileOutlined />,
     },
   ];
@@ -80,7 +90,7 @@ export default function ShoppingSteps() {
 
   return (
     <div className="max-w-screen-xl mx-auto my-16 md:my-24">
-      {cart.cartItems.length === 0
+      {cart.cartItems.length === 0 && !isComplete
         ? (
           <div className="text-center text-base mt-48">
             <p className="mb-3">您的購物車內沒有商品</p>
@@ -99,7 +109,7 @@ export default function ShoppingSteps() {
               )}
 
               {current === steps.length - 1 && (
-                <Button type="primary" style={buttonStyle} onClick={() => message.success('完成訂單!')}>
+                <Button type="primary" style={buttonStyle} onClick={() => { message.success('完成訂單!'); }}>
                   完成訂單
                 </Button>
               )}

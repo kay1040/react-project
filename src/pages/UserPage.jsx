@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import UserNav from '../components/UserNav/UserNav';
+import UserNav from '../components/User/UserNav';
 
 export default function ProfilePage() {
   const { pathname } = useLocation();

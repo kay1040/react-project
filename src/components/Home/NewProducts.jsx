@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetProductsQuery } from '../../store/api/productsApi';
-import ProductList from '../ProductList/ProductList';
-import Loading from '../UI/Loading/Loading';
+import ProductList from '../Shop/ProductList';
+import Loading from '../UI/Loading';
 
 export default function NewProducts() {
   const {

@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { removeFromFavoriteList } from '../../store/reducer/productsSlice';
 import { addToCart } from '../../store/reducer/cartSlice';
-import ConfirmModal from '../UI/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../UI/ConfirmModal';
 
 export default function FavoriteList() {
   const favoriteList = useSelector((state) => state.products.favoriteList);
@@ -59,7 +59,7 @@ export default function FavoriteList() {
               </thead>
               <tbody>
                 {favoriteList.map((item) => (
-                  <tr key={item.id} item={item} className="relative border flex flex-col mb-6 md:table-row">
+                  <tr key={item.id} className="relative border flex flex-col mb-6 md:table-row">
                     <td className="mt-4 mx-4 md:px-4 md:py-6">
                       <Link to={`/shop/product/${item.id}`} className="md:flex items-center">
                         <img className="w-full mb-2 md:w-40 md:mr-4" src={item.attributes.imgSrc} alt={item.attributes.title} />

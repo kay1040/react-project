@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ProductFilter from '../ProductFilter/ProductFilter';
+import ProductFilter from './ProductFilter';
 import { useGetProductsQuery } from '../../store/api/productsApi';
-import Loading from '../UI/Loading/Loading';
-import ProductList from '../ProductList/ProductList';
+import Loading from '../UI/Loading';
+import ProductList from './ProductList';
 
 export default function Shop() {
   const {

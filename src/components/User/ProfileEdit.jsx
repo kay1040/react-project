@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useUpdateUserDataMutation, useChangePasswordMutation } from '../../store/api/authApi';
-import Message from '../UI/Message/Message';
+import Message from '../UI/Message';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData } = props;

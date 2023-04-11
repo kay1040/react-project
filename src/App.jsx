@@ -12,9 +12,9 @@ import CartPage from './pages/CartPage';
 import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
 import UserPage from './pages/UserPage';
-import Profile from './components/Profile/Profile';
-import MyOrder from './components/MyOrder/MyOrder';
-import FavoriteList from './components/FavoriteList/FavoriteList';
+import Profile from './components/User/Profile';
+import MyOrder from './components/User/MyOrder';
+import FavoriteList from './components/User/FavoriteList';
 import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
 

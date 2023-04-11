@@ -8,25 +8,23 @@ import { addToCart } from '../../store/reducer/cartSlice';
 import styles from './ProductDetails.module.css';
 import { addToFavoriteList, removeFromFavoriteList } from '../../store/reducer/productsSlice';
 import { useGetProductsQuery } from '../../store/api/productsApi';
-import Loading from '../UI/Loading/Loading';
-import Counter from '../UI/Counter/Counter';
-import Message from '../UI/Message/Message';
+import Loading from '../UI/Loading';
+import Counter from '../UI/Counter';
+import Message from '../UI/Message';
 
 export default function ProductDetails() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
   const { id } = useParams();
-  let product;
-  if (isSuccess) product = products.find((item) => item.id === +id);
+  const product = isSuccess ? products.find((item) => item.id === +id) : null;
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const favoriteList = useSelector((state) => state.products.favoriteList);
   const [favorite, setFavorite] = useState(false);
 
-  const [showCartMessage, setShowCartMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
-  let index;
-  if (isSuccess) index = favoriteList.findIndex((item) => item.id === product.id);
+  const index = isSuccess ? favoriteList.findIndex((item) => item.id === product.id) : null;
 
   useEffect(() => {
     if (index !== -1) setFavorite(true);
@@ -49,9 +47,9 @@ export default function ProductDetails() {
   const handleAddToCart = () => {
     dispatch(addToCart([product, count]));
     setCount(1);
-    setShowCartMessage(true);
+    setShowMessage(true);
     setTimeout(() => {
-      setShowCartMessage(false);
+      setShowMessage(false);
     }, 1000);
   };
 
@@ -67,7 +65,7 @@ export default function ProductDetails() {
 
   return (
     <div className={styles.productDetailsWrapper}>
-      {showCartMessage && <Message message="商品已添加到購物車" />}
+      {showMessage && <Message message="商品已添加到購物車" />}
       {isLoading && <div className="mt-48"><Loading /></div>}
       {isSuccess
         && (
