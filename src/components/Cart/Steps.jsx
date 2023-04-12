@@ -3,7 +3,6 @@ import './Steps.css';
 import {
   Form, Button, message, Steps, ConfigProvider,
 } from 'antd';
-import { SmileOutlined, SolutionOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
@@ -74,12 +73,10 @@ export default function ShoppingSteps() {
     {
       title: '填寫收件者資料',
       content: <CheckoutForm form={form} />,
-      icon: <SolutionOutlined />,
     },
     {
       title: '完成訂單',
       content: <Order newOrder={newOrder} />,
-      icon: <SmileOutlined />,
     },
   ];
 
@@ -105,7 +102,7 @@ export default function ShoppingSteps() {
               },
             }}
           >
-            <Steps current={current} items={items} className="mx-auto w-4/5 md:w-3/5" />
+            <Steps progressDot current={current} items={items} className="mx-auto w-4/5 md:w-3/5" />
             <div className="steps-content">{steps[current].content}</div>
             <div className="steps-action flex justify-around">
               {current > 0 && (

@@ -80,13 +80,13 @@ export default function ProductDetails() {
                 <img src={product.attributes.imgSrc} alt={product.attributes.title} />
               </div>
               <div className={styles.infoWrapper}>
-                <h3>
+                <h2>
                   {product.attributes.title}
                   {' '}
                   <button type="button" className={styles.favorite} onClick={handleAddToFavorite}>
                     <FontAwesomeIcon icon={favorite ? heartActive : faHeart} />
                   </button>
-                </h3>
+                </h2>
                 <p>{product.attributes.description}</p>
                 <div className={styles.price}>
                   {product.attributes.price.toLocaleString('en-US')}

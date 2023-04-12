@@ -11,7 +11,7 @@ export default function ProductFilter(props) {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto text-left flex justify-between items-start">
+    <div className="max-w-screen-xl mx-auto text-left flex justify-between items-start text-sm">
       <div className="mx-6 md:mx-8">
         <span>篩選：</span>
         <select onChange={handleCategoryFilter}>

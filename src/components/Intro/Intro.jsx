@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Intro() {
   return (
-    <div className="max-w-screen-xl mx-auto mt-8 md:mt-12 mb-16 text-left">
+    <div className="max-w-screen-xl mx-auto mt-8 md:mt-12 mb-16 md:mb-32 text-left">
       <div className="mx-8 md:mx-32">
         <h2>纏花的由來</h2>
         <div>
