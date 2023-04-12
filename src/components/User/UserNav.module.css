@@ -21,7 +21,7 @@
 }
 
 .tabs li:last-child {
-    width: 50px;
+    width: 80px;
     position: absolute;
     right: 0;
     font-weight: bold;

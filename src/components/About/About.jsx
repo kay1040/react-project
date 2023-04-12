@@ -10,7 +10,11 @@ export default function About() {
       <p className="text-base mt-2 leading-loose px-12">
         我們致力於推廣纏花這項快要失傳的傳統工藝，讓更多人能夠認識纏花
       </p>
-      <img src="/flower-field/imgs/about_img.png" className="mt-6 w-screen" alt="leaf" />
+      <img
+        src="/flower-field/imgs/about_img.png"
+        className="absolute w-full md:right-1/2 md:translate-x-1/2 md:max-w-screen-lg bottom-[210px]"
+        alt="leaf"
+      />
     </div>
   );
 }

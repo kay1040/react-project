@@ -22,7 +22,7 @@ export default function Layout(props) {
   return (
     <>
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main className="flex-grow ">
+      <main className="flex-grow">
         <div className="pt-[70px]">{children}</div>
       </main>
       <Footer />

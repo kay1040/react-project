@@ -55,7 +55,7 @@ export default function Shop() {
           </div>
         )
         : (
-          <div className="md:mx-8">
+          <div className="mt-10 md:mx-8 md:mt-16">
             <ProductFilter
               onCategoryChange={handleChangeCategory}
               onSortChange={handleChangeSort}
