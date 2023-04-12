@@ -8,7 +8,7 @@ export default function Layout(props) {
   // 設定購物車預覽開啟時禁止頁面滾動
   const [isScroll, setIsScroll] = useState(true);
   useEffect(() => {
-  // useLayoutEffect(() => {
+    // useLayoutEffect(() => {
     if (isScroll) {
       document.body.style.overflowY = 'auto';
     } else {
@@ -22,8 +22,8 @@ export default function Layout(props) {
   return (
     <>
       <Navbar onScroll={(show) => { setIsScroll(!show); }} />
-      <main className="min-h-full">
-        <div className="pt-[70px] pb-[210px]">{children}</div>
+      <main className="flex-grow ">
+        <div className="pt-[70px]">{children}</div>
       </main>
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Steps.css';
 import {
-  Form, Button, message, Steps,
+  Form, Button, message, Steps, ConfigProvider,
 } from 'antd';
 import { SmileOutlined, SolutionOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -98,7 +98,13 @@ export default function ShoppingSteps() {
           </div>
         )
         : (
-          <>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: '#2f4f4f',
+              },
+            }}
+          >
             <Steps current={current} items={items} className="mx-auto w-4/5 md:w-3/5" />
             <div className="steps-content">{steps[current].content}</div>
             <div className="steps-action flex justify-around">
@@ -119,7 +125,7 @@ export default function ShoppingSteps() {
                 </Button>
               )}
             </div>
-          </>
+          </ConfigProvider>
         )}
     </div>
   );
