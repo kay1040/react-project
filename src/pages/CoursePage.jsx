@@ -1,10 +1,57 @@
-import React from 'react';
-import Course from '../components/Course/Course';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Col, Row } from 'antd';
+import { useGetCoursesQuery } from '../store/api/coursesApi';
+import Loading from '../components/UI/Loading';
+import CourseFilter from '../components/Course/CourseFilter';
+import CourseCard from '../components/Course/CourseCard';
 
 export default function CoursePage() {
+  const {
+    data: coursesData,
+    isSuccess,
+    isLoading,
+    isError,
+  } = useGetCoursesQuery();
+
+  const [category, setCategory] = useState('所有教學');
+
+  // 篩選資料
+  let filterCourseData;
+  if (category === '所有教學') {
+    filterCourseData = coursesData;
+  } else {
+    filterCourseData = coursesData.filter((item) => item.attributes.category === category);
+  }
+
+  const handleChangeCategory = (newCategory) => {
+    setCategory(newCategory);
+  };
+
   return (
-    <div>
-      <Course />
+    <div className="max-w-screen-xl mx-auto my-8 md:my-16">
+      {isLoading && <Loading />}
+      {isError && <div className="mt-24 text-center text-lg mb-3">資料載入失敗</div>}
+      {isSuccess
+        && (
+          <>
+            <CourseFilter onCategoryChange={handleChangeCategory} />
+            <Row
+              justify="center"
+              gutter={{
+                xs: 8, sm: 16, md: 24, lg: 32,
+              }}
+            >
+              {filterCourseData.map((data) => (
+                <Col key={data.id}>
+                  <Link to={`${data.id}`}>
+                    <CourseCard filterCourseData={data} />
+                  </Link>
+                </Col>
+              ))}
+            </Row>
+          </>
+        )}
     </div>
   );
 }
