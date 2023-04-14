@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRegisterMutation, useLoginMutation } from '../../store/api/authApi';
-import { login } from '../../store/reducer/authSlice';
+import { login } from '../../store/reducers/authSlice';
 import Message from '../UI/Message';
 
 export default function AuthForm() {

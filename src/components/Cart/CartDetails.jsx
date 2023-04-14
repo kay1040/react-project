@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   increaseItem, decreaseItem, getInputValue, removeItem,
-} from '../../store/reducer/cartSlice';
+} from '../../store/reducers/cartSlice';
 import Confirm from '../UI/ConfirmModal';
 import Counter from '../UI/Counter';
 

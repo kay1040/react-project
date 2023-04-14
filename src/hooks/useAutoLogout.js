@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../store/reducer/authSlice';
+import { logout } from '../store/reducers/authSlice';
 
 export default function useAutoLogout() {
   const auth = useSelector((state) => state.auth);

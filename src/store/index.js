@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { authApi } from './api/authApi';
-import authReducer from './reducer/authSlice';
+import authReducer from './reducers/authSlice';
 import coursesApi from './api/coursesApi';
 import productsApi from './api/productsApi';
-import cartReducer from './reducer/cartSlice';
-import productsReducer from './reducer/productsSlice';
+import cartReducer from './reducers/cartSlice';
+import productsReducer from './reducers/productsSlice';
 
 
 const store = configureStore({

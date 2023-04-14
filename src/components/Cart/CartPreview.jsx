@@ -8,7 +8,7 @@ import Backdrop from '../UI/Backdrop';
 import Counter from '../UI/Counter';
 import {
   increaseItem, decreaseItem, getInputValue,
-} from '../../store/reducer/cartSlice';
+} from '../../store/reducers/cartSlice';
 
 export default function CartPreview(props) {
   const cart = useSelector((state) => state.cart);

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeFromFavoriteList } from '../../store/reducer/productsSlice';
-import { addToCart } from '../../store/reducer/cartSlice';
+import { removeFromFavoriteList } from '../../store/reducers/productsSlice';
+import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
 
 export default function FavoriteList() {

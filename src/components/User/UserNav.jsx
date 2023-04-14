@@ -4,7 +4,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import styles from './UserNav.module.css';
-import { logout } from '../../store/reducer/authSlice';
+import { logout } from '../../store/reducers/authSlice';
 
 export default function ProfileNav() {
   const dispatch = useDispatch();

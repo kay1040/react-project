@@ -6,7 +6,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
-import { clearCart } from '../../store/reducer/cartSlice';
+import { clearCart } from '../../store/reducers/cartSlice';
 import CheckoutForm from './CheckoutForm';
 import Order from './Order';
 import { useGetUserDataQuery, useUpdateUserDataMutation } from '../../store/api/authApi';
