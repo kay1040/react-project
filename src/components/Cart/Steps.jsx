@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './Steps.css';
 import {
-  Form, Button, message, Steps, ConfigProvider,
+  Form, message, Steps, ConfigProvider,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -24,17 +23,6 @@ export default function ShoppingSteps() {
   const [updateUserData] = useUpdateUserDataMutation();
 
   const dispatch = useDispatch();
-
-  const buttonStyle = {
-    margin: '0 8px',
-    backgroundColor: 'darkslategray',
-    border: 0,
-    borderRadius: '6px',
-    width: 100,
-    height: 30,
-    marginBottom: 100,
-    color: '#fff',
-  };
 
   const createOrder = (orderNum) => {
     const order = {
@@ -89,7 +77,7 @@ export default function ShoppingSteps() {
     <div className="max-w-screen-xl mx-auto my-16 md:my-24">
       {cart.cartItems.length === 0 && !isComplete
         ? (
-          <div className="text-center text-base mt-48">
+          <div className="text-center text-base mt-28">
             <p className="mb-3">您的購物車內沒有商品</p>
             <Link to="/shop" className="font-bold text-[#599b9b]">立即選購</Link>
           </div>
@@ -106,20 +94,20 @@ export default function ShoppingSteps() {
             <div className="steps-content">{steps[current].content}</div>
             <div className="steps-action flex justify-around">
               {current > 0 && (
-                <Button style={buttonStyle} onClick={handlePrev}>
+                <button type="button" className="btn-primary text-sm font-bold px-4 py-1" onClick={handlePrev}>
                   上一步
-                </Button>
+                </button>
               )}
 
               {current === steps.length - 1 && (
-                <Button type="primary" style={buttonStyle} onClick={() => { message.success('完成訂單!'); }}>
+                <button type="button" className="btn-primary text-sm font-bold px-4 py-1" onClick={() => { message.success('完成訂單!'); }}>
                   完成訂單
-                </Button>
+                </button>
               )}
               {current < steps.length - 1 && (
-                <Button type="primary" style={buttonStyle} onClick={handleNext} htmlType="submit">
+                <button type="button" className="btn-primary text-sm font-bold px-5 py-1" onClick={handleNext}>
                   下一步
-                </Button>
+                </button>
               )}
             </div>
           </ConfigProvider>

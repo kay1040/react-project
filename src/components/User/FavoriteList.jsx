@@ -73,7 +73,7 @@ export default function FavoriteList() {
                     <td className="md:p-6">
                       <button
                         type="button"
-                        className="btn-primary font-bold rounded-none hover-none py-2 w-full md:w-28 md:rounded"
+                        className="btn-primary text-sm font-bold rounded-none hover-none py-2 w-full md:w-28 md:rounded"
                         onClick={() => {
                           dispatch(addToCart([item, count]));
                           setCount(1);

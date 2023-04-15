@@ -122,6 +122,11 @@
     color: #2f4f4f;
 }
 
+.cart :hover {
+    color: #599b9b;
+    transition: all .3s;
+}
+
 .totalQuantity {
     position: absolute;
     width: 18px;
