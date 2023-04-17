@@ -4,8 +4,8 @@ import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import IntroPage from './pages/IntroPage';
-import CoursePage from './pages/CoursePage';
-import CourseDetailsPage from './pages/CourseDetailsPage';
+import TutorialPage from './pages/TutorialPage';
+import TutorialDetailsPage from './pages/TutorialDetailsPage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import CartPage from './pages/CartPage';
@@ -31,8 +31,8 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="intro" element={<IntroPage />} />
-        <Route path="course" element={<CoursePage />} />
-        <Route path="course/:id" element={<CourseDetailsPage />} />
+        <Route path="tutorial" element={<TutorialPage />} />
+        <Route path="tutorial/:id" element={<TutorialDetailsPage />} />
         <Route path="shop" element={<ShopPage />} />
         <Route path="shop/product/:id" element={<ProductDetailsPage />} />
         <Route path="shop/cart" element={<CartPage />} />

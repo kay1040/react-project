@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CourseFilter(props) {
+export default function TutorialFilter(props) {
   const { onCategoryChange, category } = props;
   const handleChange = (e) => {
     onCategoryChange(e.target.value);

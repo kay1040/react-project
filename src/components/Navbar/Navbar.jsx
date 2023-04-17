@@ -57,7 +57,7 @@ export default function NavBar(props) {
             <li className={styles.login}><Link to="/user/profile" onClick={handleShowLeftMenu}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
             <li><Link to="/about" onClick={handleShowLeftMenu}>關於我們</Link></li>
             <li><Link to="/intro" onClick={handleShowLeftMenu}>認識纏花</Link></li>
-            <li><Link to="/course" onClick={handleShowLeftMenu}>纏花製作</Link></li>
+            <li><Link to="/tutorial" onClick={handleShowLeftMenu}>纏花製作</Link></li>
             <li><Link to="/shop" onClick={handleShowLeftMenu}>購買纏花</Link></li>
             <li className={styles.search}>
               <SearchProduct handleShowLeftMenu={handleShowLeftMenu} />

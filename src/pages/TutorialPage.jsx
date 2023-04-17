@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row } from 'antd';
-import { useGetCoursesQuery } from '../store/api/coursesApi';
+import { useGetTutorialsQuery } from '../store/api/tutorialsApi';
 import Loading from '../components/UI/Loading';
-import CourseFilter from '../components/Course/CourseFilter';
-import CourseCard from '../components/Course/CourseCard';
+import TutorialFilter from '../components/Tutorial/TutorialFilter';
+import TutorialCard from '../components/Tutorial/TutorialCard';
 
-export default function CoursePage() {
+export default function TutorialPage() {
   const {
-    data: coursesData,
+    data: tutorialsData,
     isSuccess,
     isLoading,
     isError,
-  } = useGetCoursesQuery();
+  } = useGetTutorialsQuery();
 
   const [category, setCategory] = useState('所有教學');
 
   // 篩選資料
-  let filterCourseData;
+  let filterTutorialData;
   if (category === '所有教學') {
-    filterCourseData = coursesData;
+    filterTutorialData = tutorialsData;
   } else {
-    filterCourseData = coursesData.filter((item) => item.attributes.category === category);
+    filterTutorialData = tutorialsData.filter((item) => item.attributes.category === category);
   }
 
   const handleChangeCategory = (newCategory) => {
@@ -35,17 +35,17 @@ export default function CoursePage() {
       {isSuccess
         && (
           <>
-            <CourseFilter onCategoryChange={handleChangeCategory} />
+            <TutorialFilter onCategoryChange={handleChangeCategory} />
             <Row
               justify="center"
               gutter={{
                 xs: 8, sm: 16, md: 24, lg: 32,
               }}
             >
-              {filterCourseData.map((data) => (
+              {filterTutorialData.map((data) => (
                 <Col key={data.id}>
                   <Link to={`${data.id}`}>
-                    <CourseCard filterCourseData={data} />
+                    <TutorialCard filterTutorialData={data} />
                   </Link>
                 </Col>
               ))}
