@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRegisterMutation, useLoginMutation } from '../store/api/authApi';
 import { login } from '../store/reducers/authSlice';
 import Message from '../components/UI/Message';
 
 export default function AuthPage() {
+  const auth = useSelector((state) => state.auth);
   const [showMessage, setShowMessage] = useState(false);
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [registerFn, { error: registerError }] = useRegisterMutation();
@@ -21,6 +22,12 @@ export default function AuthPage() {
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
   const [passwordSame, setPasswordSame] = useState(true);
+
+  useEffect(() => {
+    if (auth.isLogged) {
+      navigate('/', { replace: true });
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
