@@ -8,7 +8,7 @@ export default function VideoList(props) {
       {videos.map((video, index) => (
         <li key={video.id}>
           <button type="button" onClick={() => onVideoSelected(index)}>
-            {video.attributes.title}
+            {video.name}
           </button>
         </li>
       ))}

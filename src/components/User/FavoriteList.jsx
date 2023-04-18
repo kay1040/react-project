@@ -62,13 +62,13 @@ export default function FavoriteList() {
                   <tr key={item.id} className="relative border flex flex-col mb-6 md:table-row">
                     <td className="mt-4 mx-4 md:px-4 md:py-6">
                       <Link to={`/shop/product/${item.id}`} className="md:flex items-center">
-                        <img className="w-full mb-2 md:w-40 md:mr-4" src={item.attributes.imgSrc} alt={item.attributes.title} />
-                        <p className="text-base">{item.attributes.title}</p>
+                        <img className="w-full mb-2 md:w-40 md:mr-4" src={item.imgPath} alt={item.name} />
+                        <p className="text-base">{item.name}</p>
                       </Link>
                     </td>
                     <td className="p-4 md:p-6 font-bold">
                       NT$
-                      {item.attributes.price.toLocaleString('en-US')}
+                      {item.price.toLocaleString('en-US')}
                     </td>
                     <td className="md:p-6">
                       <button

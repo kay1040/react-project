@@ -54,11 +54,11 @@ export default function CartPreview(props) {
                 <div className={styles.cartData} key={item.id}>
                   <div className={styles.imgWrapper}>
                     <Link to={`/shop/product/${item.id}`} onClick={handleClose}>
-                      <img src={item.attributes.imgSrc} alt={item.attributes.title} />
+                      <img src={item.imgPath} alt={item.name} />
                     </Link>
                   </div>
                   <div className={styles.textWrapper}>
-                    <div className={styles.itemName}>{item.attributes.title}</div>
+                    <div className={styles.itemName}>{item.name}</div>
                     <div className={styles.priceWrapper}>
                       <div className={styles.price}>
                         {cart.cartItems[index].subtotal.toLocaleString('en-US')}

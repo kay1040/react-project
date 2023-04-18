@@ -1,14 +1,25 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
 
 export const tutorialsApi = createApi({
   reducerPath: 'tutorialsApi',
-  // baseQuery: fetchBaseQuery({ baseUrl: 'https://groovy-momentum-371809.appspot.com/api/' }),
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:1337/api/' }),
+  baseQuery: fakeBaseQuery(),
   tagTypes: ['tutorials'],
   endpoints: (builder) => ({
     getTutorials: builder.query({
-      query: () => 'tutorials',
-      transformResponse: (baseQueryReturnQuery) => baseQueryReturnQuery.data,
+      async queryFn() {
+        try {
+          const querySnapshot = await getDocs(query(collection(db, 'tutorials'), orderBy('id')))
+          const tutorials = [];
+          querySnapshot?.forEach((doc) => {
+            tutorials.push(doc.data());
+          });
+          return { data: tutorials };
+        } catch (error) {
+          return { error };
+        }
+      },
     }),
   }),
 });

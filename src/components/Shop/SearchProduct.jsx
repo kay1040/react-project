@@ -4,17 +4,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchProduct.module.css';
 
-export default function SearchProduct(props) {
+export default function SearchProduct() {
   const keywordInput = useRef();
   const navigate = useNavigate();
-  const { handleShowLeftMenu } = props;
 
   const handleSearchProduct = (e) => {
     e.preventDefault();
     const keyword = keywordInput.current.value.trim();
     navigate('/shop', { state: keyword });
     keywordInput.current.value = '';
-    handleShowLeftMenu();
   };
 
   return (

@@ -15,7 +15,7 @@ import Message from '../UI/Message';
 export default function ProductDetails() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
   const { id } = useParams();
-  const product = isSuccess ? products.find((item) => item.id === +id) : null;
+  const product = isSuccess ? products.find((item) => item.id === id) : null;
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -73,23 +73,23 @@ export default function ProductDetails() {
             <div className={styles.nav}>
               <Link to="/">首頁</Link>
               <Link to="/shop">商店</Link>
-              {product.attributes.title}
+              {product.name}
             </div>
             <div className={styles.productDetails}>
               <div className={styles.productImg}>
-                <img src={product.attributes.imgSrc} alt={product.attributes.title} />
+                <img src={product.imgPath} alt={product.name} />
               </div>
               <div className={styles.infoWrapper}>
                 <h2>
-                  {product.attributes.title}
+                  {product.name}
                   {' '}
                   <button type="button" className={styles.favorite} onClick={handleAddToFavorite}>
                     <FontAwesomeIcon icon={favorite ? heartActive : faHeart} />
                   </button>
                 </h2>
-                <p>{product.attributes.description}</p>
+                <p>{product.description}</p>
                 <div className={styles.price}>
-                  {product.attributes.price.toLocaleString('en-US')}
+                  {product.price.toLocaleString('en-US')}
                 </div>
                 <div className="my-5">
                   <Counter

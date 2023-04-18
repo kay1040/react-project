@@ -29,17 +29,17 @@ const cartSlice = createSlice({
         state.cartItems.push({
           ...newItem,
           quantity: count,
-          subtotal: newItem.attributes.price * count,
+          subtotal: newItem.price * count,
         });
       // 若購物車中有此商品
       } else {
         // 修改已有商品的數量和小計
         state.cartItems[index].quantity += count;
-        state.cartItems[index].subtotal += newItem.attributes.price * count;
+        state.cartItems[index].subtotal += newItem.price * count;
       }
       // 計算總數和總額
       state.totalQuantity += count;
-      state.totalAmount += newItem.attributes.price * count;
+      state.totalAmount += newItem.price * count;
       // 將購物車資料儲存到本地
       localStorage.setItem('cartData', JSON.stringify(state));
     },
@@ -47,18 +47,18 @@ const cartSlice = createSlice({
     increaseItem(state, action) {
       const index = state.cartItems.findIndex((item) => item.id === action.payload.id);
       state.cartItems[index].quantity += 1;
-      state.cartItems[index].subtotal = state.cartItems[index].attributes.price * state.cartItems[index].quantity;
+      state.cartItems[index].subtotal = state.cartItems[index].price * state.cartItems[index].quantity;
       state.totalQuantity += 1;
-      state.totalAmount += state.cartItems[index].attributes.price;
+      state.totalAmount += state.cartItems[index].price;
       localStorage.setItem('cartData', JSON.stringify(state));
     },
     // 減少購物車中商品數量
     decreaseItem(state, action) {
       const index = state.cartItems.findIndex((item) => item.id === action.payload.id);
       state.cartItems[index].quantity -= 1;
-      state.cartItems[index].subtotal = state.cartItems[index].attributes.price * state.cartItems[index].quantity;
+      state.cartItems[index].subtotal = state.cartItems[index].price * state.cartItems[index].quantity;
       state.totalQuantity -= 1;
-      state.totalAmount -= state.cartItems[index].attributes.price;
+      state.totalAmount -= state.cartItems[index].price;
       localStorage.setItem('cartData', JSON.stringify(state));
       // 數量歸零移除商品
       if (state.cartItems[index].quantity === 0) {
@@ -72,8 +72,8 @@ const cartSlice = createSlice({
       const input = action.payload[1];
       state.totalQuantity = state.totalQuantity - state.cartItems[index].quantity + input;
       state.cartItems[index].quantity = input;
-      state.totalAmount = state.totalAmount - state.cartItems[index].subtotal + state.cartItems[index].attributes.price * state.cartItems[index].quantity;
-      state.cartItems[index].subtotal = state.cartItems[index].attributes.price * state.cartItems[index].quantity;
+      state.totalAmount = state.totalAmount - state.cartItems[index].subtotal + state.cartItems[index].price * state.cartItems[index].quantity;
+      state.cartItems[index].subtotal = state.cartItems[index].price * state.cartItems[index].quantity;
       localStorage.setItem('cartData', JSON.stringify(state));
       // 數量歸零移除商品
       if (state.cartItems[index].quantity === 0) {

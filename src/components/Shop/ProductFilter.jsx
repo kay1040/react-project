@@ -16,7 +16,7 @@ export default function ProductFilter(props) {
         <span>篩選：</span>
         <select onChange={handleCategoryFilter}>
           <option value="所有商品">所有商品</option>
-          <option value="閩南傳統12款">傳統款</option>
+          <option value="傳統款">傳統款</option>
           <option value="創作款">創作款</option>
         </select>
       </div>

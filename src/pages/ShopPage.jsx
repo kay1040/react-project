@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
 import ProductFilter from '../components/Shop/ProductFilter';
@@ -12,46 +12,48 @@ export default function ShopPage() {
     isLoading,
     isError,
   } = useGetProductsQuery();
-  const [category, setCategory] = useState('所有商品');
+  const [productsList, setProductsList] = useState([]);
   const { state: keyword } = useLocation();
-  const [sort, setSort] = useState(null);
+  const navigate = useNavigate();
 
-  // 篩選商品
-  let filterProducts = products;
-  if (isSuccess) {
-    if (category !== '所有商品') {
-      filterProducts = products.filter((item) => item.attributes.category === category);
-    }
+  useEffect(() => {
+    setProductsList(products);
     if (keyword) {
-      filterProducts = filterProducts.filter((item) => item.attributes.title.indexOf(keyword) !== -1);
+      const filterProducts = products?.filter((item) => item.name.indexOf(keyword) !== -1);
+      setProductsList(filterProducts);
     }
-    if (sort === 'ascending') {
-      const sortProducts = [...filterProducts];
-      sortProducts.sort((a, b) => a.attributes.price - b.attributes.price);
-      filterProducts = sortProducts;
-    } else if (sort === 'descending') {
-      const sortProducts = [...filterProducts];
-      sortProducts.sort((a, b) => b.attributes.price - a.attributes.price);
-      filterProducts = sortProducts;
-    }
-  }
+  }, [isSuccess, keyword]);
 
   const handleChangeCategory = (newCategory) => {
-    setCategory(newCategory);
+    navigate('/shop', { state: null });
+    if (newCategory === '所有商品') {
+      setProductsList(products);
+    } else {
+      const filterProducts = products?.filter((item) => item.category === newCategory);
+      setProductsList(filterProducts);
+    }
   };
   const handleChangeSort = (newSort) => {
-    setSort(newSort);
+    if (newSort === 'ascending') {
+      const sortProducts = [...productsList];
+      sortProducts.sort((a, b) => a.price - b.price);
+      setProductsList(sortProducts);
+    } else if (newSort === 'descending') {
+      const sortProducts = [...productsList];
+      sortProducts.sort((a, b) => b.price - a.price);
+      setProductsList(sortProducts);
+    }
   };
 
   return (
     <div className="max-w-screen-xl mx-auto mt-6 md:mt-8 mb-8 md:mb-16">
       {isLoading && <Loading />}
       {isError && <div className="mt-24 text-center text-lg mb-3">商品資料載入失敗</div>}
-      {isSuccess && (filterProducts.length === 0
+      {isSuccess && (productsList?.length === 0
         ? (
           <div className="mt-24 text-center">
             <p className="text-lg mb-3">查無此商品</p>
-            <Link to="/shop" className="text-base font-bold text-[#599b9b]">前往商店</Link>
+            <Link to="/shop" className="text-base font-bold text-[#599b9b]" onClick={() => setProductsList(products)}>前往商店</Link>
           </div>
         )
         : (
@@ -60,7 +62,7 @@ export default function ShopPage() {
               onCategoryChange={handleChangeCategory}
               onSortChange={handleChangeSort}
             />
-            <ProductList products={filterProducts} />
+            <ProductList products={productsList} />
           </div>
         )
       )}

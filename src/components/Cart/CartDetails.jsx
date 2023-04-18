@@ -49,13 +49,13 @@ export default function CartDetails(props) {
           <Link to={`/shop/product/${item.id}`}>
             <img
               className="w-full"
-              src={item.attributes.imgSrc}
-              alt={item.attributes.title}
+              src={item.imgPath}
+              alt={item.name}
             />
           </Link>
         </div>
         <div className="flex-auto">
-          <div className="text-basic md:mt-2">{item.attributes.title}</div>
+          <div className="text-basic md:mt-2">{item.name}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
             <div className="before:content-['NT$'] font-bold my-3 md:my-0">
               {cart.cartItems[index].subtotal.toLocaleString('en-US')}

@@ -83,14 +83,14 @@ export default function TutorialPage() {
       {isSuccess && (
         <>
           <h2 className="text-center">
-            {selectedVideo.attributes.category}
+            {selectedVideo.category}
             -
-            {selectedVideo.attributes.title}
+            {selectedVideo.name}
           </h2>
           <div className="flex flex-col md:flex-row mt-12 md:mx-16">
             <div>
               <TutorialVideo
-                url={selectedVideo.attributes.video}
+                url={selectedVideo.videoUrl}
               />
             </div>
             <div>
@@ -100,6 +100,7 @@ export default function TutorialPage() {
               />
             </div>
           </div>
+          <p className="text-center">{selectedVideo.description}</p>
         </>
       )}
     </div>
