@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './TutorialMenu.css';
 
-export default function VideoList(props) {
-  const { tutorials, onTutorialSelected } = props;
+export default function TutorialMenu(props) {
+  const { tutorials, videoIndex, onVideoSelected } = props;
   const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(null);
   const [showDesc, setShowDesc] = useState(false);
   const handleToggle = (index) => {
@@ -16,18 +16,22 @@ export default function VideoList(props) {
     }
   };
 
+  useEffect(() => {
+    setSelectedTutorialIndex(0);
+    setShowDesc(true);
+  }, []);
+
   return (
     <ul className="menu pt-8 md:pt-0 px-5 md:w-76 md:h-[522px] md:overflow-y-auto overflow-x-hidden">
       {tutorials.map((video, index) => (
-        <li
-          key={video.id}
-          className="border md:w-60 rounded mb-2"
-        >
+        <li key={video.id} className="border md:w-60 rounded mb-2">
           <button
             type="button"
             onClick={() => handleToggle(index)}
-            className="px-4 w-full h-14 md:hover:bg-zinc-100 text-left relative text-gray-700"
+            className="px-4 w-full h-14 md:hover:bg-zinc-100 text-left relative text-gray-700 transition-all"
           >
+            {video.category}
+            -
             {video.name}
             <FontAwesomeIcon
               icon={selectedTutorialIndex === index && showDesc ? faChevronUp : faChevronDown}
@@ -37,9 +41,11 @@ export default function VideoList(props) {
           {selectedTutorialIndex === index && showDesc && (
             <div className="w-full px-4 py-3 border-t">
               <p className="text-sm">{video.description}</p>
-              <button type="button" onClick={() => onTutorialSelected(index)} className="text-darkslategray font-bold pt-3">
-                查看影片
-              </button>
+              {videoIndex !== index && (
+                <button type="button" onClick={() => onVideoSelected(index)} className="text-darkslategray font-bold pt-3">
+                  觀看教學影片
+                </button>
+              )}
             </div>
           )}
 

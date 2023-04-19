@@ -27,3 +27,7 @@
   background-color: #ccc;
   /* 滾動條的滑塊在hover時的顏色 */
 }
+
+.menu li:last-child {
+  margin-bottom: 0;
+}
