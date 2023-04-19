@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import './TutorialMenu.css';
 
 export default function VideoList(props) {
   const { tutorials, onTutorialSelected } = props;
@@ -16,7 +17,7 @@ export default function VideoList(props) {
   };
 
   return (
-    <ul className="pt-8 md:pt-0 px-5 md:w-76 md:h-[522px] md:overflow-y-auto overflow-x-hidden">
+    <ul className="menu pt-8 md:pt-0 px-5 md:w-76 md:h-[522px] md:overflow-y-auto overflow-x-hidden">
       {tutorials.map((video, index) => (
         <li
           key={video.id}

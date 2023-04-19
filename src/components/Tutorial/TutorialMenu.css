@@ -1,0 +1,29 @@
+/* 滾動條的基本樣式 */
+.menu::-webkit-scrollbar {
+  width: 8px;
+  /* 滾動條的寬度 */
+  height: 8px;
+  /* 滾動條的高度 */
+  background-color: #f5f5f5;
+  /* 滾動條的背景色 */
+}
+
+/* 滾動條的軌道樣式 */
+.menu::-webkit-scrollbar-track {
+  border-radius: 10px;
+  /* 滾動條的軌道圓角 */
+}
+
+/* 滾動條的滑塊樣式 */
+.menu::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* 滾動條的滑塊圓角 */
+  background-color: #ddd;
+  /* 滾動條的滑塊顏色 */
+}
+
+/* 滾動條的滑塊在hover時的樣式 */
+.menu::-webkit-scrollbar-thumb:hover {
+  background-color: #ccc;
+  /* 滾動條的滑塊在hover時的顏色 */
+}
