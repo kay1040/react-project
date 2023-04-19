@@ -116,7 +116,7 @@ export default function AuthPage() {
             className="text-base text-darkslategray transition-all duration-300 hover:text-[#599b9b]"
             onClick={() => { setIsLoginForm((prevState) => !prevState); }}
           >
-            {isLoginForm ? '沒有帳號? 點此註冊' : '已有帳號? 點此登入'}
+            {isLoginForm ? '沒有帳號？點此註冊' : '已有帳號？點此登入'}
           </button>
         </div>
       </div>

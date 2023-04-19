@@ -23,7 +23,8 @@ export default function ProductFilter(props) {
       <div className="mx-6 md:mx-8">
         <span>排序：</span>
         <select onChange={handleSortChange}>
-          <option value="sort">上架順序</option>
+          <option value="default">預設</option>
+          <option value="latest">最新上架</option>
           <option value="ascending">價格低到高</option>
           <option value="descending">價格高到低</option>
         </select>

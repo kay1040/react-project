@@ -11,7 +11,7 @@ export default function SearchProduct() {
   const handleSearchProduct = (e) => {
     e.preventDefault();
     const keyword = keywordInput.current.value.trim();
-    navigate('/shop', { state: keyword });
+    navigate('/shop', { state: { keyword } });
     keywordInput.current.value = '';
   };
 

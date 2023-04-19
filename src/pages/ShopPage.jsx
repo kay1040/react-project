@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
 import ProductFilter from '../components/Shop/ProductFilter';
@@ -12,9 +12,9 @@ export default function ShopPage() {
     isLoading,
     isError,
   } = useGetProductsQuery();
-  const [productsList, setProductsList] = useState([]);
-  const { state: keyword } = useLocation();
-  const navigate = useNavigate();
+  const [productsList, setProductsList] = useState(null);
+  const location = useLocation();
+  let keyword = location.state?.keyword || '';
 
   useEffect(() => {
     setProductsList(products);
@@ -25,7 +25,7 @@ export default function ShopPage() {
   }, [isSuccess, keyword]);
 
   const handleChangeCategory = (newCategory) => {
-    navigate('/shop', { state: null });
+    keyword = '';
     if (newCategory === '所有商品') {
       setProductsList(products);
     } else {
@@ -33,15 +33,25 @@ export default function ShopPage() {
       setProductsList(filterProducts);
     }
   };
+
   const handleChangeSort = (newSort) => {
-    if (newSort === 'ascending') {
-      const sortProducts = [...productsList];
-      sortProducts.sort((a, b) => a.price - b.price);
-      setProductsList(sortProducts);
-    } else if (newSort === 'descending') {
-      const sortProducts = [...productsList];
-      sortProducts.sort((a, b) => b.price - a.price);
-      setProductsList(sortProducts);
+    const sortProducts = [...productsList];
+    switch (newSort) {
+      case 'latest':
+        sortProducts.sort((a, b) => b.id - a.id);
+        setProductsList(sortProducts);
+        break;
+      case 'ascending':
+        sortProducts.sort((a, b) => a.price - b.price);
+        setProductsList(sortProducts);
+        break;
+      case 'descending':
+        sortProducts.sort((a, b) => b.price - a.price);
+        setProductsList(sortProducts);
+        break;
+      default:
+        sortProducts.sort((a, b) => a.id - b.id);
+        setProductsList(sortProducts);
     }
   };
 
