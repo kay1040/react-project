@@ -20,7 +20,7 @@ export default function TutorialPage() {
       {isLoading && <Loading />}
       {isError && <div className="mt-24 text-center text-lg mb-3">資料載入失敗</div>}
       {isSuccess && (
-        <div className="flex flex-col md:flex-row mt-12 md:mx-16">
+        <div className="flex flex-col md:flex-row mt-12 md:mx-8">
           <div>
             <TutorialVideo
               url={selectedTutorial.videoUrl}

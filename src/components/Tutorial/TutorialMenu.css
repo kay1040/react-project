@@ -31,3 +31,20 @@
 .menu li:last-child {
   margin-bottom: 0;
 }
+
+.desc {
+  width: 100%;
+  max-height: 0;
+  padding: 0 16px;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+}
+
+.desc-active {
+  width: 100%;
+  max-height: 200px;
+  padding: 0 16px;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+  border-top-width: 1px;
+}
