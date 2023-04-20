@@ -18,13 +18,13 @@ export default function TutorialMenu(props) {
   };
 
   return (
-    <ul className="menu pt-8 md:pt-0 px-5 md:w-76 md:h-[450px] md:overflow-y-auto overflow-x-hidden">
+    <ul className="menu p-5 md:pt-0 md:w-76 md:h-[450px] md:overflow-y-auto overflow-x-hidden">
       {tutorials.map((video, index) => (
         <li key={video.id} className="border md:w-60 rounded mb-2 transition-all">
           <button
             type="button"
             onClick={() => handleToggle(index)}
-            className="px-4 w-full h-14 md:hover:bg-zinc-100 text-left relative text-gray-700 transition-all"
+            className="px-4 w-full h-12 md:hover:bg-zinc-100 text-left relative text-gray-700 transition-all"
           >
             {video.category}
             -
