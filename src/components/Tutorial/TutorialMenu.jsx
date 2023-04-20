@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './TutorialMenu.css';
 
 export default function TutorialMenu(props) {
   const { tutorials, videoIndex, onVideoSelected } = props;
-  const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(null);
-  const [showDesc, setShowDesc] = useState(false);
-
-  useEffect(() => {
-    setSelectedTutorialIndex(0);
-    setShowDesc(true);
-  }, []);
+  const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(0);
+  const [showDesc, setShowDesc] = useState(true);
 
   const handleToggle = (index) => {
     setSelectedTutorialIndex(index);
@@ -23,7 +18,7 @@ export default function TutorialMenu(props) {
   };
 
   return (
-    <ul className="menu pt-8 md:pt-0 px-5 md:w-76 md:h-[522px] md:overflow-y-auto overflow-x-hidden">
+    <ul className="menu pt-8 md:pt-0 px-5 md:w-76 md:h-[450px] md:overflow-y-auto overflow-x-hidden">
       {tutorials.map((video, index) => (
         <li key={video.id} className="border md:w-60 rounded mb-2 transition-all">
           <button
