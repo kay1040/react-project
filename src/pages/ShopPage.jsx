@@ -14,18 +14,23 @@ export default function ShopPage() {
   } = useGetProductsQuery();
   const [productsList, setProductsList] = useState(null);
   const location = useLocation();
-  let keyword = location.state?.keyword || '';
+  const [keyword, setKeyword] = useState(location.state?.keyword);
 
   useEffect(() => {
-    setProductsList(products);
+    setKeyword(location.state?.keyword);
+  }, [location]);
+
+  useEffect(() => {
     if (keyword) {
       const filterProducts = products?.filter((item) => item.name.indexOf(keyword) !== -1);
       setProductsList(filterProducts);
+    } else {
+      setProductsList(products);
     }
-  }, [isSuccess, keyword]);
+  }, [isSuccess, products, keyword]);
 
   const handleChangeCategory = (newCategory) => {
-    keyword = '';
+    setKeyword(null);
     if (newCategory === '所有商品') {
       setProductsList(products);
     } else {
