@@ -37,7 +37,7 @@ export default function TutorialMenu(props) {
           <div className={selectedTutorialIndex === index && showDesc ? 'desc-active' : 'desc'}>
             <p className="text-sm py-3">{video.description}</p>
             {videoIndex !== index && (
-              <button type="button" onClick={() => onVideoSelected(index)} className="text-darkslategray font-bold py-3">
+              <button type="button" onClick={() => { onVideoSelected(index); window.scrollTo(0, 0); }} className="text-darkslategray font-bold py-3">
                 觀看教學影片
               </button>
             )}
