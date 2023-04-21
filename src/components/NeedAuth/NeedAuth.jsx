@@ -1,11 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
-export default function NeedAuth(props) {
-  const auth = useSelector((state) => state.auth);
+export default function NeedAuth({ children }) {
+  const { currentUser } = useAuth();
   const location = useLocation();
-  const { children } = props;
-  return auth.isLogged ? children
+
+  return currentUser ? children
     : <Navigate to="/auth_form" replace state={{ preLocation: location }} />;
 }
