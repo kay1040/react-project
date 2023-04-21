@@ -11,7 +11,7 @@ export default function AboutPage() {
           我們致力於推廣纏花這項快要失傳的傳統工藝，讓更多人能夠認識纏花
         </p>
       </div>
-      <img src="/flower-field/imgs/about_img.png" className="mt-6 w-screen" alt="leaf" />
+      <img src="/imgs/about_img.png" className="mt-6 w-screen" alt="leaf" />
     </div>
   );
 }

@@ -16,11 +16,11 @@ import {
 } from 'swiper';
 
 const carouselImgs = [
-  '/flower-field/imgs/carousel/01.jpg',
-  '/flower-field/imgs/carousel/02.jpg',
-  '/flower-field/imgs/carousel/03.jpg',
-  '/flower-field/imgs/carousel/04.jpg',
-  '/flower-field/imgs/carousel/05.jpg',
+  '/imgs/carousel/01.jpg',
+  '/imgs/carousel/02.jpg',
+  '/imgs/carousel/03.jpg',
+  '/imgs/carousel/04.jpg',
+  '/imgs/carousel/05.jpg',
 ];
 
 export default function Carousel() {
