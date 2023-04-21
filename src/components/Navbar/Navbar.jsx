@@ -26,7 +26,7 @@ export default function NavBar(props) {
 
   useEffect(() => {
     onScroll(showCartPreview);
-  }, [showCartPreview]);
+  }, [onScroll, showCartPreview]);
 
   const { pathname } = useLocation();
 

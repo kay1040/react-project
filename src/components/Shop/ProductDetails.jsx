@@ -28,7 +28,7 @@ export default function ProductDetails() {
 
   useEffect(() => {
     if (index !== -1) setFavorite(true);
-  }, [favoriteList]);
+  }, [index]);
 
   const handleIncreaseButton = () => {
     setCount((prevCount) => prevCount + 1);

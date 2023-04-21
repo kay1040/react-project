@@ -10,7 +10,7 @@ export default function ProfilePage() {
     if (pathname === '/user' || pathname === '/user/') {
       navigate('/user/profile', { replace: true });
     }
-  }, [pathname]);
+  }, [pathname, navigate]);
 
   return (
     <div className="max-w-screen-xl mx-auto">

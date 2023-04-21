@@ -27,7 +27,7 @@ export default function AuthPage() {
     if (auth.isLogged) {
       navigate('/', { replace: true });
     }
-  }, []);
+  }, [auth.isLogged, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
