@@ -1,108 +1,120 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRegisterMutation, useLoginMutation } from '../store/api/authApi';
-import { login } from '../store/reducers/authSlice';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebaseConfig';
 import Message from '../components/UI/Message';
+import useAuth from '../hooks/useAuth';
 
 export default function AuthPage() {
-  const auth = useSelector((state) => state.auth);
-  const [showMessage, setShowMessage] = useState(false);
+  const { currentUser } = useAuth();
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [registerFn, { error: registerError }] = useRegisterMutation();
-  const [loginFn, { error: loginError }] = useLoginMutation();
+  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-  const usernameInput = useRef();
-  const passwordInput = useRef();
-  const emailInput = useRef();
-  const passwordCheckInput = useRef();
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
-  const [passwordSame, setPasswordSame] = useState(true);
 
   useEffect(() => {
-    if (auth.isLogged) {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 2000);
+    }
+  }, [message]);
+
+  useEffect(() => {
+    if (currentUser.uid) {
       navigate('/', { replace: true });
     }
-  }, [auth.isLogged, navigate]);
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const username = usernameInput.current.value;
-    const password = passwordInput.current.value;
-    if (isLoginForm) {
-      loginFn({
-        identifier: username,
-        password,
-      }).then((res) => {
-        if (!res.error) {
-          // 登入成功
-          dispatch(login({
-            token: res.data.jwt,
-            user: res.data.user,
-          }));
-          navigate(prevPage, { replace: true });
-        }
-      });
+  const errorMessage = (error) => {
+    if (error.code === 'auth/email-already-in-use') {
+      setMessage('此電子信箱已被註冊');
+    } else if (error.code === 'auth/invalid-email') {
+      setMessage('無效的電子信箱');
+    } else if (error.code === 'auth/user-not-found') {
+      setMessage('此電子信箱尚未註冊');
+    } else if (error.code === 'auth/wrong-password') {
+      setMessage('密碼錯誤');
+    } else if (error.code === 'auth/missing-password') {
+      setMessage('密碼不可為空');
+    } else if (error.code === 'auth/weak-password') {
+      setMessage('密碼強度太弱');
     } else {
-      const email = emailInput.current.value;
-      const passwordCheck = passwordCheckInput.current.value;
-      if (password !== passwordCheck) {
-        setPasswordSame(false);
-        return;
+      setMessage(error.message);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isLoginForm) {
+      // 登入
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate(prevPage, { replace: true });
+      } catch (error) {
+        errorMessage(error);
       }
-      registerFn({
-        username,
-        email,
-        password,
-      }).then((res) => {
-        if (!res.error) {
-          setShowMessage(true);
-          setTimeout(() => {
-            setShowMessage(false);
-          }, 1500);
-          setIsLoginForm(true);
-        }
-      });
+    } else {
+      // 註冊
+      try {
+        if (password !== passwordConfirmation) throw new Error('輸入密碼不一致');
+        await createUserWithEmailAndPassword(auth, email, password);
+        await setDoc(doc(db, 'users', currentUser.uid), {
+          uid: currentUser.uid,
+          email,
+        });
+        signOut(auth);
+        setIsLoginForm(true);
+        setMessage('註冊成功，請重新登入');
+      } catch (error) {
+        errorMessage(error);
+      }
     }
   };
 
   return (
     <>
-      {showMessage && <Message message="註冊成功，請重新登入！" />}
+      {message && <Message message={message} />}
       <div className="max-w-screen-xl mx-auto my-24 xxl:my-48 flex-col flex">
         <h2 className="mb-6 text-3xl font-bold text-darkslategray text-center">
           {isLoginForm ? '會員登入' : '會員註冊'}
         </h2>
-        <p className="text-[#f00] text-center">
-          {registerError && !isLoginForm && registerError.data.error.message}
-        </p>
-        <p className="text-[#f00] text-center">
-          {loginError && isLoginForm && loginError.data.error.message}
-        </p>
-        <p className="text-[#f00] text-center">
-          {!passwordSame && '兩次輸入密碼不一致'}
-        </p>
         <form className="mx-auto" onSubmit={handleSubmit}>
           <div className="mb-4">
-            <input className="input-primary w-64 h-10" ref={usernameInput} type="text" placeholder="請輸入帳號" />
+            <input
+              className="input-primary w-64 h-10"
+              type="email"
+              placeholder="請輸入e-mail"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-          {!isLoginForm
-            && (
-              <div className="mb-4">
-                <input className="input-primary w-64 h-10" ref={emailInput} type="email" placeholder="請輸入e-mail" />
-              </div>
-            )}
           <div className="mb-4">
-            <input className="input-primary w-64 h-10" ref={passwordInput} type="password" placeholder="請輸入密碼" />
+            <input
+              className="input-primary w-64 h-10"
+              type="password"
+              placeholder="請輸入密碼"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           {!isLoginForm
             && (
               <div className="mb-4">
-                <input className="input-primary w-64 h-10" ref={passwordCheckInput} type="password" placeholder="請再次輸入密碼" />
+                <input
+                  className="input-primary w-64 h-10"
+                  type="password"
+                  placeholder="確認密碼"
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
+                />
                 {/* <div className="text-[#f00]">{!passwordSame && '兩次輸入密碼不一致'}</div> */}
               </div>
             )}
@@ -116,7 +128,7 @@ export default function AuthPage() {
             className="text-base text-darkslategray transition-all duration-300 hover:text-[#599b9b]"
             onClick={() => { setIsLoginForm((prevState) => !prevState); }}
           >
-            {isLoginForm ? '沒有帳號？點此註冊' : '已有帳號？點此登入'}
+            {isLoginForm ? '沒有會員？點此註冊' : '已有會員？點此登入'}
           </button>
         </div>
       </div>

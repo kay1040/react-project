@@ -1,13 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 import styles from './UserNav.module.css';
-import { logout } from '../../store/reducers/authSlice';
 
 export default function ProfileNav() {
-  const dispatch = useDispatch();
   const active = {
     fontWeight: 'bold',
     color: 'darkslategray',
@@ -17,6 +16,7 @@ export default function ProfileNav() {
     backgroundColor: '#fff',
   };
   const changeStyle = ({ isActive }) => (isActive ? active : null);
+
   return (
     <div className="mx-auto w-11/12 md:w-3/4">
       <ul className={styles.tabs}>
@@ -26,7 +26,7 @@ export default function ProfileNav() {
         <li>
           <button
             type="button"
-            onClick={() => { dispatch(logout()); }}
+            onClick={() => signOut(auth)}
           >
             <Link to="/">
               <FontAwesomeIcon icon={faRightFromBracket} />
