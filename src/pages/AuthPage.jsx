@@ -3,20 +3,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import Message from '../components/UI/Message';
-import useAuth from '../hooks/useAuth';
+import Loading from '../components/UI/Loading';
 
 export default function AuthPage() {
-  const { currentUser } = useAuth();
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,31 +27,40 @@ export default function AuthPage() {
     if (message) {
       setTimeout(() => {
         setMessage('');
-      }, 2000);
+      }, 5000);
     }
   }, [message]);
 
   useEffect(() => {
-    if (currentUser.uid) {
-      navigate('/', { replace: true });
-    }
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoading(false);
+      if (user) {
+        navigate('/');
+      }
+    });
+    return unsubscribe;
+  }, [navigate]);
 
   const errorMessage = (error) => {
-    if (error.code === 'auth/email-already-in-use') {
-      setMessage('此電子信箱已被註冊');
-    } else if (error.code === 'auth/invalid-email') {
-      setMessage('無效的電子信箱');
-    } else if (error.code === 'auth/user-not-found') {
-      setMessage('此電子信箱尚未註冊');
-    } else if (error.code === 'auth/wrong-password') {
-      setMessage('密碼錯誤');
-    } else if (error.code === 'auth/missing-password') {
-      setMessage('密碼不可為空');
-    } else if (error.code === 'auth/weak-password') {
-      setMessage('密碼強度太弱');
-    } else {
-      setMessage(error.message);
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        setMessage('此電子信箱已被註冊');
+        break;
+      case 'auth/invalid-email':
+        setMessage('無效的電子信箱');
+        break;
+      case 'auth/user-not-found':
+        setMessage('此電子信箱尚未註冊');
+        break;
+      case 'auth/wrong-password':
+        setMessage('密碼錯誤');
+        break;
+      case 'auth/missing-password':
+        setMessage('密碼不可為空');
+        break;
+      default:
+        setMessage(error.message);
+        break;
     }
   };
 
@@ -68,9 +78,10 @@ export default function AuthPage() {
       // 註冊
       try {
         if (password !== passwordConfirmation) throw new Error('輸入密碼不一致');
-        await createUserWithEmailAndPassword(auth, email, password);
-        await setDoc(doc(db, 'users', currentUser.uid), {
-          uid: currentUser.uid,
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const newUser = userCredential.user;
+        await setDoc(doc(db, 'users', newUser.uid), {
+          uid: newUser.uid,
           email,
         });
         signOut(auth);
@@ -81,7 +92,7 @@ export default function AuthPage() {
       }
     }
   };
-
+  if (isLoading) return <Loading />;
   return (
     <>
       {message && <Message message={message} />}
@@ -115,7 +126,6 @@ export default function AuthPage() {
                   placeholder="確認密碼"
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
-                {/* <div className="text-[#f00]">{!passwordSame && '兩次輸入密碼不一致'}</div> */}
               </div>
             )}
           <div>
