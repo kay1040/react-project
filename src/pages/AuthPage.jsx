@@ -12,6 +12,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import Message from '../components/UI/Message';
 import Loading from '../components/UI/Loading';
+import useErrorMessage from '../hooks/useErrorMessage';
 
 export default function AuthPage() {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -19,6 +20,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [isNewUser, setIsNewUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [inputType, setInputType] = useState({
     password: 'password',
@@ -40,42 +42,19 @@ export default function AuthPage() {
     if (message) {
       setTimeout(() => {
         setMessage('');
-      }, 5000);
+      }, 3000);
     }
   }, [message]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoading(false);
-      if (user) {
+      if (user && !isNewUser) {
         navigate('/', { replace: true });
       }
     });
     return unsubscribe;
   }, [navigate]);
-
-  const errorMessage = (error) => {
-    switch (error.code) {
-      case 'auth/email-already-in-use':
-        setMessage('此電子信箱已被註冊');
-        break;
-      case 'auth/invalid-email':
-        setMessage('無效的電子信箱');
-        break;
-      case 'auth/user-not-found':
-        setMessage('此電子信箱尚未註冊');
-        break;
-      case 'auth/wrong-password':
-        setMessage('密碼錯誤');
-        break;
-      case 'auth/missing-password':
-        setMessage('密碼不可為空');
-        break;
-      default:
-        setMessage(error.message);
-        break;
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +64,7 @@ export default function AuthPage() {
         await signInWithEmailAndPassword(auth, email, password);
         navigate(prevPage, { replace: true });
       } catch (error) {
-        errorMessage(error);
+        setMessage(useErrorMessage(error));
       }
     } else {
       // 註冊
@@ -97,12 +76,12 @@ export default function AuthPage() {
           uid: newUser.uid,
           email,
         });
+        setIsNewUser(true);
         signOut(auth);
         setIsLoginForm(true);
         setMessage('註冊成功，請重新登入');
-        navigate('/auth_form', { replace: true });
       } catch (error) {
-        errorMessage(error);
+        setMessage(useErrorMessage(error));
       }
     }
   };

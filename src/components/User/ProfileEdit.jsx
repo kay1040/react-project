@@ -1,23 +1,59 @@
-import React, { useState } from 'react';
-// import Message from '../UI/Message';
+import React, { useEffect, useState } from 'react';
+import {
+  getAuth,
+  updatePassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import Message from '../UI/Message';
+import useErrorMessage from '../../hooks/useErrorMessage';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData, onUpdateData } = props;
   const [showChangePassword, setShowChangePassword] = useState(null);
-  // const [showMessage, setShowMessage] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [message, setMessage] = useState('');
 
   const [inputData, setInputData] = useState(userData);
   const handleInputChange = (key, e) => {
     setInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
+    }
+  }, [message]);
+
   const handleUpdate = () => {
     onUpdateData(inputData);
+    if (showChangePassword) {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      signInWithEmailAndPassword(auth, userData.email, currentPassword)
+        .then(() => {
+          updatePassword(user, newPassword)
+            .then(() => {
+              if (newPassword !== passwordConfirmation) throw new Error('輸入密碼不一致');
+              setMessage('密碼更新成功');
+              setTimeout(() => {
+                onCancel();
+              }, 1000);
+            });
+        }).catch((error) => {
+          setMessage(useErrorMessage(error));
+        });
+    } else {
+      onCancel();
+    }
   };
 
   return (
     <>
-      {/* {showMessage && <Message message={isError ? '原密碼錯誤或新密碼不一致' : '密碼更新成功'} />} */}
+      {message && <Message message={message} />}
       <div>
         <div className="flex mb-5 items-center">
           <div className="w-24">e-mail</div>
@@ -44,7 +80,7 @@ export default function ProfileEdit(props) {
                 <input
                   type="password"
                   placeholder="請輸入當前密碼"
-                  onChange={(e) => handleInputChange('currentPassword', e)}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>
@@ -53,7 +89,7 @@ export default function ProfileEdit(props) {
                 <input
                   type="password"
                   placeholder="請輸入6-20位元的英數字組合"
-                  onChange={(e) => handleInputChange('newPassword', e)}
+                  onChange={(e) => setNewPassword(e.target.value)}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>
@@ -62,7 +98,7 @@ export default function ProfileEdit(props) {
                 <input
                   type="password"
                   placeholder="請再輸入一次新密碼"
-                  onChange={(e) => handleInputChange('passwordConfirmation', e)}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>

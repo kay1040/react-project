@@ -26,6 +26,9 @@ export default function Profile() {
       await setDoc(userRef, { ...newData });
     }
     setUserData(newData);
+  };
+
+  const handleCancel = () => {
     setIsEdit(false);
   };
 
@@ -36,7 +39,7 @@ export default function Profile() {
         && (
           <>
             <div>
-              <div className="flex my-5 items-center">
+              <div className="flex mb-5 items-center">
                 <div className="w-24">e-mail</div>
                 <div>{userData.email}</div>
               </div>
@@ -63,7 +66,7 @@ export default function Profile() {
             </button>
           </>
         )}
-      {isEdit && <ProfileEdit onCancel={() => setIsEdit(false)} userData={userData} onUpdateData={handleUpdateData} />}
+      {isEdit && <ProfileEdit onCancel={handleCancel} userData={userData} onUpdateData={handleUpdateData} />}
     </div>
   );
 }
