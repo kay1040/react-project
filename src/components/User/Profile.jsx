@@ -9,16 +9,14 @@ export default function Profile() {
   const [isEdit, setIsEdit] = useState(false);
   const [userData, setUserData] = useState({});
 
-  const fetchData = async () => {
-    if (currentUser.uid) {
-      const userRef = doc(db, 'users', currentUser.uid);
-      const userSnap = await getDoc(userRef);
-      setUserData(userSnap?.data());
-    }
-  };
-  fetchData();
-
   useEffect(() => {
+    const fetchData = async () => {
+      if (currentUser.uid && !userData.uid) {
+        const userRef = doc(db, 'users', currentUser.uid);
+        const userSnap = await getDoc(userRef);
+        setUserData(userSnap?.data());
+      }
+    };
     fetchData();
   }, [currentUser, userData]);
 
@@ -27,7 +25,7 @@ export default function Profile() {
       const userRef = doc(db, 'users', currentUser.uid);
       await setDoc(userRef, { ...newData });
     }
-    fetchData();
+    setUserData(newData);
     setIsEdit(false);
   };
 
