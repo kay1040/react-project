@@ -10,7 +10,7 @@ export const tutorialsApi = createApi({
     getTutorials: builder.query({
       async queryFn() {
         try {
-          const querySnapshot = await getDocs(query(collection(db, 'tutorials'), orderBy('id')))
+          const querySnapshot = await getDocs(query(collection(db, 'tutorials'), orderBy('id')));
           const tutorials = [];
           querySnapshot?.forEach((doc) => {
             tutorials.push(doc.data());

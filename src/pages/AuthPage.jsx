@@ -29,10 +29,10 @@ export default function AuthPage() {
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
 
-  const togglePasswordVisibility = (name) => {
+  const togglePasswordVisibility = (key) => {
     setInputType((prevState) => ({
       ...prevState,
-      [name]: prevState[name] === 'password' ? 'text' : 'password',
+      [key]: prevState[key] === 'password' ? 'text' : 'password',
     }));
   };
 
@@ -48,7 +48,7 @@ export default function AuthPage() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoading(false);
       if (user) {
-        navigate('/');
+        navigate('/', { replace: true });
       }
     });
     return unsubscribe;
@@ -100,6 +100,7 @@ export default function AuthPage() {
         signOut(auth);
         setIsLoginForm(true);
         setMessage('註冊成功，請重新登入');
+        navigate('/auth_form', { replace: true });
       } catch (error) {
         errorMessage(error);
       }

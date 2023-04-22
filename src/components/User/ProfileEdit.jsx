@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import Message from '../UI/Message';
 
 export default function ProfileEdit(props) {
-  const { onCancel, userData } = props;
+  const { onCancel, userData, onUpdateData } = props;
   const [showChangePassword, setShowChangePassword] = useState(null);
   // const [showMessage, setShowMessage] = useState(false);
 
@@ -12,7 +12,7 @@ export default function ProfileEdit(props) {
   };
 
   const handleUpdate = () => {
-
+    onUpdateData(inputData);
   };
 
   return (
