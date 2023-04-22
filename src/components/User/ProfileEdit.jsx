@@ -1,55 +1,27 @@
 import React, { useState } from 'react';
-import { useUpdateUserDataMutation, useChangePasswordMutation } from '../../store/api/authApi';
-import Message from '../UI/Message';
+// import Message from '../UI/Message';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData } = props;
   const [showChangePassword, setShowChangePassword] = useState(null);
-  const [showMessage, setShowMessage] = useState(false);
+  // const [showMessage, setShowMessage] = useState(false);
 
   const [inputData, setInputData] = useState(userData);
-
-  const [updateUserData] = useUpdateUserDataMutation();
   const handleInputChange = (key, e) => {
     setInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
-  const [changePassword, { isError }] = useChangePasswordMutation();
-
   const handleUpdate = () => {
-    updateUserData(inputData);
-    if (showChangePassword) {
-      changePassword({
-        currentPassword: inputData.currentPassword,
-        password: inputData.newPassword,
-        passwordConfirmation: inputData.passwordConfirmation,
-      }).then((res) => {
-        if (!res.error) {
-          setShowMessage(true);
-          setTimeout(() => {
-            setShowMessage(false);
-            setShowChangePassword(false);
-            onCancel();
-          }, 1000);
-        } else {
-          setShowMessage(true);
-          setTimeout(() => {
-            setShowMessage(false);
-          }, 1000);
-        }
-      });
-    } else {
-      onCancel();
-    }
+
   };
 
   return (
     <>
-      {showMessage && <Message message={isError ? '原密碼錯誤或新密碼不一致' : '密碼更新成功'} />}
+      {/* {showMessage && <Message message={isError ? '原密碼錯誤或新密碼不一致' : '密碼更新成功'} />} */}
       <div>
         <div className="flex mb-5 items-center">
-          <div className="w-24">帳號</div>
-          <div>{inputData.username}</div>
+          <div className="w-24">e-mail</div>
+          <div>{inputData.email}</div>
         </div>
         {!showChangePassword ? (
           <div className="flex my-5 items-center">
@@ -96,15 +68,6 @@ export default function ProfileEdit(props) {
               </div>
             </>
           )}
-        <div className="flex my-5 items-center">
-          <div className="w-24">e-mail</div>
-          <input
-            className="input-primary p-1 w-48 md:w-72 h-8"
-            type="text"
-            onChange={(e) => handleInputChange('email', e)}
-            value={inputData.email || ''}
-          />
-        </div>
         <div className="flex my-5 items-center">
           <div className="w-24">姓名</div>
           <input
