@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -18,10 +20,21 @@ export default function AuthPage() {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [inputType, setInputType] = useState({
+    password: 'password',
+    passwordConfirmation: 'password',
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
+
+  const toggleInputType = (name) => {
+    setInputType((prevState) => ({
+      ...prevState,
+      [name]: prevState[name] === 'password' ? 'text' : 'password',
+    }));
+  };
 
   useEffect(() => {
     if (message) {
@@ -109,23 +122,37 @@ export default function AuthPage() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <input
               className="input-primary w-64 h-10"
-              type="password"
+              type={inputType.password}
               placeholder="請輸入密碼"
               onChange={(e) => setPassword(e.target.value)}
             />
+            {password && (
+              <FontAwesomeIcon
+                icon={inputType.password === 'text' ? faEyeSlash : faEye}
+                className="absolute inset-0 my-auto mx-56 cursor-pointer text-darkslategray text-sm"
+                onClick={() => toggleInputType('password')}
+              />
+            )}
           </div>
           {!isLoginForm
             && (
-              <div className="mb-4">
+              <div className="mb-4 relative">
                 <input
                   className="input-primary w-64 h-10"
-                  type="password"
+                  type={inputType.passwordConfirmation}
                   placeholder="確認密碼"
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
+                {passwordConfirmation && (
+                  <FontAwesomeIcon
+                    icon={inputType.passwordConfirmation === 'text' ? faEyeSlash : faEye}
+                    className="absolute inset-0 my-auto mx-56 cursor-pointer text-darkslategray text-sm"
+                    onClick={() => toggleInputType('passwordConfirmation')}
+                  />
+                )}
               </div>
             )}
           <div>
