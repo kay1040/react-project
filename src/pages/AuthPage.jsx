@@ -29,7 +29,7 @@ export default function AuthPage() {
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
 
-  const toggleInputType = (name) => {
+  const togglePasswordVisibility = (name) => {
     setInputType((prevState) => ({
       ...prevState,
       [name]: prevState[name] === 'password' ? 'text' : 'password',
@@ -133,7 +133,7 @@ export default function AuthPage() {
               <FontAwesomeIcon
                 icon={inputType.password === 'text' ? faEyeSlash : faEye}
                 className="absolute inset-0 my-auto mx-56 cursor-pointer text-darkslategray text-sm"
-                onClick={() => toggleInputType('password')}
+                onClick={() => togglePasswordVisibility('password')}
               />
             )}
           </div>
@@ -150,7 +150,7 @@ export default function AuthPage() {
                   <FontAwesomeIcon
                     icon={inputType.passwordConfirmation === 'text' ? faEyeSlash : faEye}
                     className="absolute inset-0 my-auto mx-56 cursor-pointer text-darkslategray text-sm"
-                    onClick={() => toggleInputType('passwordConfirmation')}
+                    onClick={() => togglePasswordVisibility('passwordConfirmation')}
                   />
                 )}
               </div>
