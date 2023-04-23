@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Navbar.module.css';
 import SearchProduct from '../Shop/SearchProduct';
-import CartPreview from '../Cart/CartPreview';
+import CartPreview from '../Checkout/CartPreview';
 import useAuth from '../../hooks/useAuth';
 
 export default function NavBar(props) {

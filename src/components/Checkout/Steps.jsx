@@ -8,7 +8,6 @@ import Cart from './Cart';
 import { clearCart } from '../../store/reducers/cartSlice';
 import CheckoutForm from './CheckoutForm';
 import Order from './Order';
-import { useGetUserDataQuery, useUpdateUserDataMutation } from '../../store/api/authApi';
 
 // 參考: https://stackoverflow.com/questions/68889542/ant-design-automatically-submit-form-inside-of-steps-before-going-to-next-step
 
@@ -19,9 +18,6 @@ export default function ShoppingSteps() {
   const [form] = Form.useForm();
 
   const cart = useSelector((state) => state.cart);
-  const { data } = useGetUserDataQuery({}, { refetchOnMountOrArgChange: true });
-  const [updateUserData] = useUpdateUserDataMutation();
-
   const dispatch = useDispatch();
 
   const createOrder = (orderNum) => {
@@ -29,9 +25,6 @@ export default function ShoppingSteps() {
       number: orderNum,
       items: cart.cartItems,
     };
-    updateUserData({
-      order: [order, ...(data?.order || [])],
-    });
     setIsComplete(true);
     setNewOrder(order);
   };
@@ -56,7 +49,7 @@ export default function ShoppingSteps() {
   const steps = [
     {
       title: '確認購物車',
-      content: <Cart />,
+      content: <Cart cart={cart} />,
     },
     {
       title: '填寫收件者資料',
@@ -64,7 +57,7 @@ export default function ShoppingSteps() {
     },
     {
       title: '完成訂單',
-      content: <Order newOrder={newOrder} />,
+      content: <Order newOrder={newOrder} cart={cart} />,
     },
   ];
 

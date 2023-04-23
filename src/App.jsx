@@ -7,20 +7,18 @@ import IntroPage from './pages/IntroPage';
 import TutorialPage from './pages/TutorialPage';
 import ShopPage from './pages/ShopPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
-import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
 import UserPage from './pages/UserPage';
 import Profile from './components/User/Profile';
 import MyOrder from './components/User/MyOrder';
+import OrderDetails from './components/User/OrderDetails';
 import FavoriteList from './components/User/FavoriteList';
-import useAutoLogout from './hooks/useAutoLogout';
 import useScrollToTop from './hooks/useScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
-  // 自動登出
-  useAutoLogout();
   // 路由跳轉回到頁面頂端
   useScrollToTop();
 
@@ -33,11 +31,12 @@ export default function App() {
         <Route path="tutorial" element={<TutorialPage />} />
         <Route path="shop" element={<ShopPage />} />
         <Route path="shop/product/:id" element={<ProductDetailsPage />} />
-        <Route path="shop/cart" element={<CartPage />} />
+        <Route path="shop/cart" element={<CheckoutPage />} />
         <Route path="auth_form" element={<AuthPage />} />
         <Route path="user" element={<NeedAuth><UserPage /></NeedAuth>}>
           <Route path="profile" element={<Profile />} />
           <Route path="order" element={<MyOrder />} />
+          <Route path="order" element={<OrderDetails />} />
           <Route path="favorite" element={<FavoriteList />} />
         </Route>
         <Route path="/*" element={<NotFoundPage />} />
