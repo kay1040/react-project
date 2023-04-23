@@ -6,12 +6,23 @@ import { useSelector } from 'react-redux';
 import styles from './Navbar.module.css';
 import SearchProduct from '../Shop/SearchProduct';
 import CartPreview from '../Cart/CartPreview';
+import useAuth from '../../hooks/useAuth';
 
 export default function NavBar(props) {
   // 設定是否顯示左側菜單
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
   const { onScroll } = props;
+  const { currentUser } = useAuth();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (currentUser?.uid) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
+  }, [currentUser]);
 
   const handleShowLeftMenu = () => {
     setShowLeftMenu((preState) => !preState);
@@ -22,7 +33,6 @@ export default function NavBar(props) {
   };
 
   const cart = useSelector((state) => state.cart);
-  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     onScroll(showCartPreview);
@@ -54,7 +64,11 @@ export default function NavBar(props) {
 
           {/* 菜單 */}
           <ul className={showLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
-            <li className={styles.login}><Link to="/user/profile" onClick={handleShowLeftMenu}>{auth.isLogged ? '會員資料' : '登入 / 註冊'}</Link></li>
+            <li className={styles.login}>
+              <Link to="/user/profile" onClick={handleShowLeftMenu}>
+                {isLogged ? '會員資料' : '登入 / 註冊'}
+              </Link>
+            </li>
             <li><Link to="/about" onClick={handleShowLeftMenu}>關於我們</Link></li>
             <li><Link to="/intro" onClick={handleShowLeftMenu}>認識纏花</Link></li>
             <li><Link to="/tutorial" onClick={handleShowLeftMenu}>纏花教學</Link></li>

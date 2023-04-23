@@ -9,7 +9,7 @@ import useErrorMessage from '../../hooks/useErrorMessage';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData, onUpdateData } = props;
-  const [showChangePassword, setShowChangePassword] = useState(null);
+  const [showChangePassword, setShowChangePassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
