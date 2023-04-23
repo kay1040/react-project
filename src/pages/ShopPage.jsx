@@ -30,13 +30,13 @@ export default function ShopPage() {
   }, [isSuccess, products, keyword]);
 
   const handleChangeCategory = (newCategory) => {
-    setKeyword(null);
     if (newCategory === '所有商品') {
       setProductsList(products);
     } else {
       const filterProducts = products?.filter((item) => item.category === newCategory);
       setProductsList(filterProducts);
     }
+    if (keyword) setKeyword(null);
   };
 
   const handleChangeSort = (newSort) => {
