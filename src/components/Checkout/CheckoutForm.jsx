@@ -5,6 +5,7 @@ import './CheckoutForm.css';
 export default function CheckoutForm(props) {
   const { Item } = Form;
   const { form } = props;
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Form form={form}>
