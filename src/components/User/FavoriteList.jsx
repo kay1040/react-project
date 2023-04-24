@@ -38,7 +38,7 @@ export default function FavoriteList() {
           onConfirm={handleConfirm}
         />
       )}
-      <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-8">
+      <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
         {favoriteList.length === 0
           ? (
             <div className="leading-loose">
@@ -48,9 +48,9 @@ export default function FavoriteList() {
             </div>
           )
           : (
-            <table className="overflow-hidden box-border border-collapse w-full">
+            <table className="overflow-hidden box-border border-collapse w-full md:text-center text-sm">
               <thead className="hidden md:table-header-group">
-                <tr className="text-left border bg-gray-100">
+                <tr className="border">
                   <th className="px-6 py-2">商品</th>
                   <th className="px-6 py-2">價格</th>
                   <th className="px-6 py-2">操作</th>
@@ -63,7 +63,7 @@ export default function FavoriteList() {
                     <td className="mt-4 mx-4 md:px-4 md:py-6">
                       <Link to={`/shop/product/${item.id}`} className="md:flex items-center">
                         <img className="w-full mb-2 md:w-40 md:mr-4" src={item.imgPath} alt={item.name} />
-                        <p className="text-base">{item.name}</p>
+                        <p>{item.name}</p>
                       </Link>
                     </td>
                     <td className="p-4 md:p-6 font-bold">

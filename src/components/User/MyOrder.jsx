@@ -35,7 +35,7 @@ export default function MyOrder() {
   }, [currentUser]);
 
   return (
-    <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
+    <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
       {(orderList.length !== 0)
         ? (
           <table className="overflow-hidden box-border border-collapse w-full text-left md:text-center text-sm">
@@ -68,11 +68,11 @@ export default function MyOrder() {
                     <span className="md:hidden">訂單狀態： </span>
                     {order.state}
                   </td>
-                  <td className="bottom-0 mb-4 md:py-4">
+                  <td className="py-5 md:py-4">
                     <Link
                       to={`${order.orderNumber}`}
-                      className="absolute md:static btn-primary text-sm text-center
-                      font-bold rounded-none hover-none p-2 md:py-1 md:px-4 w-full md:w-28 md:rounded"
+                      className="absolute bottom-0 left-0 md:static btn-primary text-sm text-center
+                      font-bold rounded-none hover-none p-2 md:py-1 md:px-4 w-full  md:rounded"
                     >
                       查看訂單
                     </Link>
