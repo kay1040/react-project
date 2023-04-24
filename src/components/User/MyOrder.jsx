@@ -51,19 +51,31 @@ export default function MyOrder() {
             <tbody>
               {orderList.map((order) => (
                 <tr key={order.orderNumber} className="relative border flex flex-col mb-6 md:table-row">
-                  <td className="md:p-4">{order.orderNumber}</td>
-                  <td className="md:p-4">
+                  <td className="p-1 md:p-4">
+                    <span className="md:hidden">訂單號碼： </span>
+                    {order.orderNumber}
+                  </td>
+                  <td className="p-1 md:p-4">
+                    <span className="md:hidden">訂單日期： </span>
                     {new Date(order.createdAt.seconds * 1000).toLocaleString('zh-TW', { hour12: false })}
                   </td>
-                  <td className="md:p-4">
+                  <td className="p-1 md:p-4">
+                    <span className="md:hidden">訂單總額： </span>
                     NT$
                     {order.items.totalAmount.toLocaleString('en-US')}
                   </td>
-                  <td className="md:p-4">
+                  <td className="p-1 md:p-4">
+                    <span className="md:hidden">訂單狀態： </span>
                     {order.state}
                   </td>
-                  <td className="md:p-4">
-                    <Link to={`${order.orderNumber}`} className="btn-primary py-1 px-4">查看訂單</Link>
+                  <td className="bottom-0 mb-4 md:py-4">
+                    <Link
+                      to={`${order.orderNumber}`}
+                      className="absolute md:static btn-primary text-sm text-center
+                      font-bold rounded-none hover-none p-2 md:py-1 md:px-4 w-full md:w-28 md:rounded"
+                    >
+                      查看訂單
+                    </Link>
                   </td>
                 </tr>
               ))}
