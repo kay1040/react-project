@@ -35,8 +35,8 @@ export default function App() {
         <Route path="auth_form" element={<AuthPage />} />
         <Route path="user" element={<NeedAuth><UserPage /></NeedAuth>}>
           <Route path="profile" element={<Profile />} />
-          <Route path="order" element={<MyOrder />} />
-          <Route path="order" element={<OrderDetails />} />
+          <Route path="orders" element={<MyOrder />} />
+          <Route path="orders/:orderNumber" element={<OrderDetails />} />
           <Route path="favorite" element={<FavoriteList />} />
         </Route>
         <Route path="/*" element={<NotFoundPage />} />

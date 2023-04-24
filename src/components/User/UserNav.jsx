@@ -21,7 +21,7 @@ export default function ProfileNav() {
     <div className="mx-auto w-11/12 md:w-3/4">
       <ul className={styles.tabs}>
         <li><NavLink to="profile" style={changeStyle}>會員資料</NavLink></li>
-        <li><NavLink to="order" style={changeStyle}>我的訂單</NavLink></li>
+        <li><NavLink to="orders" style={changeStyle}>我的訂單</NavLink></li>
         <li><NavLink to="favorite" style={changeStyle}>我的收藏</NavLink></li>
         <li>
           <button
