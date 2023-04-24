@@ -13,7 +13,6 @@ export default function OrderDetails() {
   useEffect(() => {
     const fetchData = async () => {
       if (currentUser.uid && orderNumber) {
-        console.log('fetchData執行了~~');
         const orderRef = doc(db, 'orders', orderNumber);
         const orderSnap = await getDoc(orderRef);
         const order = orderSnap?.data();
@@ -61,7 +60,7 @@ export default function OrderDetails() {
                 <td className="text-left pl-36 md:px-2 md:text-center">
                   <span className="md:hidden">小計：</span>
                   NT$
-                  {item.subtotal}
+                  {item.subtotal.toLocaleString('en-US')}
                 </td>
               </tr>
             ))}
