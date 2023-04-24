@@ -13,7 +13,7 @@
       @apply text-lg md:text-xl font-bold text-gray-700;
     }
     .input-primary {
-        @apply px-5 py-2 rounded border border-inherit transition-all duration-300 md:focus:shadow-input md:focus:outline-none md:focus:border-0;   
+        @apply px-5 py-2 rounded border border-inherit transition-all duration-300 focus:border-darkslategray focus:outline-none focus:ring-1 focus:ring-darkslategray;   
     }
     .btn-primary {
         @apply  bg-darkslategray text-white rounded transition-all duration-300 md:hover:bg-[#599b9b];
