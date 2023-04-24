@@ -29,7 +29,6 @@ export default function ProfileEdit(props) {
   }, [message]);
 
   const handleUpdate = () => {
-    onUpdateData(inputData);
     if (showChangePassword) {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -39,14 +38,19 @@ export default function ProfileEdit(props) {
             .then(() => {
               if (newPassword !== passwordConfirmation) throw new Error('輸入密碼不一致');
               setMessage('密碼更新成功');
+              onUpdateData(inputData);
               setTimeout(() => {
                 onCancel();
               }, 1000);
+            }).catch((error) => {
+              setMessage(useErrorMessage(error));
             });
         }).catch((error) => {
           setMessage(useErrorMessage(error));
+          console.log(message);
         });
     } else {
+      onUpdateData(inputData);
       onCancel();
     }
   };

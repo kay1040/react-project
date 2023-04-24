@@ -10,6 +10,8 @@ export default function useErrorMessage(error) {
       return '密碼錯誤';
     case 'auth/missing-password':
       return '密碼不可為空';
+    case 'auth/weak-password':
+      return '密碼強度不足，請設定六字元以上的英數字';
     default:
       return error.message;
   }
