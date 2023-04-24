@@ -47,7 +47,6 @@ export default function ProfileEdit(props) {
             });
         }).catch((error) => {
           setMessage(useErrorMessage(error));
-          console.log(message);
         });
     } else {
       onUpdateData(inputData);
@@ -92,7 +91,7 @@ export default function ProfileEdit(props) {
                 <div className="w-24">新密碼</div>
                 <input
                   type="password"
-                  placeholder="請輸入6-20位元的英數字組合"
+                  placeholder="請輸入6個字元以上的英數字"
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
