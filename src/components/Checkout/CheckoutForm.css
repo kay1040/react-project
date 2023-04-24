@@ -1,6 +1,6 @@
 .ant-form {
     margin-bottom: 50px;
-    width: 90%;
+    width: 100%;
 }
 
 .ant-form .ant-form-item:last-child label {
@@ -10,12 +10,11 @@
 .ant-form-item {
     width: 80%;
     margin: 20px auto;
-
 }
 
 .ant-form input {
     height: 40px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
 }

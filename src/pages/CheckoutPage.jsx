@@ -14,7 +14,7 @@ import {
   Form, Steps, ConfigProvider,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { clearCart } from '../store/reducers/cartSlice';
 import Cart from '../components/Checkout/Cart';
 import CheckoutForm from '../components/Checkout/CheckoutForm';
@@ -32,12 +32,14 @@ export default function CheckoutPage() {
   const [form] = Form.useForm();
   const { currentUser } = useAuth();
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (message) {
       setTimeout(() => {
         setMessage('');
-      }, 3000);
+        navigate(`/user/orders/${newOrder.orderNumber}`);
+      }, 2000);
     }
   }, [message]);
 
@@ -123,7 +125,7 @@ export default function CheckoutPage() {
     },
     {
       title: '訂單確認',
-      content: <OrderConfirmation newOrder={newOrder} cart={cart} />,
+      content: <OrderConfirmation newOrder={newOrder} />,
     },
   ];
 
@@ -135,7 +137,7 @@ export default function CheckoutPage() {
   return (
     <>
       {message && <Message message={message} />}
-      <div className="max-w-screen-xl mx-auto my-16 md:my-24">
+      <div className="max-w-screen-xl mx-auto my-8 md:my-24">
         {cart.cartItems.length === 0 && !isComplete
           ? (
             <div className="text-center text-base mt-28">

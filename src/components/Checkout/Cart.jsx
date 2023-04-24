@@ -3,7 +3,7 @@ import CartDetails from './CartDetails';
 
 function Cart({ cart }) {
   return (
-    <div className="w-11/12 md:w-3/5 mx-auto mt-6 md:mt-12 flex flex-col border-t border-inherit">
+    <div className="w-11/12 md:w-3/5 mx-auto md:mt-12 flex flex-col border-t border-inherit">
       {cart.cartItems.map((item, index) => (
         <CartDetails
           key={item.id}
