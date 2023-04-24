@@ -80,7 +80,10 @@ export default function OrderDetails() {
             </div>
             <div className="mb-2">
               <span>訂單總額：</span>
-              <span>{orderData.items.totalAmount.toLocaleString('en-US')}</span>
+              <span>
+                NT$
+                {orderData.items.totalAmount.toLocaleString('en-US')}
+              </span>
             </div>
             <div className="mb-2">
               <span>訂單狀態：</span>
