@@ -60,6 +60,8 @@ export default function AuthPage() {
   }, [navigate]);
 
   const mergeCartData = (firebaseCartData, localStorageCartData) => {
+    if (firebaseCartData.length === 0) return localStorageCartData;
+    if (localStorageCartData.length === 0) return firebaseCartData;
     const result = { ...firebaseCartData };
     localStorageCartData.cartItems.forEach((localStorageCartItem) => {
       const index = result.cartItems.findIndex((item) => item.id === localStorageCartItem.id);
