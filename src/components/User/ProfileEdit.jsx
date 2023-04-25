@@ -28,26 +28,22 @@ export default function ProfileEdit(props) {
     }
   }, [message]);
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     if (showChangePassword) {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      signInWithEmailAndPassword(auth, userData.email, currentPassword)
-        .then(() => {
-          updatePassword(user, newPassword)
-            .then(() => {
-              if (newPassword !== passwordConfirmation) throw new Error('輸入密碼不一致');
-              setMessage('密碼更新成功');
-              onUpdateData(inputData);
-              setTimeout(() => {
-                onCancel();
-              }, 1000);
-            }).catch((error) => {
-              setMessage(useErrorMessage(error));
-            });
-        }).catch((error) => {
-          setMessage(useErrorMessage(error));
-        });
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        await signInWithEmailAndPassword(auth, userData.email, currentPassword);
+        await updatePassword(user, newPassword);
+        if (newPassword !== passwordConfirmation) throw new Error('輸入密碼不一致');
+        setMessage('密碼更新成功');
+        onUpdateData(inputData);
+        setTimeout(() => {
+          onCancel();
+        }, 1000);
+      } catch (error) {
+        setMessage(useErrorMessage(error));
+      }
     } else {
       onUpdateData(inputData);
       onCancel();
