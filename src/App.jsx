@@ -31,7 +31,7 @@ export default function App() {
         <Route path="tutorial" element={<TutorialPage />} />
         <Route path="shop" element={<ShopPage />} />
         <Route path="shop/product/:id" element={<ProductDetailsPage />} />
-        <Route path="shop/cart" element={<CheckoutPage />} />
+        <Route path="shop/cart" element={<NeedAuth><CheckoutPage /></NeedAuth>} />
         <Route path="auth_form" element={<AuthPage />} />
         <Route path="user" element={<NeedAuth><UserPage /></NeedAuth>}>
           <Route path="profile" element={<Profile />} />

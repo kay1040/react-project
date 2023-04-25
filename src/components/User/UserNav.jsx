@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import styles from './UserNav.module.css';
+import { clearCart } from '../../store/reducers/cartSlice';
 
 export default function ProfileNav() {
   const active = {
@@ -17,6 +19,12 @@ export default function ProfileNav() {
   };
   const changeStyle = ({ isActive }) => (isActive ? active : null);
 
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    dispatch(clearCart());
+    signOut(auth);
+  };
+
   return (
     <div className="mx-auto w-11/12 md:w-3/4">
       <ul className={styles.tabs}>
@@ -26,7 +34,7 @@ export default function ProfileNav() {
         <li>
           <button
             type="button"
-            onClick={() => signOut(auth)}
+            onClick={handleLogout}
           >
             <Link to="/">
               <FontAwesomeIcon icon={faRightFromBracket} />

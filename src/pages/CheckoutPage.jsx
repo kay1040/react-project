@@ -15,7 +15,7 @@ import {
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { clearCart } from '../store/reducers/cartSlice';
+import { clearCart, saveCartData } from '../store/reducers/cartSlice';
 import Cart from '../components/Checkout/Cart';
 import CheckoutForm from '../components/Checkout/CheckoutForm';
 import OrderConfirmation from '../components/Checkout/OrderConfirmation';
@@ -23,9 +23,7 @@ import { db } from '../firebaseConfig';
 import useAuth from '../hooks/useAuth';
 import Message from '../components/UI/Message';
 
-// 參考: https://stackoverflow.com/questions/68889542/ant-design-automatically-submit-form-inside-of-steps-before-going-to-next-step
-
-export default function CheckoutPage() {
+function CheckoutPage() {
   const [current, setCurrent] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [newOrder, setNewOrder] = useState(null);
@@ -45,6 +43,10 @@ export default function CheckoutPage() {
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser?.uid) dispatch(saveCartData([cart, currentUser.uid]));
+  }, [currentUser, dispatch, cart]);
 
   const getOrderNumber = async () => {
     const now = new Date();
@@ -179,3 +181,5 @@ export default function CheckoutPage() {
     </>
   );
 }
+
+export default React.memo(CheckoutPage);

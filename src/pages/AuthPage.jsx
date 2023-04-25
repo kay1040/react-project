@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -8,11 +9,12 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import Message from '../components/UI/Message';
 import Loading from '../components/UI/Loading';
 import useErrorMessage from '../hooks/useErrorMessage';
+import { updateCart } from '../store/reducers/cartSlice';
 
 export default function AuthPage() {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -30,6 +32,7 @@ export default function AuthPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const prevPage = location.state?.preLocation?.pathname || '/';
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = (key) => {
     setInputType((prevState) => ({
@@ -56,12 +59,36 @@ export default function AuthPage() {
     return unsubscribe;
   }, [navigate]);
 
+  const mergeCartData = (firebaseCartData, localStorageCartData) => {
+    const result = { ...firebaseCartData };
+    localStorageCartData.cartItems.forEach((localStorageCartItem) => {
+      const index = result.cartItems.findIndex((item) => item.id === localStorageCartItem.id);
+      if (index === -1) {
+        result.cartItems.push(localStorageCartItem);
+      } else {
+        result.cartItems[index].quantity += localStorageCartItem.quantity;
+        result.cartItems[index].subtotal += localStorageCartItem.subtotal;
+      }
+    });
+    result.totalAmount += localStorageCartData.totalAmount;
+    result.totalQuantity += localStorageCartData.totalQuantity;
+    return result;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLoginForm) {
       // 登入
       try {
         await signInWithEmailAndPassword(auth, email, password);
+        const userDoc = doc(db, 'users', auth.currentUser.uid);
+        const userSnap = await getDoc(userDoc);
+        const userData = userSnap?.data();
+        const firebaseCartData = userData?.cartData || [];
+        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || [];
+        const mergedCartData = mergeCartData(firebaseCartData, localStorageCartData);
+        localStorage.setItem('cartData', JSON.stringify(mergedCartData));
+        dispatch(updateCart(mergedCartData));
         navigate(prevPage, { replace: true });
       } catch (error) {
         setMessage(useErrorMessage(error));

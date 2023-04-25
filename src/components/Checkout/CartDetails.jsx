@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   increaseItem, decreaseItem, getInputValue, removeItem,
@@ -10,7 +10,6 @@ import Confirm from '../UI/ConfirmModal';
 import Counter from '../UI/Counter';
 
 export default function CartDetails(props) {
-  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -58,7 +57,7 @@ export default function CartDetails(props) {
           <div className="text-basic md:mt-2">{item.name}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
             <div className="before:content-['NT$'] font-bold my-3 md:my-0">
-              {cart.cartItems[index].subtotal.toLocaleString('en-US')}
+              {item.subtotal.toLocaleString('en-US')}
             </div>
             <Counter
               index={index}

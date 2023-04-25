@@ -7,14 +7,19 @@ import styles from './CartPreview.module.css';
 import Backdrop from '../UI/Backdrop';
 import Counter from '../UI/Counter';
 import {
-  increaseItem, decreaseItem, getInputValue,
+  increaseItem, 
+  decreaseItem, 
+  getInputValue, 
+  saveCartData,
 } from '../../store/reducers/cartSlice';
+import useAuth from '../../hooks/useAuth';
 
 export default function CartPreview(props) {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { onClose, showCartPreview } = props;
   const [isShow, setIsShow] = useState(false);
+  const { currentUser } = useAuth();
 
   const handleClose = (e) => {
     setIsShow(false);
@@ -24,6 +29,10 @@ export default function CartPreview(props) {
   useEffect(() => {
     setIsShow(showCartPreview);
   }, [showCartPreview]);
+
+  useEffect(() => {
+    if (currentUser?.uid) dispatch(saveCartData([cart, currentUser.uid]));
+  }, [currentUser, dispatch, cart]);
 
   return (
     <Backdrop className={showCartPreview ? '' : `${styles.outer}`} onClick={handleClose}>

@@ -1,12 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
-// 參考
-// https://github.com/chaoocharles/complete-shopping-cart/blob/main/frontend/src/slices/cartSlice.js
-// https://github.com/LloydJanseVanRensburg/ShoppingCart-Redux/blob/master/src/redux/Shopping/shopping-reducer.js
-// https://github.com/Jon-Peppinck/amazon-clone
-// https://so.muouseo.com/qa/el0krye3p6o3.html
-
-// addToCart: https://stackoverflow.com/questions/71596790/adding-item-to-cart
+export const saveCartData = createAsyncThunk(
+  'cart/saveCartData',
+  async ([cartData, userId]) => {
+    try {
+      const db = getFirestore();
+      const userDoc = doc(db, 'users', userId);
+      await updateDoc(userDoc, { cartData });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const cartData = {
   cartItems: [],
@@ -31,7 +37,7 @@ const cartSlice = createSlice({
           quantity: count,
           subtotal: newItem.price * count,
         });
-      // 若購物車中有此商品
+        // 若購物車中有此商品
       } else {
         // 修改已有商品的數量和小計
         state.cartItems[index].quantity += count;
@@ -96,11 +102,21 @@ const cartSlice = createSlice({
       state.totalAmount = 0;
       localStorage.setItem('cartData', JSON.stringify(state));
     },
+    updateCart(state, action) {
+      console.log(action.payload);
+      return action.payload;
+    }
   },
 });
 
 export const {
-  addToCart, increaseItem, decreaseItem, getInputValue, removeItem, clearCart,
+  addToCart,
+  increaseItem,
+  decreaseItem,
+  getInputValue,
+  removeItem,
+  clearCart,
+  updateCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
