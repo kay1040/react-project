@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
-import ProductFilter from '../components/Shop/ProductFilter';
-import ProductList from '../components/Shop/ProductList';
+import ProductsFilter from '../components/Shop/ProductsFilter';
+import ProductsList from '../components/Shop/ProductsList';
 
 export default function ShopPage() {
   const {
@@ -73,11 +73,11 @@ export default function ShopPage() {
         )
         : (
           <div className="mt-8 md:mx-8 md:mt-10">
-            <ProductFilter
+            <ProductsFilter
               onCategoryChange={handleChangeCategory}
               onSortChange={handleChangeSort}
             />
-            <ProductList products={productsList} />
+            <ProductsList products={productsList} />
           </div>
         )
       )}

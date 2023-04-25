@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import styles from './SearchProduct.module.css';
+import styles from './SearchProducts.module.css';
 
-export default function SearchProduct() {
+export default function SearchProducts() {
   const keywordInput = useRef();
   const navigate = useNavigate();
 

@@ -12,9 +12,9 @@ import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
 import UserPage from './pages/UserPage';
 import Profile from './components/User/Profile';
-import MyOrder from './components/User/MyOrder';
+import MyOrder from './components/User/OrdersList';
 import OrderDetails from './components/User/OrderDetails';
-import FavoriteList from './components/User/FavoriteList';
+import FavoriteList from './components/User/FavoritesList';
 import useScrollToTop from './hooks/useScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
 

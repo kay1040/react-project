@@ -6,7 +6,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../store/reducers/cartSlice';
 import styles from './ProductDetails.module.css';
-import { addToFavoriteList, removeFromFavoriteList } from '../../store/reducers/productsSlice';
+import { addToFavoritesList, removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
 import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading';
 import Counter from '../UI/Counter';
@@ -19,12 +19,12 @@ export default function ProductDetails() {
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const favoriteList = useSelector((state) => state.products.favoriteList);
+  const favoritesList = useSelector((state) => state.favorites.favoritesList);
   const [favorite, setFavorite] = useState(false);
 
   const [showMessage, setShowMessage] = useState(false);
 
-  const index = isSuccess ? favoriteList.findIndex((item) => item.id === product.id) : null;
+  const index = isSuccess ? favoritesList.findIndex((item) => item.id === product.id) : null;
 
   useEffect(() => {
     if (index !== -1) setFavorite(true);
@@ -55,10 +55,10 @@ export default function ProductDetails() {
 
   const handleAddToFavorite = () => {
     if (favorite) {
-      dispatch(removeFromFavoriteList(product));
+      dispatch(removeFromFavoritesList(product));
       setFavorite(false);
     } else {
-      dispatch(addToFavoriteList(product));
+      dispatch(addToFavoritesList(product));
       setFavorite(true);
     }
   };

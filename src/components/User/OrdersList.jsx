@@ -10,14 +10,14 @@ import {
 import useAuth from '../../hooks/useAuth';
 import { db } from '../../firebaseConfig';
 
-export default function MyOrder() {
+export default function OrdersList() {
   const { currentUser } = useAuth();
-  const [orderList, setOrderList] = useState([]);
+  const [ordersList, setOrdersList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const orders = [];
-      if (currentUser.uid && !orderList.uid) {
+      if (currentUser.uid && !ordersList.uid) {
         const ordersRef = collection(db, 'orders');
         const ordersQuery = query(
           ordersRef,
@@ -31,12 +31,12 @@ export default function MyOrder() {
       }
       return orders;
     };
-    fetchData().then((orders) => setOrderList(orders));
+    fetchData().then((orders) => setOrdersList(orders));
   }, [currentUser]);
 
   return (
     <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
-      {(orderList.length !== 0)
+      {(ordersList.length !== 0)
         ? (
           <table className="overflow-hidden box-border border-collapse w-full text-left md:text-center text-sm">
             <thead className="hidden md:table-header-group">
@@ -49,7 +49,7 @@ export default function MyOrder() {
               </tr>
             </thead>
             <tbody>
-              {orderList.map((order) => (
+              {ordersList.map((order) => (
                 <tr key={order.orderNumber} className="relative border flex flex-col mb-6 md:table-row">
                   <td className="p-1 md:p-4">
                     <span className="md:hidden">訂單號碼： </span>

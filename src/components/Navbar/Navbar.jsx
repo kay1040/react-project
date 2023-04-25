@@ -4,7 +4,7 @@ import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Navbar.module.css';
-import SearchProduct from '../Shop/SearchProduct';
+import SearchProducts from '../Shop/SearchProducts';
 import CartPreview from '../Checkout/CartPreview';
 import useAuth from '../../hooks/useAuth';
 
@@ -74,7 +74,7 @@ export default function NavBar(props) {
             <li><Link to="/tutorial" onClick={handleShowLeftMenu}>纏花教學</Link></li>
             <li><Link to="/shop" onClick={handleShowLeftMenu}>纏花商店</Link></li>
             <li className={styles.search}>
-              <SearchProduct handleShowLeftMenu={handleShowLeftMenu} />
+              <SearchProducts handleShowLeftMenu={handleShowLeftMenu} />
             </li>
           </ul>
         </div>
@@ -101,7 +101,7 @@ export default function NavBar(props) {
         {/* 右側導航 */}
         <div className={styles.rightNav}>
           <div className={styles.search}>
-            <SearchProduct />
+            <SearchProducts />
           </div>
           <button
             type="button"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ProductList(props) {
+export default function ProductsList(props) {
   const { products } = props;
 
   return (

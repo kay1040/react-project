@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGetProductsQuery } from '../../store/api/productsApi';
-import ProductList from '../Shop/ProductList';
+import ProductsList from '../Shop/ProductsList';
 import Loading from '../UI/Loading';
 
 export default function NewProducts() {
@@ -23,7 +23,7 @@ export default function NewProducts() {
         && (
           <>
             <h2 className="text-center mb-0 mt-12">新品上架</h2>
-            <ProductList products={newProducts} />
+            <ProductsList products={newProducts} />
           </>
         )}
     </div>

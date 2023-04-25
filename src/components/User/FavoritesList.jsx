@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeFromFavoriteList } from '../../store/reducers/productsSlice';
+import { removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
 
-export default function FavoriteList() {
-  const favoriteList = useSelector((state) => state.products.favoriteList);
+export default function FavoritesList() {
+  const favoritesList = useSelector((state) => state.favorites.favoritesList);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -25,7 +25,7 @@ export default function FavoriteList() {
   };
 
   const handleConfirm = () => {
-    dispatch(removeFromFavoriteList(deleteItem));
+    dispatch(removeFromFavoritesList(deleteItem));
     setShowConfirm(false);
   };
 
@@ -39,7 +39,7 @@ export default function FavoriteList() {
         />
       )}
       <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
-        {favoriteList.length === 0
+        {favoritesList.length === 0
           ? (
             <div className="leading-loose">
               <p>您目前沒有收藏任何商品</p>
@@ -58,7 +58,7 @@ export default function FavoriteList() {
                 </tr>
               </thead>
               <tbody>
-                {favoriteList.map((item) => (
+                {favoritesList.map((item) => (
                   <tr key={item.id} className="relative border flex flex-col mb-6 md:table-row">
                     <td className="mt-4 mx-4 md:px-4 md:py-6">
                       <Link to={`/shop/product/${item.id}`} className="md:flex items-center">

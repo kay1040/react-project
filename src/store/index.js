@@ -3,14 +3,13 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import tutorialsApi from './api/tutorialsApi';
 import productsApi from './api/productsApi';
 import cartReducer from './reducers/cartSlice';
-import productsReducer from './reducers/productsSlice';
-
+import favoritesReducer from './reducers/favoritesSlice';
 
 const store = configureStore({
   reducer: {
     [tutorialsApi.reducerPath]: tutorialsApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
-    products: productsReducer,
+    favorites: favoritesReducer,
     cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
