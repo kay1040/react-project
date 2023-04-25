@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useGetTutorialsQuery } from '../store/api/tutorialsApi';
 import Loading from '../components/UI/Loading';
-import TutorialVideo from '../components/Tutorial/TutorialVideo';
-import TutorialMenu from '../components/Tutorial/TutorialMenu';
+import TutorialVideo from '../components/Tutorials/TutorialVideo';
+import TutorialsMenu from '../components/Tutorials/TutorialsMenu';
 
 export default function TutorialPage() {
   const {
@@ -27,7 +27,7 @@ export default function TutorialPage() {
             />
           </div>
           <div>
-            <TutorialMenu
+            <TutorialsMenu
               tutorials={tutorialsList}
               videoIndex={selectedVideoIndex}
               onVideoSelected={(index) => setSelectedVideoIndex(index)}

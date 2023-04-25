@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import './TutorialMenu.css';
+import './TutorialsMenu.css';
 
-export default function TutorialMenu(props) {
+export default function TutorialsMenu(props) {
   const { tutorials, videoIndex, onVideoSelected } = props;
   const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(0);
   const [showDesc, setShowDesc] = useState(true);

@@ -103,7 +103,6 @@ const cartSlice = createSlice({
       localStorage.setItem('cartData', JSON.stringify(state));
     },
     updateCart(state, action) {
-      console.log(action.payload);
       return action.payload;
     }
   },
