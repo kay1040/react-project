@@ -11,7 +11,7 @@ function Cart({ cart }) {
           index={index}
         />
       ))}
-      <div style={{ margin: '15px auto' }}>
+      <div className="mx-auto my-6">
         <p>
           共
           <span className="font-bold after:content-['_'] before:content-['_']">{cart.totalQuantity}</span>
