@@ -31,8 +31,8 @@ export default function OrderDetails() {
     orderData.uid ? (
       <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-8">
         <h3 className="text-xl font-bold mb-4">訂單詳情</h3>
-        <OrderTable order={orderData} />
-        <div className="md:my-4 w-full border text-sm p-2 md:flex justify-between">
+        <OrderTable order={orderData} imgStyle="w-32 mt-2" tdStyle="pl-32 ml-1" />
+        <div className="mt-2 md:my-4 w-full border text-sm p-2 md:flex justify-between">
           <div className="mb-4 border-b md:m-0 md:border-0">
             <div className="text-base mb-3">訂單資料</div>
             <div className="mb-2">
