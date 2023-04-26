@@ -13,9 +13,9 @@ function Cart({ cart }) {
       ))}
       <div className="mx-auto my-6">
         <p>
-          共
+          商品總數
           <span className="font-bold after:content-['_'] before:content-['_']">{cart.totalQuantity}</span>
-          件商品，總金額
+          件，總金額
           <span className="font-bold before:content-['_']">
             NT$
             {cart.totalAmount.toLocaleString('en-US')}
