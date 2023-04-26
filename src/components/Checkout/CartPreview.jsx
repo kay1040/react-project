@@ -73,7 +73,7 @@ export default function CartPreview(props) {
                         {cart.cartItems[index].subtotal.toLocaleString('en-US')}
                       </div>
                       <Counter
-                        index={index}
+                        count={item.quantity}
                         onIncrease={() => { dispatch(increaseItem(item)); }}
                         onDecrease={() => { dispatch(decreaseItem(item)); }}
                         onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])); }}

@@ -1,17 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import styles from './Counter.module.css';
 
-export default function Counter(props) {
-  const cart = useSelector((state) => state.cart);
+function Counter(props) {
   const {
-    index, onDecrease, onIncrease, onInputChange,
+    count,
+    onDecrease,
+    onIncrease,
+    onInputChange,
   } = props;
-  let { count } = props;
-
-  if (!count) count = cart.cartItems[index].quantity;
 
   return (
     <div className={styles.counter}>
@@ -25,3 +23,5 @@ export default function Counter(props) {
     </div>
   );
 }
+
+export default React.memo(Counter);

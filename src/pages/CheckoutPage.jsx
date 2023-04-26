@@ -23,7 +23,7 @@ import { db } from '../firebaseConfig';
 import useAuth from '../hooks/useAuth';
 import Message from '../components/UI/Message';
 
-function CheckoutPage() {
+export default function CheckoutPage() {
   const [current, setCurrent] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [newOrder, setNewOrder] = useState(null);
@@ -181,5 +181,3 @@ function CheckoutPage() {
     </>
   );
 }
-
-export default React.memo(CheckoutPage);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartActive } from '@fortawesome/free-solid-svg-icons';
@@ -34,30 +34,30 @@ export default function ProductDetails() {
     if (currentUser?.uid) dispatch(savefavoritesList([favoritesList, currentUser.uid]));
   }, [currentUser, dispatch, favoritesList]);
 
-  const handleIncreaseButton = () => {
+  const handleIncreaseButton = useCallback(() => {
     setCount((prevCount) => prevCount + 1);
-  };
+  }, [dispatch, product, count]);
 
-  const handleDecreaseButton = () => {
+  const handleDecreaseButton = useCallback(() => {
     if (count > 1) setCount((prevCount) => prevCount - 1);
-  };
+  }, [dispatch, product, count]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     if (e.target.value > 0) {
       setCount(+e.target.value);
     }
-  };
+  }, [dispatch, product, count]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     dispatch(addToCart([product, count]));
     setCount(1);
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
     }, 1000);
-  };
+  }, [dispatch, product, count]);
 
-  const handleAddToFavorite = () => {
+  const handleAddToFavorite = useCallback(() => {
     if (favorite) {
       dispatch(removeFromFavoritesList(product));
       setFavorite(false);
@@ -65,7 +65,7 @@ export default function ProductDetails() {
       dispatch(addToFavoritesList(product));
       setFavorite(true);
     }
-  };
+  }, [product, dispatch, favorite]);
 
   return (
     <div className={styles.productDetailsWrapper}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
@@ -9,23 +9,21 @@ import {
 import Confirm from '../UI/ConfirmModal';
 import Counter from '../UI/Counter';
 
-export default function CartDetails(props) {
+export default function CartDetails({ item, index }) {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const { item, index } = props;
-
-  const handleIncreaseButton = () => {
+  const handleIncreaseButton = useCallback(() => {
     dispatch(increaseItem(item));
-  };
+  }, [item, dispatch]);
 
-  const handleDecreaseButton = () => {
+  const handleDecreaseButton = useCallback(() => {
     dispatch(decreaseItem(item));
-  };
+  }, [item, dispatch]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     dispatch(getInputValue([item, +e.target.value]));
-  };
+  }, [item, dispatch]);
 
   const handleShowConfirm = () => {
     setShowConfirm(true);
@@ -36,9 +34,9 @@ export default function CartDetails(props) {
     setShowConfirm(false);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     dispatch(removeItem(item));
-  };
+  }, [item, dispatch]);
 
   return (
     <>
@@ -61,6 +59,7 @@ export default function CartDetails(props) {
             </div>
             <Counter
               index={index}
+              count={item.quantity}
               onIncrease={handleIncreaseButton}
               onDecrease={handleDecreaseButton}
               onInputChange={handleInputChange}
