@@ -1,11 +1,7 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import IntroPage from './pages/IntroPage';
 import TutorialsPage from './pages/TutorialsPage';
-import ShopPage from './pages/ShopPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
 import AuthPage from './pages/AuthPage';
@@ -17,6 +13,12 @@ import OrderDetails from './components/User/OrderDetails';
 import FavoritesList from './components/User/FavoritesList';
 import useScrollToTop from './hooks/useScrollToTop';
 import NotFoundPage from './pages/NotFoundPage';
+import Loading from './components/UI/Loading';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const IntroPage = lazy(() => import('./pages/IntroPage'));
+const ShopPage = lazy(() => import('./pages/ShopPage'));
 
 export default function App() {
   // 路由跳轉回到頁面頂端
@@ -24,23 +26,25 @@ export default function App() {
 
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="intro" element={<IntroPage />} />
-        <Route path="tutorials" element={<TutorialsPage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route path="shop/product/:id" element={<ProductDetailsPage />} />
-        <Route path="shop/cart" element={<NeedAuth><CheckoutPage /></NeedAuth>} />
-        <Route path="auth_form" element={<AuthPage />} />
-        <Route path="user" element={<NeedAuth><UserPage /></NeedAuth>}>
-          <Route path="profile" element={<Profile />} />
-          <Route path="orders" element={<MyOrder />} />
-          <Route path="orders/:orderNumber" element={<OrderDetails />} />
-          <Route path="favorites" element={<FavoritesList />} />
-        </Route>
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="intro" element={<IntroPage />} />
+          <Route path="tutorials" element={<TutorialsPage />} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="shop/product/:id" element={<ProductDetailsPage />} />
+          <Route path="shop/cart" element={<NeedAuth><CheckoutPage /></NeedAuth>} />
+          <Route path="auth_form" element={<AuthPage />} />
+          <Route path="user" element={<NeedAuth><UserPage /></NeedAuth>}>
+            <Route path="profile" element={<Profile />} />
+            <Route path="orders" element={<MyOrder />} />
+            <Route path="orders/:orderNumber" element={<OrderDetails />} />
+            <Route path="favorites" element={<FavoritesList />} />
+          </Route>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 }
