@@ -6,29 +6,33 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../store/reducers/cartSlice';
 import styles from './ProductDetails.module.css';
-import { addToFavoritesList, removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
+import { addToFavoritesList, removeFromFavoritesList, savefavoritesList } from '../../store/reducers/favoritesSlice';
 import { useGetProductsQuery } from '../../store/api/productsApi';
 import Loading from '../UI/Loading';
 import Counter from '../UI/Counter';
 import Message from '../UI/Message';
+import useAuth from '../../hooks/useAuth';
 
 export default function ProductDetails() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
   const { id } = useParams();
   const product = isSuccess ? products.find((item) => item.id === id) : null;
-
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const favoritesList = useSelector((state) => state.favorites.favoritesList);
+  const favoritesList = useSelector((state) => state.favorites);
   const [favorite, setFavorite] = useState(false);
-
   const [showMessage, setShowMessage] = useState(false);
+  const { currentUser } = useAuth();
 
   const index = isSuccess ? favoritesList.findIndex((item) => item.id === product.id) : null;
 
   useEffect(() => {
     if (index !== -1) setFavorite(true);
   }, [index]);
+
+  useEffect(() => {
+    if (currentUser?.uid) dispatch(savefavoritesList([favoritesList, currentUser.uid]));
+  }, [currentUser, dispatch, favoritesList]);
 
   const handleIncreaseButton = () => {
     setCount((prevCount) => prevCount + 1);

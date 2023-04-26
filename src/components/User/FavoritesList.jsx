@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
+import { removeFromFavoritesList, savefavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
+import useAuth from '../../hooks/useAuth';
 
 export default function FavoritesList() {
-  const favoritesList = useSelector((state) => state.favorites.favoritesList);
+  const favoritesList = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    if (currentUser?.uid) dispatch(savefavoritesList([favoritesList, currentUser.uid]));
+  }, [currentUser, dispatch, favoritesList]);
 
   const handleShowConfirm = (item) => {
     setShowConfirm(true);
@@ -33,7 +39,7 @@ export default function FavoritesList() {
     <>
       {showConfirm && (
         <ConfirmModal
-          confirmText="確定要移除收藏嗎？"
+          confirmText="確定要刪除收藏嗎？"
           onCancel={handleCancel}
           onConfirm={handleConfirm}
         />
