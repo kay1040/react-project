@@ -25,7 +25,8 @@ export default function CartDetails({ item, index }) {
     dispatch(getInputValue([item, +e.target.value]));
   }, [item, dispatch]);
 
-  const handleShowConfirm = () => {
+  const handleShowConfirm = (e) => {
+    e.stopPropagation();
     setShowConfirm(true);
   };
 

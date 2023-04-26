@@ -5,8 +5,12 @@ import Backdrop from './Backdrop';
 export default function ConfirmModal(props) {
   const { confirmText, onConfirm, onCancel } = props;
   return (
-    <Backdrop className={styles.confirmOuter} onClick={onCancel}>
-      <div className={styles.confirmModal}>
+    <Backdrop onClick={onCancel}>
+      <div
+        className={styles.confirmModal}
+        role="presentation"
+        onClick={(e) => { e.stopPropagation(); }}
+      >
         <div className={styles.confirmText}>
           <p>{confirmText}</p>
         </div>

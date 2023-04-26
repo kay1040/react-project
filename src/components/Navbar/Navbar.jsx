@@ -87,7 +87,7 @@ export default function NavBar(props) {
         <button
           type="button"
           className={styles.cart}
-          onClick={(e) => { setShowCartPreview(true); e.stopPropagation(); }}
+          onClick={() => { setShowCartPreview(true); }}
         >
           {cart.totalQuantity === 0
             ? null
@@ -106,7 +106,7 @@ export default function NavBar(props) {
           <button
             type="button"
             className={styles.cart}
-            onClick={(e) => { setShowCartPreview(true); e.stopPropagation(); }}
+            onClick={() => { setShowCartPreview(true); }}
           >
             {cart.totalQuantity === 0
               ? null

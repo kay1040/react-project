@@ -1,6 +1,3 @@
-.confirmOuter{
-    z-index: 9999;
-}
 .confirmModal{
     display: flex;
     flex-flow: column;
