@@ -60,8 +60,6 @@ export default function AuthPage() {
   }, [navigate]);
 
   const mergeCartData = (firebaseCartData, localStorageCartData) => {
-    if (firebaseCartData.length === 0) return localStorageCartData;
-    if (localStorageCartData.length === 0) return firebaseCartData;
     const result = { ...firebaseCartData };
     localStorageCartData.cartItems.forEach((localStorageCartItem) => {
       const index = result.cartItems.findIndex((item) => item.id === localStorageCartItem.id);
@@ -86,11 +84,15 @@ export default function AuthPage() {
         const userDoc = doc(db, 'users', auth.currentUser.uid);
         const userSnap = await getDoc(userDoc);
         const userData = userSnap?.data();
-        const firebaseCartData = userData?.cartData || [];
-        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || [];
-        const mergedCartData = mergeCartData(firebaseCartData, localStorageCartData);
-        localStorage.setItem('cartData', JSON.stringify(mergedCartData));
-        dispatch(updateCart(mergedCartData));
+        const firebaseCartData = userData?.cartData || {};
+        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || {};
+        if (localStorageCartData.cartItems?.length === 0) {
+          dispatch(updateCart(firebaseCartData));
+        } else {
+          const mergedCartData = mergeCartData(firebaseCartData, localStorageCartData);
+          localStorage.setItem('cartData', JSON.stringify(mergedCartData));
+          dispatch(updateCart(mergedCartData));
+        }
         navigate(prevPage, { replace: true });
       } catch (error) {
         setMessage(useErrorMessage(error));
