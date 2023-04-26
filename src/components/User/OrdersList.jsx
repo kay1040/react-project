@@ -19,23 +19,21 @@ export default function OrdersList() {
   useEffect(() => {
     const fetchData = async () => {
       const orders = [];
-      if (currentUser.uid && !ordersList.uid) {
-        const ordersRef = collection(db, 'orders');
-        const ordersQuery = query(
-          ordersRef,
-          where('uid', '==', currentUser.uid),
-          orderBy('orderNumber', 'desc'),
-        );
-        const querySnapshot = await getDocs(ordersQuery);
-        querySnapshot?.forEach((doc) => {
-          orders.push(doc.data());
-        });
-        setOrdersList(orders);
-        setIsLoading(false);
-      }
+      const ordersRef = collection(db, 'orders');
+      const ordersQuery = query(
+        ordersRef,
+        where('uid', '==', currentUser.uid),
+        orderBy('orderNumber', 'desc'),
+      );
+      const querySnapshot = await getDocs(ordersQuery);
+      querySnapshot?.forEach((doc) => {
+        orders.push(doc.data());
+      });
+      setOrdersList(orders);
+      setIsLoading(false);
     };
-    fetchData();
-  }, [currentUser]);
+    if (currentUser.uid && ordersList.length === 0) fetchData();
+  }, [currentUser, ordersList.length]);
 
   useEffect(() => {
     if (isLoading) {
