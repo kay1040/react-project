@@ -9,7 +9,7 @@ export const saveCartData = createAsyncThunk(
       const userDoc = doc(db, 'users', userId);
       await updateDoc(userDoc, { cartData });
     } catch (error) {
-      console.log(error);
+      return { error };
     }
   }
 );
