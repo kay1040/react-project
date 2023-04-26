@@ -71,7 +71,7 @@ export default function NavBar(props) {
             </li>
             <li><Link to="/about" onClick={handleShowLeftMenu}>關於我們</Link></li>
             <li><Link to="/intro" onClick={handleShowLeftMenu}>認識纏花</Link></li>
-            <li><Link to="/tutorial" onClick={handleShowLeftMenu}>纏花教學</Link></li>
+            <li><Link to="/tutorials" onClick={handleShowLeftMenu}>纏花教學</Link></li>
             <li><Link to="/shop" onClick={handleShowLeftMenu}>纏花商店</Link></li>
             <li className={styles.search}>
               <SearchProducts handleShowLeftMenu={handleShowLeftMenu} />

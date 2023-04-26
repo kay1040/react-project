@@ -30,7 +30,7 @@ export default function ProfileNav() {
       <ul className={styles.tabs}>
         <li><NavLink to="profile" style={changeStyle}>會員資料</NavLink></li>
         <li><NavLink to="orders" style={changeStyle}>我的訂單</NavLink></li>
-        <li><NavLink to="favorite" style={changeStyle}>我的收藏</NavLink></li>
+        <li><NavLink to="favorites" style={changeStyle}>我的收藏</NavLink></li>
         <li>
           <button
             type="button"

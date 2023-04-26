@@ -37,7 +37,7 @@ export default function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="orders" element={<MyOrder />} />
           <Route path="orders/:orderNumber" element={<OrderDetails />} />
-          <Route path="favorite" element={<FavoritesList />} />
+          <Route path="favorites" element={<FavoritesList />} />
         </Route>
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
