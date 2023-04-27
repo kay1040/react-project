@@ -151,6 +151,7 @@ export default function AuthPage() {
               className="input-primary w-64 h-10"
               type="email"
               placeholder="請輸入e-mail"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -159,6 +160,7 @@ export default function AuthPage() {
               className="input-primary w-64 h-10"
               type={inputType.password}
               placeholder="請輸入密碼"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {password && (
@@ -176,6 +178,7 @@ export default function AuthPage() {
                   className="input-primary w-64 h-10"
                   type={inputType.passwordConfirmation}
                   placeholder="確認密碼"
+                  value={passwordConfirmation}
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
                 {passwordConfirmation && (

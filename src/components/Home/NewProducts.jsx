@@ -11,9 +11,8 @@ export default function NewProducts() {
     isError,
   } = useGetProductsQuery();
 
-  let newProducts = products;
   // 取出陣列中倒數八個商品
-  if (isSuccess) newProducts = products.slice(-8);
+  const newProducts = isSuccess ? products.slice(-8) : null;
 
   return (
     <div className="max-w-screen-xl mx-auto my-8 md:my-16">

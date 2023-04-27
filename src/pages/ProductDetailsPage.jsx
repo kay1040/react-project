@@ -68,7 +68,7 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto mb-32">
-      {showMessage && <Message message="商品已添加到購物車" />}
+      {showMessage && <Message message="商品已加入購物車" />}
       {isLoading && <Loading />}
       {isSuccess
         && (

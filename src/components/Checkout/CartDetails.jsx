@@ -41,7 +41,7 @@ export default function CartDetails({ item, index }) {
 
   return (
     <>
-      {showConfirm && <Confirm confirmText="確定要刪除此商品嗎？" onCancel={handleCancel} onConfirm={handleConfirm} />}
+      {showConfirm && <Confirm confirmText="確定要將商品移出購物車嗎？" onCancel={handleCancel} onConfirm={handleConfirm} />}
       <div className="flex p-2.5 border-b border-inherit bg-white">
         <div className="w-40 mb:w-52 mr-4">
           <Link to={`/shop/product/${item.id}`}>

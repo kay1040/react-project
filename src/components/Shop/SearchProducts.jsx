@@ -1,18 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchProducts.module.css';
 
-export default function SearchProducts() {
-  const keywordInput = useRef();
+function SearchProducts({ onToggleLeftMenu }) {
   const navigate = useNavigate();
+  const [keyword, setKeyword] = useState();
 
   const handleSearchProduct = (e) => {
     e.preventDefault();
-    const keyword = keywordInput.current.value.trim();
     navigate('/shop', { state: { keyword } });
-    keywordInput.current.value = '';
+    setKeyword('');
+    onToggleLeftMenu();
   };
 
   return (
@@ -20,14 +20,17 @@ export default function SearchProducts() {
       <form onSubmit={handleSearchProduct}>
         <input
           className={styles.searchInput}
-          ref={keywordInput}
           type="text"
           placeholder="搜尋商品"
+          value={keyword}
+          onChange={(e) => { setKeyword(e.target.value); }}
         />
-        <button type="button" className={styles.searchButton} onClick={handleSearchProduct}>
+        <button type="submit" className={styles.searchButton}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>
     </div>
   );
 }
+
+export default React.memo(SearchProducts);

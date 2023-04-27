@@ -1,22 +1,32 @@
 import React from 'react';
-import styles from './ConfirmModal.module.css';
 import Backdrop from './Backdrop';
 
-export default function ConfirmModal(props) {
-  const { confirmText, onConfirm, onCancel } = props;
+export default function ConfirmModal({ confirmText, onConfirm, onCancel }) {
   return (
     <Backdrop onClick={onCancel}>
       <div
-        className={styles.confirmModal}
+        className="flex flex-col w-96 h-44 p-4 bg-white rounded shadow-md absolute inset-0 m-auto"
         role="presentation"
         onClick={(e) => { e.stopPropagation(); }}
       >
-        <div className={styles.confirmText}>
+        <div className="flex h-32 text-red-600 font-bold text-lg justify-center items-center">
           <p>{confirmText}</p>
         </div>
-        <div className={styles.buttons}>
-          <button type="button" className="btn-primary" onClick={onConfirm}>確定</button>
-          <button type="button" className={styles.cancel} onClick={onCancel}>取消</button>
+        <div className="flex flex-auto justify-end">
+          <button
+            type="button"
+            className="border border-darkslategray text-darkslategray rounded w-16 py-1 font-bold"
+            onClick={onCancel}
+          >
+            取消
+          </button>
+          <button
+            type="button"
+            className="bg-darkslategray text-white rounded w-16 py-1 ml-4 font-bold"
+            onClick={onConfirm}
+          >
+            確定
+          </button>
         </div>
       </div>
     </Backdrop>
