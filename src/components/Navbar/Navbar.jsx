@@ -81,7 +81,7 @@ export default function NavBar(props) {
 
         {/* logo */}
         <div className={styles.logo}>
-          <Link to="/" onClick={() => setShowLeftMenu(false)}><img src="/imgs/logo.png" alt="logo" /></Link>
+          <Link to="/" onClick={() => setShowLeftMenu(false)}><img src="/images/logo.png" alt="logo" /></Link>
         </div>
         {/* 購物車 */}
         <button

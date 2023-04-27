@@ -17,7 +17,7 @@ export default function IntroPage() {
           </p>
         </div>
         <div>
-          <img src="/imgs/info.jpg" className="w-screen" alt="纏花傳統款插圖" />
+          <img src="/images/info.jpg" className="w-screen" alt="纏花傳統款插圖" />
         </div>
         <div>
           <h2>不同地區的纏花</h2>

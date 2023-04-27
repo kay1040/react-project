@@ -10,11 +10,11 @@ import {
 } from 'swiper';
 
 const carouselImgs = [
-  '/imgs/carousel/01.jpg',
-  '/imgs/carousel/02.jpg',
-  '/imgs/carousel/03.jpg',
-  '/imgs/carousel/04.jpg',
-  '/imgs/carousel/05.jpg',
+  '/images/carousel/01.jpg',
+  '/images/carousel/02.jpg',
+  '/images/carousel/03.jpg',
+  '/images/carousel/04.jpg',
+  '/images/carousel/05.jpg',
 ];
 
 export default function Carousel() {

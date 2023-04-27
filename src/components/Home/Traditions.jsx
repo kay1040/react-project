@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Traditions.module.css';
 
-const IMG_PATH = '/imgs/tradition/';
+const IMG_PATH = '/images/traditions/';
 const traditionImgs = [
   { id: 1, title: '雙石榴花', img: `${IMG_PATH}item_01.png` },
   { id: 2, title: '桔子花', img: `${IMG_PATH}item_02.png` },
