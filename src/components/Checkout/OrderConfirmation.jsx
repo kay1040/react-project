@@ -6,7 +6,7 @@ export default function OrderConfirmation({ newOrder }) {
   return (
     newOrder ? (
       <div className="max-w-screen-xl mx-auto mt-2 mb-10 md:my-12 text-center w-11/12 md:w-1/2">
-        <OrderTable order={newOrder} imgStyle="w-40" tdStyle="pl-44" />
+        <OrderTable order={newOrder} />
         <div className="w-full border border-t-0 text-sm p-2 flex justify-between">
           <div>
             商品總數

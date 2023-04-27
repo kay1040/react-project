@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OrderTable({ order, imgStyle, tdStyle }) {
+export default function OrderTable({ order }) {
   return (
     <table className="box-border border-collapse w-full md:mx-auto text-center">
       <thead className="hidden md:table-header-group">
@@ -18,22 +18,22 @@ export default function OrderTable({ order, imgStyle, tdStyle }) {
             md:items-center border-b-0 last:border-b md:mb-6 md:table-row"
             key={item.id}
           >
-            <td className={`${imgStyle} md:w-44 absolute md:sticky`}>
+            <td className="w-28 md:w-44 absolute md:sticky">
               <img src={item.imgPath} alt={item.name} className="w-full md:mt-0 md:p-2" />
             </td>
-            <td className={`flex-1 text-left ${tdStyle} md:pt-0 md:px-2`}>
+            <td className="text-left pl-28 ml-2 md:pt-0 md:px-2">
               {item.name}
             </td>
-            <td className={`flex-1 text-left ${tdStyle} md:pt-0 md:px-2`}>
+            <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">單價：</span>
               NT$
               {item.price.toLocaleString('en-US')}
             </td>
-            <td className={`flex-1 text-left ${tdStyle} md:pt-0 md:px-2`}>
+            <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">數量：</span>
               {item.quantity}
             </td>
-            <td className={`flex-1 text-left ${tdStyle} md:pt-0 md:px-2`}>
+            <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">小計：</span>
               NT$
               {item.subtotal.toLocaleString('en-US')}

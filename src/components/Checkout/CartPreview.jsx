@@ -41,7 +41,7 @@ export default function CartPreview({ onClose, showCartPreview }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.title}>
-          <h3>購物車</h3>
+          <h2>購物車</h2>
           <button type="button" onClick={handleClose}>
             <FontAwesomeIcon icon={faXmark} />
           </button>

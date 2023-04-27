@@ -14,7 +14,7 @@ export default function ProductsList(props) {
               key={product.id}
               className="group"
             >
-              <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg bg-gray-100">
+              <div className="aspect-w-5 aspect-h-4 w-full overflow-hidden rounded-lg bg-gray-100">
                 <img
                   src={product.imgPath}
                   className="h-full w-full object-cover object-center group-hover:opacity-75 hover:scale-105"

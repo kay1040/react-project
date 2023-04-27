@@ -53,7 +53,7 @@ export default function CartDetails({ item, index }) {
           </Link>
         </div>
         <div className="flex-auto">
-          <div className="text-basic md:mt-2">{item.name}</div>
+          <div className="text-basic mt-2">{item.name}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
             <div className="before:content-['NT$'] font-bold my-3 md:my-0">
               {item.subtotal.toLocaleString('en-US')}
