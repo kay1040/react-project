@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeFromFavoritesList, savefavoritesList } from '../../store/reducers/favoritesSlice';
+import { removeFromFavoritesList, saveFavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
 import useAuth from '../../hooks/useAuth';
@@ -17,7 +17,7 @@ export default function FavoritesList() {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (currentUser?.uid) dispatch(savefavoritesList([favoritesList, currentUser.uid]));
+    if (currentUser?.uid) dispatch(saveFavoritesList([favoritesList, currentUser.uid]));
   }, [currentUser, dispatch, favoritesList]);
 
   const handleShowConfirm = (item) => {
@@ -39,7 +39,7 @@ export default function FavoritesList() {
     <>
       {showConfirm && (
         <ConfirmModal
-          confirmText="確定要刪除收藏嗎？"
+          confirmText="確定要刪除這個收藏嗎？"
           onCancel={handleCancel}
           onConfirm={handleConfirm}
         />

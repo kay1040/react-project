@@ -4,15 +4,15 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchProducts.module.css';
 
-function SearchProducts({ onToggleLeftMenu }) {
+function SearchProducts({ onCloseLeftMenu }) {
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState('');
 
   const handleSearchProduct = (e) => {
     e.preventDefault();
     navigate('/shop', { state: { keyword } });
     setKeyword('');
-    onToggleLeftMenu();
+    onCloseLeftMenu();
   };
 
   return (

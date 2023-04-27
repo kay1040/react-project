@@ -7,6 +7,7 @@ import styles from './Navbar.module.css';
 import SearchProducts from '../Shop/SearchProducts';
 import CartPreview from '../Checkout/CartPreview';
 import useAuth from '../../hooks/useAuth';
+import useDisableScroll from '../../hooks/useDisableScroll';
 
 export default function NavBar() {
   const [isShowLeftMenu, setIsShowLeftMenu] = useState(false);
@@ -15,6 +16,8 @@ export default function NavBar() {
   const { currentUser } = useAuth();
   const { cart } = useSelector((state) => state);
   const { pathname } = useLocation();
+
+  useDisableScroll(isShowLeftMenu);
 
   useEffect(() => {
     setIsShowLeftMenu(false);
