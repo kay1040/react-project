@@ -5,7 +5,7 @@ export default function ConfirmModal({ confirmText, onConfirm, onCancel }) {
   return (
     <Backdrop onClick={onCancel}>
       <div
-        className="flex flex-col w-96 h-44 p-4 bg-white rounded shadow-md absolute inset-0 m-auto"
+        className="flex flex-col w-80 md:w-96 h-44 p-4 bg-white rounded shadow-md absolute inset-0 m-auto"
         role="presentation"
         onClick={(e) => { e.stopPropagation(); }}
       >
