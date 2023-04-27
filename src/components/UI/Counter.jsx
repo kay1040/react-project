@@ -9,15 +9,17 @@ function Counter(props) {
     onDecrease,
     onIncrease,
     onInputChange,
+    buttonStyle,
+    inputStyle,
   } = props;
 
   return (
     <div className={styles.counter}>
-      <button type="button" className={styles.sub} onClick={onDecrease}>
+      <button type="button" className={`${styles.sub} ${buttonStyle}`} onClick={onDecrease}>
         <FontAwesomeIcon icon={faMinus} />
       </button>
-      <input type="text" value={count} onChange={onInputChange} className={styles.count} />
-      <button type="button" className={styles.add} onClick={onIncrease}>
+      <input type="text" value={count} onChange={onInputChange} className={`${styles.count} ${inputStyle}`} />
+      <button type="button" className={`${styles.add} ${buttonStyle}`} onClick={onIncrease}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </div>

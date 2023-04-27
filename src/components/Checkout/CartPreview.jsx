@@ -77,6 +77,8 @@ export default function CartPreview({ onClose, showCartPreview }) {
                         onIncrease={() => { dispatch(increaseItem(item)); }}
                         onDecrease={() => { dispatch(decreaseItem(item)); }}
                         onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])); }}
+                        buttonStyle="w-4 h-4 text-xs"
+                        inputStyle="mx-1 w-12 text-basic font-bold"
                       />
                     </div>
                   </div>

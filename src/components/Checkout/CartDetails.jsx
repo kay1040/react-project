@@ -64,6 +64,8 @@ export default function CartDetails({ item, index }) {
               onIncrease={handleIncreaseButton}
               onDecrease={handleDecreaseButton}
               onInputChange={handleInputChange}
+              buttonStyle="w-4 h-4 text-xs"
+              inputStyle="mx-2 md:mx-3 w-8 md:w-12 text-basic font-bold"
             />
           </div>
         </div>
