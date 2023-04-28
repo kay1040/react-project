@@ -23,6 +23,22 @@ export default function NavBar() {
     setIsShowLeftMenu(false);
   }, [pathname]);
 
+  const { cart } = useSelector((state) => state);
+  const { pathname } = useLocation();
+
+  // 設定購物車預覽開啟時禁止頁面滾動
+  useEffect(() => {
+    if (showCartPreview) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [showCartPreview]);
+
+  useEffect(() => {
+    setShowLeftMenu(false);
+  }, [pathname]);
+
   useEffect(() => {
     if (currentUser?.uid) {
       setIsLogged(true);
