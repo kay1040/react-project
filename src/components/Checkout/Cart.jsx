@@ -18,7 +18,7 @@ function Cart({ cart }) {
           件，總金額
           <span className="font-bold before:content-['_']">
             NT$
-            {cart.totalAmount.toLocaleString('en-US')}
+            {cart.totalAmount.toLocaleString('zh-TW')}
           </span>
         </p>
       </div>

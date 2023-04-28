@@ -11,20 +11,16 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (currentUser.uid && !userData.uid) {
-        const userRef = doc(db, 'users', currentUser.uid);
-        const userSnap = await getDoc(userRef);
-        setUserData(userSnap?.data());
-      }
+      const userRef = doc(db, 'users', currentUser.uid);
+      const userSnap = await getDoc(userRef);
+      setUserData(userSnap?.data());
     };
-    fetchData();
-  }, [currentUser, userData]);
+    if (currentUser.uid && !userData.uid) fetchData();
+  }, [currentUser]);
 
   const handleUpdateData = async (newData) => {
-    if (currentUser?.uid) {
-      const userRef = doc(db, 'users', currentUser.uid);
-      await setDoc(userRef, { ...newData });
-    }
+    const userRef = doc(db, 'users', currentUser.uid);
+    await setDoc(userRef, { ...newData });
     setUserData(newData);
   };
 

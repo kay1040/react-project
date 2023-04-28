@@ -6,7 +6,6 @@ import ProductDetailsPage from './pages/ProductDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
 import AuthPage from './pages/AuthPage';
 import NeedAuth from './components/NeedAuth/NeedAuth';
-import UserPage from './pages/UserPage';
 import Profile from './components/User/Profile';
 import MyOrder from './components/User/OrdersList';
 import OrderDetails from './components/User/OrderDetails';
@@ -19,6 +18,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const IntroPage = lazy(() => import('./pages/IntroPage'));
 const ShopPage = lazy(() => import('./pages/ShopPage'));
+const UserPage = lazy(() => import('./pages/UserPage'));
 
 export default function App() {
   // 路由跳轉回到頁面頂端

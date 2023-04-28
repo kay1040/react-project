@@ -14,7 +14,7 @@ export default function OrdersList() {
   const { currentUser } = useAuth();
   const [ordersList, setOrdersList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataState, setDataState] = useState('');
+  const [dataState, setDataState] = useState('資料載入中...');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,19 +29,15 @@ export default function OrdersList() {
       querySnapshot?.forEach((doc) => {
         orders.push(doc.data());
       });
-      setOrdersList(orders);
+      if (orders.length !== 0) {
+        setOrdersList(orders);
+      } else {
+        setDataState('尚無訂單');
+      }
       setIsLoading(false);
     };
     if (currentUser.uid && ordersList.length === 0) fetchData();
-  }, [currentUser, ordersList.length]);
-
-  useEffect(() => {
-    if (isLoading) {
-      setDataState('資料載入中...');
-    } else {
-      setDataState('尚無訂單');
-    }
-  }, [isLoading]);
+  }, [currentUser]);
 
   return (
     <div className="mx-auto mb-24 w-11/12 md:w-9/12 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
@@ -49,12 +45,12 @@ export default function OrdersList() {
         ? (
           <table className="overflow-hidden box-border border-collapse w-full text-left md:text-center text-sm">
             <thead className="hidden md:table-header-group">
-              <tr className="border md:p-4">
-                <th className="md:p-2">訂單號碼</th>
-                <th className="md:p-2">訂單日期</th>
-                <th className="md:p-2">訂單總額</th>
-                <th className="md:p-2">訂單狀態</th>
-                <th className="md:p-2">操作</th>
+              <tr className="border">
+                <th className="md:py-2">訂單號碼</th>
+                <th className="md:py-2">訂單日期</th>
+                <th className="md:py-2">訂單總額</th>
+                <th className="md:py-2">訂單狀態</th>
+                <th className="md:py-2">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -71,7 +67,7 @@ export default function OrdersList() {
                   <td className="p-1 md:p-4">
                     <span className="md:hidden">訂單總額： </span>
                     NT$
-                    {order.items.totalAmount.toLocaleString('en-US')}
+                    {order.items.totalAmount.toLocaleString('zh-TW')}
                   </td>
                   <td className="p-1 md:p-4">
                     <span className="md:hidden">訂單狀態： </span>

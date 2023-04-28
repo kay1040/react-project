@@ -92,7 +92,7 @@ export default function ProductDetailsPage() {
                 </h2>
                 <p className="my-3 md:my-6">{product.description}</p>
                 <div className="font-bold text-lg before:content-['NT$'] mb-10">
-                  {product.price.toLocaleString('en-US')}
+                  {product.price.toLocaleString('zh-TW')}
                 </div>
                 <Counter
                   count={count}
@@ -106,15 +106,15 @@ export default function ProductDetailsPage() {
                   <button
                     type="button"
                     onClick={handleAddToCart}
-                    className="btn-primary w-36 md:w-48 py-2 font-bold"
+                    className="btn-primary w-[45%] md:w-48 py-2 font-bold"
                   >
                     加入購物車
                   </button>
-                  <Link to="/shop/cart">
+                  <Link to="/shop/cart" className="w-[45%]">
                     <button
                       type="button"
                       onClick={handleAddToCart}
-                      className="btn-primary w-36 md:w-48 py-2 font-bold md:ml-5"
+                      className="btn-primary w-full md:w-48 py-2 font-bold md:ml-5"
                     >
                       立即購買
                     </button>

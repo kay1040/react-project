@@ -19,7 +19,7 @@ export default function OrderConfirmation({ newOrder }) {
             總金額
             <span className="font-bold before:content-['_']">
               NT$
-              {newOrder.items.totalAmount.toLocaleString('en-US')}
+              {newOrder.items.totalAmount.toLocaleString('zh-TW')}
             </span>
           </div>
         </div>

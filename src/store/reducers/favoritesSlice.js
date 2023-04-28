@@ -29,6 +29,9 @@ const favoritesSlice = createSlice({
       state.splice(state.findIndex((item) => item.id === action.payload.id), 1);
       localStorage.setItem('favoritesList', JSON.stringify(state));
     },
+    clearFavoritesList() {
+      localStorage.setItem('favoritesList', JSON.stringify([]));
+    },
     updateFavoritesList(state, action) {
       return action.payload;
     }
@@ -38,6 +41,7 @@ const favoritesSlice = createSlice({
 export const {
   addToFavoritesList,
   removeFromFavoritesList,
+  clearFavoritesList,
   updateFavoritesList,
 } = favoritesSlice.actions;
 

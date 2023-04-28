@@ -21,7 +21,7 @@ export default function ProductsList({ products }) {
               </div>
               <h3 className="mt-3 text-sm text-gray-700">{product.name}</h3>
               <p className="text-base font-bold text-gray-900 before:content-['NT$']">
-                {product.price.toLocaleString('en-US')}
+                {product.price.toLocaleString('zh-TW')}
               </p>
             </Link>
           ))}

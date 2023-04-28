@@ -90,7 +90,7 @@ export default function NavBar() {
           className={styles.cart}
           onClick={() => { setIsShowCartPreview(true); }}
         >
-          {cart.totalQuantity === 0
+          {cart.cartItems.length === 0
             ? null
             : (
               <div className={styles.totalQuantity}>

@@ -5,7 +5,7 @@ export default function OrderTable({ order }) {
     <table className="box-border border-collapse w-full md:mx-auto text-center">
       <thead className="hidden md:table-header-group">
         <tr className="border">
-          <th colSpan="2"> 商品資料</th>
+          <th colSpan="2" className="md:py-2"> 商品資料</th>
           <th>單價</th>
           <th>數量</th>
           <th>小計</th>
@@ -27,7 +27,7 @@ export default function OrderTable({ order }) {
             <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">單價：</span>
               NT$
-              {item.price.toLocaleString('en-US')}
+              {item.price.toLocaleString('zh-TW')}
             </td>
             <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">數量：</span>
@@ -36,7 +36,7 @@ export default function OrderTable({ order }) {
             <td className="text-left md:text-center pl-28 ml-2 md:pt-0 md:px-2">
               <span className="md:hidden">小計：</span>
               NT$
-              {item.subtotal.toLocaleString('en-US')}
+              {item.subtotal.toLocaleString('zh-TW')}
             </td>
           </tr>
         ))}

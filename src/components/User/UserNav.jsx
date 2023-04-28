@@ -7,6 +7,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import styles from './UserNav.module.css';
 import { clearCart } from '../../store/reducers/cartSlice';
+import { clearFavoritesList } from '../../store/reducers/favoritesSlice';
 
 export default function ProfileNav() {
   const active = {
@@ -22,6 +23,7 @@ export default function ProfileNav() {
   const dispatch = useDispatch();
   const handleLogout = async () => {
     dispatch(clearCart());
+    dispatch(clearFavoritesList());
     signOut(auth);
   };
 

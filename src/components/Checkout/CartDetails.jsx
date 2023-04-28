@@ -56,7 +56,7 @@ export default function CartDetails({ item, index }) {
           <div className="text-basic mt-2">{item.name}</div>
           <div className="flex md:mt-6 justify-between flex-col md:flex-row pr-2 md:pr-6">
             <div className="before:content-['NT$'] font-bold my-3 md:my-0">
-              {item.subtotal.toLocaleString('en-US')}
+              {item.subtotal.toLocaleString('zh-TW')}
             </div>
             <Counter
               index={index}
@@ -64,7 +64,7 @@ export default function CartDetails({ item, index }) {
               onIncrease={handleIncreaseButton}
               onDecrease={handleDecreaseButton}
               onInputChange={handleInputChange}
-              buttonStyle="w-4 h-4 text-xs"
+              buttonStyle="w-5 h-5 text-xs"
               inputStyle="mx-2 md:mx-3 w-8 md:w-12 text-basic font-bold"
             />
           </div>

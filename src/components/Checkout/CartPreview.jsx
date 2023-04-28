@@ -45,7 +45,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
-        {cart.cartItems.length === 0
+        {!cart.cartItems?.length
           ? (
             <div>
               <div className={styles.cartData}>
@@ -58,7 +58,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
           )
           : (
             <div>
-              {cart.cartItems.map((item, index) => (
+              {cart.cartItems?.map((item, index) => (
                 <div className={styles.cartData} key={item.id}>
                   <div className={styles.imgWrapper}>
                     <Link to={`/shop/product/${item.id}`} onClick={handleClose}>
@@ -69,7 +69,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
                     <div className={styles.itemName}>{item.name}</div>
                     <div className={styles.priceWrapper}>
                       <div className={styles.price}>
-                        {cart.cartItems[index].subtotal.toLocaleString('en-US')}
+                        {cart.cartItems[index].subtotal.toLocaleString('zh-TW')}
                       </div>
                       <Counter
                         count={item.quantity}

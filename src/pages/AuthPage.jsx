@@ -96,10 +96,11 @@ export default function AuthPage() {
         const userDoc = doc(db, 'users', auth.currentUser.uid);
         const userSnap = await getDoc(userDoc);
         const userData = userSnap?.data();
-        const firebaseCartData = userData?.cartData || {};
-        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || {};
-        if (localStorageCartData.cartItems?.length === 0) {
+        const firebaseCartData = userData?.cartData || null;
+        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || null;
+        if (localStorageCartData) {
           dispatch(updateCart(firebaseCartData));
+          localStorage.setItem('cartData', JSON.stringify(firebaseCartData));
         } else {
           const mergedCartData = mergeCartData(firebaseCartData, localStorageCartData);
           localStorage.setItem('cartData', JSON.stringify(mergedCartData));
@@ -109,6 +110,7 @@ export default function AuthPage() {
         const localStorageFavoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
         if (localStorageFavoritesList.length === 0) {
           dispatch(updateFavoritesList(firebaseFavoritesList));
+          localStorage.setItem('favoritesList', JSON.stringify(firebaseFavoritesList));
         } else {
           const mergedFavoritesList = mergefavoritesList(firebaseFavoritesList, localStorageFavoritesList);
           localStorage.setItem('favoritesList', JSON.stringify(mergedFavoritesList));

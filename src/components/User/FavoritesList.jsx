@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeFromFavoritesList, saveFavoritesList } from '../../store/reducers/favoritesSlice';
+import { removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
-import useAuth from '../../hooks/useAuth';
 
 export default function FavoritesList() {
   const favoritesList = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
-  const [count, setCount] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
-  const { currentUser } = useAuth();
-
-  useEffect(() => {
-    if (currentUser?.uid) dispatch(saveFavoritesList([favoritesList, currentUser.uid]));
-  }, [currentUser, dispatch, favoritesList]);
 
   const handleShowConfirm = (item) => {
     setShowConfirm(true);
@@ -57,10 +50,10 @@ export default function FavoritesList() {
             <table className="overflow-hidden box-border border-collapse w-full md:text-center text-sm">
               <thead className="hidden md:table-header-group">
                 <tr className="border">
-                  <th className="px-6 py-2">商品</th>
-                  <th className="px-6 py-2">價格</th>
-                  <th className="px-6 py-2">操作</th>
-                  <th className="px-6 py-2">刪除</th>
+                  <th className="md:py-2">商品</th>
+                  <th className="md:py-2">價格</th>
+                  <th className="md:py-2">操作</th>
+                  <th className="md:py-2">刪除</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,15 +67,15 @@ export default function FavoritesList() {
                     </td>
                     <td className="p-4 md:p-6 font-bold">
                       NT$
-                      {item.price.toLocaleString('en-US')}
+                      {item.price.toLocaleString('zh-TW')}
                     </td>
                     <td className="md:p-6">
                       <button
                         type="button"
                         className="btn-primary text-sm font-bold rounded-none hover-none py-2 w-full md:w-28 md:rounded"
                         onClick={() => {
+                          const count = 1;
                           dispatch(addToCart([item, count]));
-                          setCount(1);
                         }}
                       >
                         加入購物車
