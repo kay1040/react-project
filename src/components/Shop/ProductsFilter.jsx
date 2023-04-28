@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function ProductsFilter(props) {
-  const { onCategoryChange, onSortChange } = props;
+export default function ProductsFilter({ onCategoryChange, onSortChange }) {
   const handleCategoryFilter = (e) => {
     onCategoryChange(e.target.value);
   };

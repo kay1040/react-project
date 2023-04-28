@@ -15,7 +15,7 @@ import {
 import useAuth from '../../hooks/useAuth';
 
 export default function CartPreview({ onClose, showCartPreview }) {
-  const cart = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [isShow, setIsShow] = useState(false);
   const { currentUser } = useAuth();

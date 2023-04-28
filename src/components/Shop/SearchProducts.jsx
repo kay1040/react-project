@@ -1,30 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './SearchProducts.module.css';
 
 export default function SearchProducts() {
-  const keywordInput = useRef();
+  const [keyword, setKeyword] = useState('');
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  const handleSearchProduct = (e) => {
+  useEffect(() => {
+    setKeyword('');
+  }, [pathname]);
+
+  const handleSearchProducts = (e) => {
     e.preventDefault();
-    const keyword = keywordInput.current.value.trim();
-    navigate('/shop', { state: { keyword } });
-    keywordInput.current.value = '';
+    navigate(`/shop?keyword=${keyword}`);
   };
 
   return (
     <div className={styles.search}>
-      <form onSubmit={handleSearchProduct}>
+      <form onSubmit={handleSearchProducts}>
         <input
           className={styles.searchInput}
-          ref={keywordInput}
           type="text"
           placeholder="搜尋商品"
+          onChange={(e) => { setKeyword(e.target.value.trim()); }}
         />
-        <button type="button" className={styles.searchButton} onClick={handleSearchProduct}>
+        <button type="submit" className={styles.searchButton}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>

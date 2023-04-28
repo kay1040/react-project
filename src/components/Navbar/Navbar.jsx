@@ -8,13 +8,28 @@ import SearchProducts from '../Shop/SearchProducts';
 import CartPreview from '../Checkout/CartPreview';
 import useAuth from '../../hooks/useAuth';
 
-export default function NavBar(props) {
+export default function NavBar() {
   // 設定是否顯示左側菜單
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
-  const { onScroll } = props;
   const { currentUser } = useAuth();
   const [isLogged, setIsLogged] = useState(false);
+
+  const { cart } = useSelector((state) => state);
+  const { pathname } = useLocation();
+
+  // 設定購物車預覽開啟時禁止頁面滾動
+  useEffect(() => {
+    if (showCartPreview) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [showCartPreview]);
+
+  useEffect(() => {
+    setShowLeftMenu(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (currentUser?.uid) {
@@ -31,18 +46,6 @@ export default function NavBar(props) {
   const handleCloseCartPreview = () => {
     setShowCartPreview(false);
   };
-
-  const cart = useSelector((state) => state.cart);
-
-  useEffect(() => {
-    onScroll(showCartPreview);
-  }, [onScroll, showCartPreview]);
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setShowLeftMenu(false);
-  }, [pathname]);
 
   return (
     // 導航條外層

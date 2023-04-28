@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ProductsList(props) {
-  const { products } = props;
-
+export default function ProductsList({ products }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-8 px-6 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8">

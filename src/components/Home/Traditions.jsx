@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Traditions.module.css';
 
 const IMG_PATH = '/images/traditions/';
-const traditionImgs = [
+const TRADITION_IMGS = [
   { id: 1, title: '雙石榴花', img: `${IMG_PATH}item_01.png` },
   { id: 2, title: '桔子花', img: `${IMG_PATH}item_02.png` },
   { id: 3, title: '婆婆花', img: `${IMG_PATH}item_03.png` },
@@ -20,7 +20,7 @@ const traditionImgs = [
 export default function Traditions() {
   return (
     <div className={styles.wrapper}>
-      {traditionImgs.map(({ id, title, img }) => (
+      {TRADITION_IMGS.map(({ id, title, img }) => (
         <div className={styles.imgs} key={id}>
           <img src={img} title={title} alt={title} />
         </div>
