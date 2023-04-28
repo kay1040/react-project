@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
@@ -7,13 +7,21 @@ import styles from './Navbar.module.css';
 import SearchProducts from '../Shop/SearchProducts';
 import CartPreview from '../Checkout/CartPreview';
 import useAuth from '../../hooks/useAuth';
+import useDisableScroll from '../../hooks/useDisableScroll';
 
 export default function NavBar() {
-  // 設定是否顯示左側菜單
-  const [showLeftMenu, setShowLeftMenu] = useState(false);
-  const [showCartPreview, setShowCartPreview] = useState(false);
-  const { currentUser } = useAuth();
+  const [isShowLeftMenu, setIsShowLeftMenu] = useState(false);
+  const [isShowCartPreview, setIsShowCartPreview] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const { currentUser } = useAuth();
+  const { cart } = useSelector((state) => state);
+  const { pathname } = useLocation();
+
+  useDisableScroll(isShowLeftMenu);
+
+  useEffect(() => {
+    setIsShowLeftMenu(false);
+  }, [pathname]);
 
   const { cart } = useSelector((state) => state);
   const { pathname } = useLocation();
@@ -39,12 +47,16 @@ export default function NavBar() {
     }
   }, [currentUser]);
 
-  const handleShowLeftMenu = () => {
-    setShowLeftMenu((preState) => !preState);
+  const handleToggleLeftMenu = () => {
+    setIsShowLeftMenu((preState) => !preState);
   };
 
+  const handleCloseLeftMenu = useCallback(() => {
+    setIsShowLeftMenu(false);
+  }, []);
+
   const handleCloseCartPreview = () => {
-    setShowCartPreview(false);
+    setIsShowCartPreview(false);
   };
 
   return (
@@ -57,40 +69,42 @@ export default function NavBar() {
           <ul
             role="menu"
             className={styles.menuIcon}
-            onClick={handleShowLeftMenu}
-            onKeyDown={handleShowLeftMenu}
+            onClick={handleToggleLeftMenu}
+            onKeyDown={handleToggleLeftMenu}
           >
-            <li className={showLeftMenu ? `${styles.line1} ${styles.line1Active}` : styles.line1} />
-            <li className={showLeftMenu ? ` ${styles.line2Active}` : styles.line2} />
-            <li className={showLeftMenu ? `${styles.line3} ${styles.line3Active}` : styles.line3} />
+            <li className={isShowLeftMenu ? `${styles.line1} ${styles.line1Active}` : styles.line1} />
+            <li className={isShowLeftMenu ? ` ${styles.line2Active}` : styles.line2} />
+            <li className={isShowLeftMenu ? `${styles.line3} ${styles.line3Active}` : styles.line3} />
           </ul>
 
           {/* 菜單 */}
-          <ul className={showLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
+          <ul className={isShowLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
             <li className={styles.login}>
-              <Link to="/user/profile" onClick={handleShowLeftMenu}>
+              <Link to="/user/profile">
                 {isLogged ? '會員資料' : '登入 / 註冊'}
               </Link>
             </li>
-            <li><Link to="/about" onClick={handleShowLeftMenu}>關於我們</Link></li>
-            <li><Link to="/intro" onClick={handleShowLeftMenu}>認識纏花</Link></li>
-            <li><Link to="/tutorials" onClick={handleShowLeftMenu}>纏花教學</Link></li>
-            <li><Link to="/shop" onClick={handleShowLeftMenu}>纏花商店</Link></li>
+            <li><Link to="/about">關於我們</Link></li>
+            <li><Link to="/intro">認識纏花</Link></li>
+            <li><Link to="/tutorials">纏花教學</Link></li>
+            <li><Link to="/shop">纏花商店</Link></li>
             <li className={styles.search}>
-              <SearchProducts handleShowLeftMenu={handleShowLeftMenu} />
+              <SearchProducts onCloseLeftMenu={handleCloseLeftMenu} />
             </li>
           </ul>
         </div>
 
         {/* logo */}
         <div className={styles.logo}>
-          <Link to="/" onClick={() => setShowLeftMenu(false)}><img src="/images/logo.png" alt="logo" /></Link>
+          <Link to="/" onClick={handleCloseLeftMenu}>
+            <img src="/images/logo.png" alt="logo" />
+          </Link>
         </div>
         {/* 購物車 */}
         <button
           type="button"
           className={styles.cart}
-          onClick={() => { setShowCartPreview(true); }}
+          onClick={() => { setIsShowCartPreview(true); }}
         >
           {cart.totalQuantity === 0
             ? null
@@ -109,7 +123,7 @@ export default function NavBar() {
           <button
             type="button"
             className={styles.cart}
-            onClick={() => { setShowCartPreview(true); }}
+            onClick={() => { setIsShowCartPreview(true); }}
           >
             {cart.totalQuantity === 0
               ? null
@@ -119,7 +133,12 @@ export default function NavBar() {
                 </div>
               )}
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
-            {showCartPreview && <CartPreview onClose={handleCloseCartPreview} showCartPreview={showCartPreview} />}
+            {isShowCartPreview && (
+              <CartPreview
+                onCloseCartPreview={handleCloseCartPreview}
+                isShowCartPreview={isShowCartPreview}
+                cart={cart}
+              />)}
           </button>
           <div className={styles.user}>
             <Link to="/user/profile">

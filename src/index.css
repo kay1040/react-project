@@ -34,10 +34,12 @@ html {
 
 body{
     font-family:'Microsoft JhengHei', '微軟正黑體', 'Microsoft YaHei', sans-serif;
+    overflow-y: auto;
 }
 
 #root{
     display: flex;
     flex-direction: column;
     height: 100vh;
+    
 }

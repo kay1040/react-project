@@ -5,7 +5,7 @@ import { faHeart as heartActive } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/reducers/cartSlice';
-import { addToFavoritesList, removeFromFavoritesList, savefavoritesList } from '../store/reducers/favoritesSlice';
+import { addToFavoritesList, removeFromFavoritesList, saveFavoritesList } from '../store/reducers/favoritesSlice';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
 import Counter from '../components/UI/Counter';
@@ -30,7 +30,7 @@ export default function ProductDetailsPage() {
   }, [index]);
 
   useEffect(() => {
-    if (currentUser?.uid) dispatch(savefavoritesList([favoritesList, currentUser.uid]));
+    if (currentUser?.uid) dispatch(saveFavoritesList([favoritesList, currentUser.uid]));
   }, [currentUser, dispatch, favoritesList]);
 
   const handleIncreaseButton = useCallback(() => {
@@ -68,7 +68,7 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto mb-32">
-      {showMessage && <Message message="商品已添加到購物車" />}
+      {showMessage && <Message message="商品已加入購物車" />}
       {isLoading && <Loading />}
       {isSuccess
         && (

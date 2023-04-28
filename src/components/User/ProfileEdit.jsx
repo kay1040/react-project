@@ -80,6 +80,7 @@ export default function ProfileEdit(props) {
                   type="password"
                   placeholder="請輸入當前密碼"
                   onChange={(e) => setCurrentPassword(e.target.value)}
+                  value={currentPassword}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>
@@ -89,6 +90,7 @@ export default function ProfileEdit(props) {
                   type="password"
                   placeholder="請輸入6個字元以上的英數字"
                   onChange={(e) => setNewPassword(e.target.value)}
+                  value={newPassword}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>
@@ -98,6 +100,7 @@ export default function ProfileEdit(props) {
                   type="password"
                   placeholder="請再輸入一次新密碼"
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
+                  value={passwordConfirmation}
                   className="input-primary p-1 w-48 md:w-72 h-8"
                 />
               </div>

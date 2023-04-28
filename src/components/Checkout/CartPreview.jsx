@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -14,20 +14,19 @@ import {
 } from '../../store/reducers/cartSlice';
 import useAuth from '../../hooks/useAuth';
 
-export default function CartPreview({ onClose, showCartPreview }) {
-  const { cart } = useSelector((state) => state);
+export default function CartPreview({ onCloseCartPreview, isShowCartPreview, cart }) {
   const dispatch = useDispatch();
   const [isShow, setIsShow] = useState(false);
   const { currentUser } = useAuth();
 
   const handleClose = (e) => {
     setIsShow(false);
-    setTimeout(() => onClose(e), 300);
+    setTimeout(() => onCloseCartPreview(e), 300);
   };
 
   useEffect(() => {
-    setIsShow(showCartPreview);
-  }, [showCartPreview]);
+    setIsShow(isShowCartPreview);
+  }, [isShowCartPreview]);
 
   useEffect(() => {
     if (currentUser?.uid) dispatch(saveCartData([cart, currentUser.uid]));

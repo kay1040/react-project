@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './SearchProducts.module.css';
 
-export default function SearchProducts() {
-  const [keyword, setKeyword] = useState('');
+function SearchProducts({ onCloseLeftMenu }) {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
     setKeyword('');
@@ -15,7 +14,9 @@ export default function SearchProducts() {
 
   const handleSearchProducts = (e) => {
     e.preventDefault();
-    navigate(`/shop?keyword=${keyword}`);
+    navigate('/shop', { state: { keyword } });
+    setKeyword('');
+    onCloseLeftMenu();
   };
 
   return (
@@ -25,6 +26,7 @@ export default function SearchProducts() {
           className={styles.searchInput}
           type="text"
           placeholder="搜尋商品"
+          value={keyword}
           onChange={(e) => { setKeyword(e.target.value.trim()); }}
         />
         <button type="submit" className={styles.searchButton}>
@@ -34,3 +36,5 @@ export default function SearchProducts() {
     </div>
   );
 }
+
+export default React.memo(SearchProducts);

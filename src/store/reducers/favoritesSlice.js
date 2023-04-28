@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
-export const savefavoritesList = createAsyncThunk(
-  'favorites/savefavoritesList',
+export const saveFavoritesList = createAsyncThunk(
+  'favorites/saveFavoritesList',
   async ([favoritesList, userId]) => {
     try {
       const db = getFirestore();
