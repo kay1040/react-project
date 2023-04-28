@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
 import ProductsFilter from '../components/Shop/ProductsFilter';
@@ -13,13 +13,10 @@ export default function ShopPage() {
     isError,
   } = useGetProductsQuery();
   const [productsList, setProductsList] = useState(null);
-  // const location = useLocation();
-  // const [keyword, setKeyword] = useState(location.state?.keyword);
-  const [searchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword');
+  const location = useLocation();
+  const [keyword, setKeyword] = useState(location.state?.keyword);
 
   useEffect(() => {
-    console.log(keyword);
     if (keyword) {
       const filterProducts = products?.filter((item) => item.name.indexOf(keyword) !== -1);
       setProductsList(filterProducts);
@@ -35,7 +32,7 @@ export default function ShopPage() {
       const filterProducts = products?.filter((item) => item.category === newCategory);
       setProductsList(filterProducts);
     }
-    // if (keyword) setKeyword(null);
+    if (keyword) setKeyword(null);
   };
 
   const handleChangeSort = (newSort) => {
