@@ -41,6 +41,15 @@
     border-bottom-right-radius: 0;
 }
 
+.tabs li a.active {
+    font-weight: bold;
+    color: darkslategray;
+    border: 1px solid #E2E8F0;
+    border-bottom-color: #fff;
+    border-top: 4px solid darkslategray;
+    background-color: #fff;
+}
+
 @media only screen and (min-width: 768px) {
     .tabs li {
         width: 120px;

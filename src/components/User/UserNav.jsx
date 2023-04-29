@@ -10,15 +10,7 @@ import { clearCart, saveCartData } from '../../store/reducers/cartSlice';
 import { clearFavoritesList } from '../../store/reducers/favoritesSlice';
 
 export default function ProfileNav() {
-  const active = {
-    fontWeight: 'bold',
-    color: 'darkslategray',
-    border: '1px solid rgb(226 232 240)',
-    borderBottomColor: '#fff',
-    borderTop: '4px solid darkslategray',
-    backgroundColor: '#fff',
-  };
-  const changeStyle = ({ isActive }) => (isActive ? active : null);
+  const changeStyle = ({ isActive }) => (isActive ? styles.active : null);
 
   const dispatch = useDispatch();
   const handleLogout = async () => {
@@ -31,9 +23,9 @@ export default function ProfileNav() {
   return (
     <div className="mx-auto w-11/12 md:w-3/4">
       <ul className={styles.tabs}>
-        <li><NavLink to="profile" style={changeStyle}>會員資料</NavLink></li>
-        <li><NavLink to="orders" style={changeStyle}>我的訂單</NavLink></li>
-        <li><NavLink to="favorites" style={changeStyle}>我的收藏</NavLink></li>
+        <li><NavLink to="profile" className={changeStyle}>會員資料</NavLink></li>
+        <li><NavLink to="orders" className={changeStyle}>我的訂單</NavLink></li>
+        <li><NavLink to="favorites" className={changeStyle}>我的收藏</NavLink></li>
         <li>
           <button
             type="button"
