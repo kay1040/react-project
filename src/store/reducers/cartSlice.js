@@ -1,36 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
 const cartData = {
   cartItems: [],
   totalQuantity: 0,
   totalAmount: 0,
-  status: 'idle',
-  error: null,
 };
-
-export const mergeCartData = createAsyncThunk(
-  'cart/mergeCartData',
-  async (firebaseCartData, { getState }) => {
-    const cartData = getState().cart;
-    if (firebaseCartData) {
-      const mergedCartData = { ...firebaseCartData };
-      cartData.cartItems.forEach((cartItem) => {
-        const index = mergedCartData.cartItems.findIndex((item) => item.id === cartItem.id);
-        if (index === -1) {
-          mergedCartData.cartItems.push(cartItem);
-        } else {
-          mergedCartData.cartItems[index].quantity += cartItem.quantity;
-          mergedCartData.cartItems[index].subtotal += cartItem.subtotal;
-        }
-      });
-      mergedCartData.totalAmount += cartData.totalAmount;
-      mergedCartData.totalQuantity += cartData.totalQuantity;
-      return mergedCartData;
-    } else {
-      return cartData;
-    }
-  })
 
 export const saveCartData = createAsyncThunk(
   'cart/saveCartData',
@@ -128,24 +103,23 @@ const cartSlice = createSlice({
       state.totalAmount = 0;
       localStorage.setItem('cartData', JSON.stringify(state));
     },
+    // 合併購物車
+    mergeCartData(state, action) {
+      const mergedCartData = { ...action.payload };
+      state.cartItems.forEach((cartItem) => {
+        const index = mergedCartData.cartItems.findIndex((item) => item.id === cartItem.id);
+        if (index === -1) {
+          mergedCartData.cartItems.push(cartItem);
+        } else {
+          mergedCartData.cartItems[index].quantity += cartItem.quantity;
+          mergedCartData.cartItems[index].subtotal += cartItem.subtotal;
+        }
+      });
+      state.cartItems = mergedCartData.cartItems;
+      state.totalAmount += mergedCartData.totalAmount;
+      state.totalQuantity += mergedCartData.totalQuantity;
+    },
   },
-  extraReducers(builder) {
-    builder
-      .addCase(mergeCartData.pending, (state, action) => {
-        state.status = 'loading'
-      })
-      .addCase(mergeCartData.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.cartItems = action.payload.cartItems;
-        state.totalQuantity = action.payload.totalQuantity;
-        state.totalAmount = action.payload.totalAmount;
-        localStorage.setItem('cartData', JSON.stringify(state));
-      })
-      .addCase(mergeCartData.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
-  }
 });
 
 export const {
@@ -155,7 +129,7 @@ export const {
   getInputValue,
   removeItem,
   clearCart,
-  updateCart,
+  mergeCartData,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
