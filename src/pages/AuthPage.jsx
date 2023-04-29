@@ -15,7 +15,7 @@ import Message from '../components/UI/Message';
 import Loading from '../components/UI/Loading';
 import useErrorMessage from '../hooks/useErrorMessage';
 import { mergeCartData, saveCartData } from '../store/reducers/cartSlice';
-import { updateFavoritesList } from '../store/reducers/favoritesSlice';
+import { mergeFavoritesList, saveFavoritesList } from '../store/reducers/favoritesSlice';
 
 export default function AuthPage() {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -23,8 +23,8 @@ export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [isNewUser, setIsNewUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isNewUser, setIsNewUser] = useState(false);
   const [inputType, setInputType] = useState({
     password: 'password',
     passwordConfirmation: 'password',
@@ -54,55 +54,40 @@ export default function AuthPage() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoading(false);
       if (user && !isNewUser) {
-        navigate('/', { replace: true });
+        navigate(prevPage, { replace: true });
       }
     });
     return unsubscribe;
-  }, [navigate]);
-
-  const mergeFavoritesList = (firebaseFavoritesList, localStorageFavoritesList) => {
-    const result = [...firebaseFavoritesList];
-    localStorageFavoritesList.forEach((localStorageFavoriteItem) => {
-      const index = result.findIndex((item) => item.id === localStorageFavoriteItem.id);
-      if (index === -1) {
-        result.push(localStorageFavoriteItem);
-      }
-    });
-    return result;
-  };
+  }, [isNewUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLoginForm) {
       // 登入
+      setIsNewUser(false);
       try {
         await signInWithEmailAndPassword(auth, email, password);
         const userDoc = doc(db, 'users', auth.currentUser.uid);
         const userSnap = await getDoc(userDoc);
         const userData = userSnap?.data();
-        const firebaseCartData = userData.cartData;
+        const firebaseCartData = userData?.cartData;
         if (firebaseCartData) {
           dispatch(mergeCartData(userData.cartData));
         } else {
           dispatch(saveCartData(auth.currentUser.uid));
         }
-
-        const firebaseFavoritesList = userData?.favoritesList || [];
-        const localStorageFavoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
-        if (localStorageFavoritesList.length === 0) {
-          dispatch(updateFavoritesList(firebaseFavoritesList));
-          localStorage.setItem('favoritesList', JSON.stringify(firebaseFavoritesList));
+        const firebaseFavoritesList = userData?.favoritesList;
+        if (firebaseFavoritesList) {
+          dispatch(mergeFavoritesList(firebaseFavoritesList));
         } else {
-          const mergedFavoritesList = mergeFavoritesList(firebaseFavoritesList, localStorageFavoritesList);
-          localStorage.setItem('favoritesList', JSON.stringify(mergedFavoritesList));
-          dispatch(updateFavoritesList(mergedFavoritesList));
+          dispatch(saveFavoritesList(auth.currentUser.uid));
         }
-        navigate(prevPage, { replace: true });
       } catch (error) {
         setMessage(useErrorMessage(error));
       }
     } else {
       // 註冊
+      setIsNewUser(true);
       try {
         if (password !== passwordConfirmation) throw new Error('輸入密碼不一致');
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -111,9 +96,8 @@ export default function AuthPage() {
           uid: newUser.uid,
           email,
         });
-        setIsNewUser(true);
-        signOut(auth);
         setIsLoginForm(true);
+        signOut(auth);
         setMessage('註冊成功，請重新登入');
       } catch (error) {
         setMessage(useErrorMessage(error));
