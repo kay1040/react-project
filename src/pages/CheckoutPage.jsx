@@ -45,7 +45,7 @@ export default function CheckoutPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser?.uid) dispatch(saveCartData([cart, currentUser.uid]));
+    if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [currentUser, dispatch, cart]);
 
   const getOrderNumber = async () => {
@@ -140,7 +140,7 @@ export default function CheckoutPage() {
     <>
       {message && <Message message={message} />}
       <div className="max-w-screen-xl mx-auto my-8 md:my-24">
-        {cart.cartItems.length === 0 && !isComplete
+        {cart?.cartItems?.length === 0 && !isComplete
           ? (
             <div className="text-center text-base mt-28">
               <p className="mb-3">您的購物車內沒有商品</p>

@@ -29,7 +29,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
   }, [isShowCartPreview]);
 
   useEffect(() => {
-    if (currentUser?.uid) dispatch(saveCartData([cart, currentUser.uid]));
+    if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [currentUser, dispatch, cart]);
 
   return (
@@ -45,7 +45,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
-        {!cart.cartItems?.length
+        {(cart.cartItems.length === 0)
           ? (
             <div>
               <div className={styles.cartData}>

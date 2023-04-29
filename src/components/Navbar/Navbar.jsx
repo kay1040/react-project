@@ -14,7 +14,7 @@ export default function NavBar() {
   const [isShowCartPreview, setIsShowCartPreview] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const { currentUser } = useAuth();
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
   const { pathname } = useLocation();
 
   useDisableScroll(isShowLeftMenu);
@@ -90,13 +90,11 @@ export default function NavBar() {
           className={styles.cart}
           onClick={() => { setIsShowCartPreview(true); }}
         >
-          {cart.cartItems.length === 0
-            ? null
-            : (
-              <div className={styles.totalQuantity}>
-                {cart.totalQuantity}
-              </div>
-            )}
+          {cart.cartItems.length !== 0 && (
+            <div className={styles.totalQuantity}>
+              {cart.totalQuantity}
+            </div>
+          )}
           <i><FontAwesomeIcon icon={faCartShopping} /></i>
         </button>
         {/* 右側導航 */}
@@ -109,13 +107,11 @@ export default function NavBar() {
             className={styles.cart}
             onClick={() => { setIsShowCartPreview(true); }}
           >
-            {cart.totalQuantity === 0
-              ? null
-              : (
-                <div className={styles.totalQuantity}>
-                  {cart.totalQuantity}
-                </div>
-              )}
+            {cart.cartItems.length !== 0 && (
+              <div className={styles.totalQuantity}>
+                {cart.totalQuantity}
+              </div>
+            )}
             <i><FontAwesomeIcon icon={faCartShopping} /></i>
             {isShowCartPreview && (
               <CartPreview

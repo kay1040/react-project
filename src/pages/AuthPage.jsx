@@ -14,7 +14,7 @@ import { auth, db } from '../firebaseConfig';
 import Message from '../components/UI/Message';
 import Loading from '../components/UI/Loading';
 import useErrorMessage from '../hooks/useErrorMessage';
-import { updateCart } from '../store/reducers/cartSlice';
+import { mergeCartData, saveCartData } from '../store/reducers/cartSlice';
 import { updateFavoritesList } from '../store/reducers/favoritesSlice';
 
 export default function AuthPage() {
@@ -60,23 +60,7 @@ export default function AuthPage() {
     return unsubscribe;
   }, [navigate]);
 
-  const mergeCartData = (firebaseCartData, localStorageCartData) => {
-    const result = { ...firebaseCartData };
-    localStorageCartData.cartItems.forEach((localStorageCartItem) => {
-      const index = result.cartItems.findIndex((item) => item.id === localStorageCartItem.id);
-      if (index === -1) {
-        result.cartItems.push(localStorageCartItem);
-      } else {
-        result.cartItems[index].quantity += localStorageCartItem.quantity;
-        result.cartItems[index].subtotal += localStorageCartItem.subtotal;
-      }
-    });
-    result.totalAmount += localStorageCartData.totalAmount;
-    result.totalQuantity += localStorageCartData.totalQuantity;
-    return result;
-  };
-
-  const mergefavoritesList = (firebaseFavoritesList, localStorageFavoritesList) => {
+  const mergeFavoritesList = (firebaseFavoritesList, localStorageFavoritesList) => {
     const result = [...firebaseFavoritesList];
     localStorageFavoritesList.forEach((localStorageFavoriteItem) => {
       const index = result.findIndex((item) => item.id === localStorageFavoriteItem.id);
@@ -96,23 +80,20 @@ export default function AuthPage() {
         const userDoc = doc(db, 'users', auth.currentUser.uid);
         const userSnap = await getDoc(userDoc);
         const userData = userSnap?.data();
-        const firebaseCartData = userData?.cartData || null;
-        const localStorageCartData = JSON.parse(localStorage.getItem('cartData')) || null;
-        if (localStorageCartData) {
-          dispatch(updateCart(firebaseCartData));
-          localStorage.setItem('cartData', JSON.stringify(firebaseCartData));
+        const firebaseCartData = userData.cartData;
+        if (firebaseCartData) {
+          dispatch(mergeCartData(userData.cartData));
         } else {
-          const mergedCartData = mergeCartData(firebaseCartData, localStorageCartData);
-          localStorage.setItem('cartData', JSON.stringify(mergedCartData));
-          dispatch(updateCart(mergedCartData));
+          dispatch(saveCartData(auth.currentUser.uid));
         }
+
         const firebaseFavoritesList = userData?.favoritesList || [];
         const localStorageFavoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
         if (localStorageFavoritesList.length === 0) {
           dispatch(updateFavoritesList(firebaseFavoritesList));
           localStorage.setItem('favoritesList', JSON.stringify(firebaseFavoritesList));
         } else {
-          const mergedFavoritesList = mergefavoritesList(firebaseFavoritesList, localStorageFavoritesList);
+          const mergedFavoritesList = mergeFavoritesList(firebaseFavoritesList, localStorageFavoritesList);
           localStorage.setItem('favoritesList', JSON.stringify(mergedFavoritesList));
           dispatch(updateFavoritesList(mergedFavoritesList));
         }

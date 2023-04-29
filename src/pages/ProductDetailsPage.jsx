@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as heartActive } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../store/reducers/cartSlice';
+import { addToCart, saveCartData } from '../store/reducers/cartSlice';
 import { addToFavoritesList, removeFromFavoritesList, saveFavoritesList } from '../store/reducers/favoritesSlice';
 import { useGetProductsQuery } from '../store/api/productsApi';
 import Loading from '../components/UI/Loading';
@@ -49,12 +49,13 @@ export default function ProductDetailsPage() {
 
   const handleAddToCart = useCallback(() => {
     dispatch(addToCart([product, count]));
+    if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
     setCount(1);
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
     }, 1000);
-  }, [dispatch, product, count]);
+  }, [dispatch, product, count, currentUser]);
 
   const handleAddToFavorite = useCallback(() => {
     if (favorite) {
