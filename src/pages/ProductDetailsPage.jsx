@@ -78,7 +78,7 @@ export default function ProductDetailsPage() {
             </div>
             <div className="flex flex-col md:flex-row items-center md:items-start text-left justify-center md:justify-evenly w-full">
               <div className="w-full md:w-2/5">
-                <img src={product.imgPath} alt={product.name} />
+                <img src={product.imgPath} alt={product.name} className="w-full" />
               </div>
               <div className="w-4/5 md:w-1/2 mt-6 md:mt-1">
                 <h2>
@@ -104,7 +104,7 @@ export default function ProductDetailsPage() {
                   <button
                     type="button"
                     onClick={handleAddToCart}
-                    className="btn-primary w-[45%] md:w-48 py-2 font-bold"
+                    className="btn-primary w-[45%] md:w-44 py-2 font-bold"
                   >
                     加入購物車
                   </button>
@@ -112,7 +112,7 @@ export default function ProductDetailsPage() {
                     <button
                       type="button"
                       onClick={handleAddToCart}
-                      className="btn-primary w-full md:w-48 py-2 font-bold md:ml-5"
+                      className="btn-primary w-full md:w-44 py-2 font-bold md:ml-5"
                     >
                       立即購買
                     </button>
