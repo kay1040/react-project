@@ -17,6 +17,10 @@ export default function ShopPage() {
   const [keyword, setKeyword] = useState(location.state?.keyword);
 
   useEffect(() => {
+    setKeyword(location.state?.keyword);
+  }, [location]);
+
+  useEffect(() => {
     if (keyword) {
       const filterProducts = products?.filter((item) => item.name.indexOf(keyword) !== -1);
       setProductsList(filterProducts);

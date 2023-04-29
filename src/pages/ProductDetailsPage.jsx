@@ -19,53 +19,50 @@ export default function ProductDetailsPage() {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const favoritesList = useSelector((state) => state.favorites);
-  const [favorite, setFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const { currentUser } = useAuth();
 
   const index = isSuccess ? favoritesList.findIndex((item) => item.id === product.id) : null;
 
   useEffect(() => {
-    if (index !== -1) setFavorite(true);
-  }, [index]);
+    if (isSuccess && index !== -1) setIsFavorite(true);
+  }, [isSuccess, index]);
 
-  useEffect(() => {
-    if (currentUser?.uid) dispatch(saveFavoritesList([favoritesList, currentUser.uid]));
-  }, [currentUser, dispatch, favoritesList]);
-
-  const handleIncreaseButton = useCallback(() => {
+  const handleIncreaseCount = useCallback(() => {
     setCount((prevCount) => prevCount + 1);
-  }, [dispatch, product, count]);
+  }, [count]);
 
-  const handleDecreaseButton = useCallback(() => {
+  const handleDecreaseCount = useCallback(() => {
     if (count > 1) setCount((prevCount) => prevCount - 1);
-  }, [dispatch, product, count]);
+  }, [count]);
 
   const handleInputChange = useCallback((e) => {
     if (e.target.value > 0) {
       setCount(+e.target.value);
     }
-  }, [dispatch, product, count]);
+  }, [count]);
 
   const handleAddToCart = useCallback(() => {
-    dispatch(addToCart([product, count]));
-    if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
+    if (product) dispatch(addToCart([product, count]));
     setCount(1);
     setShowMessage(true);
     setTimeout(() => {
       setShowMessage(false);
     }, 1000);
+    if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [dispatch, product, count, currentUser]);
 
   const handleAddToFavorite = useCallback(() => {
-    if (favorite) {
+    if (isFavorite && product) {
       dispatch(removeFromFavoritesList(product));
-      setFavorite(false);
+      setIsFavorite(false);
     } else {
       dispatch(addToFavoritesList(product));
-      setFavorite(true);
+      setIsFavorite(true);
     }
-  }, [product, dispatch, favorite]);
+    if (currentUser?.uid) dispatch(saveFavoritesList(currentUser.uid));
+  }, [product, dispatch, isFavorite, currentUser]);
 
   return (
     <div className="max-w-screen-xl mx-auto mb-32">
@@ -88,7 +85,7 @@ export default function ProductDetailsPage() {
                   {product.name}
                   {' '}
                   <button type="button" className="ml-3 text-[#FA8072] cursor-pointer" onClick={handleAddToFavorite}>
-                    <FontAwesomeIcon icon={favorite ? heartActive : faHeart} />
+                    <FontAwesomeIcon icon={isFavorite ? heartActive : faHeart} />
                   </button>
                 </h2>
                 <p className="my-3 md:my-6">{product.description}</p>
@@ -97,8 +94,8 @@ export default function ProductDetailsPage() {
                 </div>
                 <Counter
                   count={count}
-                  onIncrease={handleIncreaseButton}
-                  onDecrease={handleDecreaseButton}
+                  onIncrease={handleIncreaseCount}
+                  onDecrease={handleDecreaseCount}
                   onInputChange={handleInputChange}
                   buttonStyle="w-7 h-7 text-sm"
                   inputStyle="mx-3 w-20 text-lg font-bold"

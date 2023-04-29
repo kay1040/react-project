@@ -100,14 +100,14 @@ export default function CheckoutPage() {
   };
 
   const handlePrev = () => {
-    setCurrent(current - 1);
+    setCurrent((prevCurrent) => prevCurrent - 1);
   };
 
   const handleNext = () => {
     form
       .validateFields()
       .then((values) => {
-        setCurrent(current + 1);
+        setCurrent((prevCurrent) => prevCurrent + 1);
         if (current === 1) {
           getOrderNumber().then((orderNumber) => {
             createOrder(orderNumber, values);
