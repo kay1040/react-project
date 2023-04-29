@@ -3,10 +3,11 @@ import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
 export const saveFavoritesList = createAsyncThunk(
   'favorites/saveFavoritesList',
-  async ([favoritesList, userId]) => {
+  async (uid, { getState }) => {
     try {
+      const favoritesList = getState().favorites;
       const db = getFirestore();
-      const userDoc = doc(db, 'users', userId);
+      const userDoc = doc(db, 'users', uid);
       await updateDoc(userDoc, { favoritesList });
     } catch (error) {
       return { error };
@@ -32,9 +33,16 @@ const favoritesSlice = createSlice({
     clearFavoritesList() {
       localStorage.setItem('favoritesList', JSON.stringify([]));
     },
-    updateFavoritesList(state, action) {
-      return action.payload;
-    }
+    mergeFavoritesList(state, action) {
+      const firebaseFavoritesList = [...action.payload];
+      firebaseFavoritesList.forEach((favoriteItem) => {
+        const index = state.findIndex((item) => item.id === favoriteItem.id);
+        if (index === -1) {
+          state.push(favoriteItem);
+        }
+      });
+      localStorage.setItem('favoritesList', JSON.stringify(state));
+    },
   },
 });
 
@@ -42,7 +50,7 @@ export const {
   addToFavoritesList,
   removeFromFavoritesList,
   clearFavoritesList,
-  updateFavoritesList,
+  mergeFavoritesList,
 } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
