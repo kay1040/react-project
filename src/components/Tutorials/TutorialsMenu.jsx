@@ -6,7 +6,6 @@ import './TutorialsMenu.css';
 export default function TutorialsMenu({ tutorials, videoIndex, onSelectVideo }) {
   const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(0);
   const [isShowDesc, setIsShowDesc] = useState(true);
-
   const handleToggle = (index) => {
     setSelectedTutorialIndex(index);
     if (selectedTutorialIndex === index) {

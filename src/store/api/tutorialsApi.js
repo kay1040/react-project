@@ -1,5 +1,10 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
 export const tutorialsApi = createApi({

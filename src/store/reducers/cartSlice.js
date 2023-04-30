@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getFirestore, doc, updateDoc } from 'firebase/firestore';
 
-const cartData = {
+const initialState = JSON.parse(localStorage.getItem('cartData')) || {
   cartItems: [],
   totalQuantity: 0,
   totalAmount: 0,
@@ -15,15 +15,16 @@ export const saveCartData = createAsyncThunk(
       const db = getFirestore();
       const userDoc = doc(db, 'users', uid);
       await updateDoc(userDoc, { cartData });
+      return cartData;
     } catch (error) {
-      return { error };
+      return error;
     }
-  }
+  },
 );
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: JSON.parse(localStorage.getItem('cartData')) || cartData,
+  initialState,
   reducers: {
     addToCart(state, action) {
       // 取得商品索引號

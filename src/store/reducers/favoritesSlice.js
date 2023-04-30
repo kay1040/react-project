@@ -9,10 +9,11 @@ export const saveFavoritesList = createAsyncThunk(
       const db = getFirestore();
       const userDoc = doc(db, 'users', uid);
       await updateDoc(userDoc, { favoritesList });
+      return favoritesList;
     } catch (error) {
-      return { error };
+      return error;
     }
-  }
+  },
 );
 
 const favoritesSlice = createSlice({

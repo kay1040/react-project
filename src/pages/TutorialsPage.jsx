@@ -22,9 +22,7 @@ export default function TutorialPage() {
 
   const handleSelectVideo = (index) => {
     const newList = [...data];
-    const clickedTutorial = tutorialsList[index];
-    const clickedIndex = newList.indexOf(clickedTutorial);
-    newList.splice(clickedIndex, 1);
+    const clickedTutorial = newList.splice(index, 1)[0];
     newList.unshift(clickedTutorial);
     setTutorialsList(newList);
   };

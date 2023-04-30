@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-export default function VideoPlayer({ url }) {
+export default function TutorialVideo({ url }) {
   const [isLoading, setIsLoading] = useState(true);
-
   const handlePlayerLoad = () => {
     setIsLoading(false);
   };

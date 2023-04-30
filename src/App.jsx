@@ -21,7 +21,7 @@ const ShopPage = lazy(() => import('./pages/ShopPage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
 
 export default function App() {
-  // 路由跳轉回到頁面頂端
+  // 設定路由跳轉回到頁面頂端
   useScrollToTop();
 
   return (

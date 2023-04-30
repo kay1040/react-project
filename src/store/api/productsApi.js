@@ -1,5 +1,10 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
 export const productsApi = createApi({
@@ -10,7 +15,7 @@ export const productsApi = createApi({
     getProducts: builder.query({
       async queryFn() {
         try {
-          const querySnapshot = await getDocs(query(collection(db, 'products'), orderBy('id')))
+          const querySnapshot = await getDocs(query(collection(db, 'products'), orderBy('id')));
           const products = [];
           querySnapshot?.forEach((doc) => {
             products.push(doc.data());
@@ -21,7 +26,7 @@ export const productsApi = createApi({
         }
       },
     }),
-  })
+  }),
 });
 
 export const { useGetProductsQuery } = productsApi;
