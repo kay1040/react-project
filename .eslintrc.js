@@ -18,7 +18,7 @@ module.exports = {
     ],
     'rules': {
         'react/prop-types': 'off',
-        'max-len': ['error', { 'code': 100 }],
+        'max-len': ['error', { 'code': 120 }],
         'import/no-named-as-default': 0,
         'react/jsx-wrap-multilines': 0,
         'no-param-reassign': ['error', {
