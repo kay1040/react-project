@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './TutorialsMenu.css';
 
-export default function TutorialsMenu({ tutorials, videoIndex, onVideoSelected }) {
+export default function TutorialsMenu({ tutorials, videoIndex, onSelectVideo }) {
   const [selectedTutorialIndex, setSelectedTutorialIndex] = useState(0);
   const [isShowDesc, setIsShowDesc] = useState(true);
 
@@ -36,7 +36,15 @@ export default function TutorialsMenu({ tutorials, videoIndex, onVideoSelected }
           <div className={selectedTutorialIndex === index && isShowDesc ? 'desc-active' : 'desc'}>
             <p className="text-sm py-3">{video.description}</p>
             {videoIndex !== index && (
-              <button type="button" onClick={() => { onVideoSelected(index); window.scrollTo(0, 0); }} className="text-darkslategray font-bold py-3">
+              <button
+                type="button"
+                className="text-darkslategray font-bold py-3"
+                onClick={() => {
+                  onSelectVideo(index);
+                  window.scrollTo(0, 0);
+                  handleToggle(0);
+                }}
+              >
                 觀看教學影片
               </button>
             )}
