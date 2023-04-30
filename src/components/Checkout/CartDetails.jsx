@@ -9,14 +9,7 @@ import {
 import Confirm from '../UI/ConfirmModal';
 import Counter from '../UI/Counter';
 
-export default function CartDetails(props) {
-  const {
-    item,
-    onClose,
-    imgStyle,
-    buttonStyle,
-    inputStyle,
-  } = props;
+export default function CartDetails({ item, onClose, styles }) {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -52,7 +45,7 @@ export default function CartDetails(props) {
     <>
       {showConfirm && <Confirm confirmText="確定要將商品移出購物車嗎？" onCancel={handleCancel} onConfirm={handleConfirm} />}
       <div className="flex p-2.5 border-b border-inherit bg-white">
-        <div className={imgStyle}>
+        <div className={styles.productImg}>
           <Link to={`/shop/product/${item.id}`} onClick={onClose}>
             <img
               className="w-full"
@@ -72,8 +65,8 @@ export default function CartDetails(props) {
               onIncrement={handleIncrement}
               onDecrement={handleDecrement}
               onInputChange={handleInputChange}
-              buttonStyle={buttonStyle}
-              inputStyle={inputStyle}
+              buttonStyle={styles.counterButton}
+              inputStyle={styles.counterInput}
             />
           </div>
         </div>

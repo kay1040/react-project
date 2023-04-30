@@ -5,13 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './CartPreview.module.css';
 import Backdrop from '../UI/Backdrop';
-// import Counter from '../UI/Counter';
-import {
-  // increaseItem,
-  // decreaseItem,
-  // getInputValue,
-  saveCartData,
-} from '../../store/reducers/cartSlice';
+import { saveCartData } from '../../store/reducers/cartSlice';
 import useAuth from '../../hooks/useAuth';
 import CartDetails from './CartDetails';
 
@@ -19,6 +13,12 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
   const dispatch = useDispatch();
   const [isShow, setIsShow] = useState(false);
   const { currentUser } = useAuth();
+
+  const CartDetailsStyles = {
+    productImg: 'w-28 mr-4',
+    counterButton: 'w-4 h-4 text-xs',
+    counterInput: 'mx-1 w-12 text-basic font-bold',
+  };
 
   const handleClose = (e) => {
     setIsShow(false);
@@ -64,9 +64,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
                   key={item.id}
                   item={item}
                   onClose={handleClose}
-                  imgStyle="w-28 mr-4"
-                  buttonStyle="w-4 h-4 text-xs"
-                  inputStyle="mx-1 w-12 text-basic font-bold"
+                  styles={CartDetailsStyles}
                 />
               ))}
               <Link to="/shop/cart" onClick={handleClose}>
