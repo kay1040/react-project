@@ -8,7 +8,11 @@ export default function TutorialVideo({ url }) {
 
   return (
     <div className="w-full h-full aspect-w-16 aspect-h-9 md:w-[800px] md:h-[450px]">
-      {isLoading && <div className="absolute inset-0 flex items-center justify-center bg-black text-white text-lg">影片載入中...</div>}
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black text-white text-lg">
+          影片載入中...
+        </div>
+      )}
       <iframe
         src={url}
         title="YouTube video player"

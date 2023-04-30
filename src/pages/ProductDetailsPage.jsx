@@ -76,7 +76,10 @@ export default function ProductDetailsPage() {
               <Link to="/shop" className="hover:text-[#599b9b] after:content-['_/_'] after:text-darkslategray">商店</Link>
               {product.name}
             </div>
-            <div className="flex flex-col md:flex-row items-center md:items-start text-left justify-center md:justify-evenly w-full">
+            <div
+              className="flex flex-col md:flex-row items-center md:items-start
+            text-left justify-center md:justify-evenly w-full"
+            >
               <div className="w-full md:w-2/5">
                 <img src={product.imgPath} alt={product.name} className="w-full" />
               </div>

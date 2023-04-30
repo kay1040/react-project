@@ -68,7 +68,13 @@ export default function ShopPage() {
         ? (
           <div className="mt-24 text-center">
             <p className="text-lg mb-3">查無此商品</p>
-            <Link to="/shop" className="text-base font-bold text-[#599b9b]" onClick={() => setProductsList(products)}>前往商店</Link>
+            <Link
+              to="/shop"
+              className="text-base font-bold text-[#599b9b]"
+              onClick={() => setProductsList(products)}
+            >
+              前往商店
+            </Link>
           </div>
         )
         : (

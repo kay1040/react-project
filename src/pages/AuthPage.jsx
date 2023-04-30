@@ -158,7 +158,9 @@ export default function AuthPage() {
               </div>
             )}
           <div>
-            <button type="submit" className="btn-primary w-64 h-10 text-base font-bold">{isLoginForm ? '登入' : '註冊'}</button>
+            <button type="submit" className="btn-primary w-64 h-10 text-base font-bold">
+              {isLoginForm ? '登入' : '註冊'}
+            </button>
           </div>
         </form>
         <div className="mt-4 text-center">

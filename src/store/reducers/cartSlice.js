@@ -80,7 +80,8 @@ const cartSlice = createSlice({
       const input = action.payload[1];
       state.totalQuantity = state.totalQuantity - state.cartItems[index].quantity + input;
       state.cartItems[index].quantity = input;
-      state.totalAmount = state.totalAmount - state.cartItems[index].subtotal + state.cartItems[index].price * state.cartItems[index].quantity;
+      state.totalAmount = state.totalAmount - state.cartItems[index].subtotal
+      + state.cartItems[index].price * state.cartItems[index].quantity;
       state.cartItems[index].subtotal = state.cartItems[index].price * state.cartItems[index].quantity;
       localStorage.setItem('cartData', JSON.stringify(state));
       // 數量歸零移除商品

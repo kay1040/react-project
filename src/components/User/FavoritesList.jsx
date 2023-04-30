@@ -10,27 +10,27 @@ import ConfirmModal from '../UI/ConfirmModal';
 export default function FavoritesList() {
   const favoritesList = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
 
   const handleShowConfirm = (item) => {
-    setShowConfirm(true);
+    setIsShowConfirm(true);
     setDeleteItem({ ...item });
   };
 
   const handleCancel = (e) => {
     e.stopPropagation();
-    setShowConfirm(false);
+    setIsShowConfirm(false);
   };
 
   const handleConfirm = () => {
     dispatch(removeFromFavoritesList(deleteItem));
-    setShowConfirm(false);
+    setIsShowConfirm(false);
   };
 
   return (
     <>
-      {showConfirm && (
+      {isShowConfirm && (
         <ConfirmModal
           confirmText="確定要刪除這個收藏嗎？"
           onCancel={handleCancel}
