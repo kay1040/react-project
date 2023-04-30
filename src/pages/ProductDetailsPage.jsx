@@ -38,7 +38,7 @@ export default function ProductDetailsPage() {
   }, [count]);
 
   const handleInputChange = useCallback((e) => {
-    if (e.target.value > 0) {
+    if (+e.target.value > 0 && !Number.isNaN(+e.target.value)) {
       setCount(+e.target.value);
     }
   }, [count]);
@@ -94,8 +94,8 @@ export default function ProductDetailsPage() {
                 </div>
                 <Counter
                   count={count}
-                  onIncrease={handleIncreaseCount}
-                  onDecrease={handleDecreaseCount}
+                  onIncrement={handleIncreaseCount}
+                  onDecrement={handleDecreaseCount}
                   onInputChange={handleInputChange}
                   buttonStyle="w-7 h-7 text-sm"
                   inputStyle="mx-3 w-20 text-lg font-bold"

@@ -5,14 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './CartPreview.module.css';
 import Backdrop from '../UI/Backdrop';
-import Counter from '../UI/Counter';
+// import Counter from '../UI/Counter';
 import {
-  increaseItem,
-  decreaseItem,
-  getInputValue,
+  // increaseItem,
+  // decreaseItem,
+  // getInputValue,
   saveCartData,
 } from '../../store/reducers/cartSlice';
 import useAuth from '../../hooks/useAuth';
+import CartDetails from './CartDetails';
 
 export default function CartPreview({ onCloseCartPreview, isShowCartPreview, cart }) {
   const dispatch = useDispatch();
@@ -58,30 +59,15 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
           )
           : (
             <div>
-              {cart.cartItems?.map((item, index) => (
-                <div className={styles.cartData} key={item.id}>
-                  <div className={styles.imgWrapper}>
-                    <Link to={`/shop/product/${item.id}`} onClick={handleClose}>
-                      <img src={item.imgPath} alt={item.name} />
-                    </Link>
-                  </div>
-                  <div className={styles.textWrapper}>
-                    <div className={styles.itemName}>{item.name}</div>
-                    <div className={styles.priceWrapper}>
-                      <div className={styles.price}>
-                        {cart.cartItems[index].subtotal.toLocaleString('zh-TW')}
-                      </div>
-                      <Counter
-                        count={item.quantity}
-                        onIncrease={() => { dispatch(increaseItem(item)); }}
-                        onDecrease={() => { dispatch(decreaseItem(item)); }}
-                        onInputChange={(e) => { dispatch(getInputValue([item, +e.target.value])); }}
-                        buttonStyle="w-4 h-4 text-xs"
-                        inputStyle="mx-1 w-12 text-basic font-bold"
-                      />
-                    </div>
-                  </div>
-                </div>
+              {cart.cartItems?.map((item) => (
+                <CartDetails
+                  key={item.id}
+                  item={item}
+                  onClose={handleClose}
+                  imgStyle="w-28 mr-4"
+                  buttonStyle="w-4 h-4 text-xs"
+                  inputStyle="mx-1 w-12 text-basic font-bold"
+                />
               ))}
               <Link to="/shop/cart" onClick={handleClose}>
                 <button type="button" className={styles.checkout}>前往結帳</button>

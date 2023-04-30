@@ -6,8 +6,8 @@ import styles from './Counter.module.css';
 function Counter(props) {
   const {
     count,
-    onDecrease,
-    onIncrease,
+    onDecrement,
+    onIncrement,
     onInputChange,
     buttonStyle,
     inputStyle,
@@ -15,11 +15,11 @@ function Counter(props) {
 
   return (
     <div className={styles.counter}>
-      <button type="button" className={`${styles.sub} ${buttonStyle}`} onClick={onDecrease}>
+      <button type="button" className={`${styles.sub} ${buttonStyle}`} onClick={onDecrement}>
         <FontAwesomeIcon icon={faMinus} />
       </button>
       <input type="text" value={count} onChange={onInputChange} className={`${styles.count} ${inputStyle}`} />
-      <button type="button" className={`${styles.add} ${buttonStyle}`} onClick={onIncrease}>
+      <button type="button" className={`${styles.add} ${buttonStyle}`} onClick={onIncrement}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </div>

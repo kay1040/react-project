@@ -44,37 +44,6 @@
     margin-top: 25px;
 }
 
-.imgWrapper {
-    width: 100px;
-    margin-right: 20px;
-}
-
-.textWrapper {
-    text-align: left;
-    flex: auto;
-    font-size: 16px;
-}
-
-.itemName{
-    margin-top: 8px;
-}
-
-.priceWrapper {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-}
-
-.price {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.price::before {
-    content: 'NT$';
-}
-
 .goShop,
 .checkout{
     border: none;

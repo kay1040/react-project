@@ -9,20 +9,29 @@ import {
 import Confirm from '../UI/ConfirmModal';
 import Counter from '../UI/Counter';
 
-export default function CartDetails({ item, index }) {
+export default function CartDetails(props) {
+  const {
+    item,
+    onClose,
+    imgStyle,
+    buttonStyle,
+    inputStyle,
+  } = props;
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleIncreaseButton = useCallback(() => {
+  const handleIncrement = useCallback(() => {
     dispatch(increaseItem(item));
   }, [item, dispatch]);
 
-  const handleDecreaseButton = useCallback(() => {
+  const handleDecrement = useCallback(() => {
     dispatch(decreaseItem(item));
   }, [item, dispatch]);
 
   const handleInputChange = useCallback((e) => {
-    dispatch(getInputValue([item, +e.target.value]));
+    if (+e.target.value > 0 && !Number.isNaN(+e.target.value)) {
+      dispatch(getInputValue([item, +e.target.value]));
+    }
   }, [item, dispatch]);
 
   const handleShowConfirm = (e) => {
@@ -43,8 +52,8 @@ export default function CartDetails({ item, index }) {
     <>
       {showConfirm && <Confirm confirmText="確定要將商品移出購物車嗎？" onCancel={handleCancel} onConfirm={handleConfirm} />}
       <div className="flex p-2.5 border-b border-inherit bg-white">
-        <div className="w-40 mb:w-52 mr-4">
-          <Link to={`/shop/product/${item.id}`}>
+        <div className={imgStyle}>
+          <Link to={`/shop/product/${item.id}`} onClick={onClose}>
             <img
               className="w-full"
               src={item.imgPath}
@@ -59,13 +68,12 @@ export default function CartDetails({ item, index }) {
               {item.subtotal.toLocaleString('zh-TW')}
             </div>
             <Counter
-              index={index}
               count={item.quantity}
-              onIncrease={handleIncreaseButton}
-              onDecrease={handleDecreaseButton}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
               onInputChange={handleInputChange}
-              buttonStyle="w-5 h-5 text-xs"
-              inputStyle="mx-2 md:mx-3 w-8 md:w-12 text-basic font-bold"
+              buttonStyle={buttonStyle}
+              inputStyle={inputStyle}
             />
           </div>
         </div>
