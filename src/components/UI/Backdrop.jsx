@@ -9,7 +9,7 @@ export default function Backdrop(props) {
   useDisableScroll(true);
 
   return ReactDOM.createPortal(
-    <div {...props} className={`fixed inset-0 bg-black/[.3] z-[9999]`} />,
+    <div {...props} className={`mask fixed inset-0 bg-black/[.3] z-[9999]`} />,
     backdropRoot,
   );
 }

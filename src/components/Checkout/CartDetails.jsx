@@ -13,20 +13,6 @@ export default function CartDetails({ item, onClose, styles }) {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleIncrement = useCallback(() => {
-    dispatch(increaseItem(item));
-  }, [item, dispatch]);
-
-  const handleDecrement = useCallback(() => {
-    dispatch(decreaseItem(item));
-  }, [item, dispatch]);
-
-  const handleInputChange = useCallback((e) => {
-    if (+e.target.value > 0 && !Number.isNaN(+e.target.value)) {
-      dispatch(getInputValue([item, +e.target.value]));
-    }
-  }, [item, dispatch]);
-
   const handleShowConfirm = (e) => {
     e.stopPropagation();
     setShowConfirm(true);
@@ -35,7 +21,27 @@ export default function CartDetails({ item, onClose, styles }) {
   const handleCancel = (e) => {
     e.stopPropagation();
     setShowConfirm(false);
+    // 禁止頁面滾動
+    document.body.style.overflowY = 'hidden';
   };
+
+  const handleIncrement = useCallback(() => {
+    dispatch(increaseItem(item));
+  }, [item, dispatch]);
+
+  const handleDecrement = useCallback(() => {
+    if (item.quantity <= 1) {
+      setShowConfirm(true);
+    } else {
+      dispatch(decreaseItem(item));
+    }
+  }, [item, dispatch]);
+
+  const handleInputChange = useCallback((e) => {
+    if (+e.target.value > 0 && !Number.isNaN(+e.target.value)) {
+      dispatch(getInputValue([item, +e.target.value]));
+    }
+  }, [item, dispatch]);
 
   const handleConfirm = useCallback(() => {
     dispatch(removeItem(item));

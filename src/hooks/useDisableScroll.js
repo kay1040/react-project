@@ -10,8 +10,12 @@ export default function useDisableScroll(disable) {
       document.body.addEventListener('touchmove', handleTouchMove, { passive: false });
     }
     return () => {
-      document.body.style.overflowY = 'auto';
-      document.body.removeEventListener('touchmove', handleTouchMove);
+      const count = document.querySelectorAll('.mask').length;
+      // 若沒有遮罩層才顯示滾動條
+      if (count < 1) {
+        document.body.style.overflowY = 'auto';
+        document.body.removeEventListener('touchmove', handleTouchMove);
+      }
     };
   }, [disable]);
 }

@@ -69,9 +69,9 @@ const cartSlice = createSlice({
       state.totalAmount -= state.cartItems[index].price;
       localStorage.setItem('cartData', JSON.stringify(state));
       // 數量歸零移除商品
-      if (state.cartItems[index].quantity === 0) {
-        state.cartItems.splice(state.cartItems.findIndex((item) => item.id === action.payload.id), 1);
-      }
+      // if (state.cartItems[index].quantity === 0) {
+      //   state.cartItems.splice(state.cartItems.findIndex((item) => item.id === action.payload.id), 1);
+      // }
       localStorage.setItem('cartData', JSON.stringify(state));
     },
     // 設定Input值給商品數量
