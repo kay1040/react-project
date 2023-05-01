@@ -14,8 +14,8 @@ export default function useDisableScroll(disable) {
       // 若沒有遮罩層才顯示滾動條
       if (count < 1) {
         document.body.style.overflowY = 'auto';
-        document.body.removeEventListener('touchmove', handleTouchMove);
       }
+      document.body.removeEventListener('touchmove', handleTouchMove, { passive: false });
     };
   }, [disable]);
 }
