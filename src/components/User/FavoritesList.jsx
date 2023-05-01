@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -6,12 +6,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
+import Message from '../UI/Message';
 
 export default function FavoritesList() {
   const favoritesList = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
   const [isShowConfirm, setIsShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 1500);
+    }
+  }, [message]);
 
   const handleShowConfirm = (item) => {
     setIsShowConfirm(true);
@@ -37,6 +47,7 @@ export default function FavoritesList() {
           onConfirm={handleConfirm}
         />
       )}
+      {message && <Message message={message} />}
       <div className="mx-auto mb-24 w-11/12 md:w-3/4 border border-slate-200 rounded rounded-tl-none p-4 md:p-8">
         {favoritesList.length === 0
           ? (
@@ -76,6 +87,7 @@ export default function FavoritesList() {
                         onClick={() => {
                           const count = 1;
                           dispatch(addToCart([item, count]));
+                          setMessage('商品已加入購物車');
                         }}
                       >
                         加入購物車

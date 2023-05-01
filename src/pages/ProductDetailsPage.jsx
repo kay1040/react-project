@@ -20,7 +20,7 @@ export default function ProductDetailsPage() {
   const [count, setCount] = useState(1);
   const favoritesList = useSelector((state) => state.favorites);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState('');
   const { currentUser } = useAuth();
 
   const index = isSuccess ? favoritesList.findIndex((item) => item.id === product.id) : null;
@@ -28,6 +28,14 @@ export default function ProductDetailsPage() {
   useEffect(() => {
     if (isSuccess && index !== -1) setIsFavorite(true);
   }, [isSuccess, index]);
+
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 1500);
+    }
+  }, [message]);
 
   const handleIncreaseCount = useCallback(() => {
     setCount((prevCount) => prevCount + 1);
@@ -46,10 +54,7 @@ export default function ProductDetailsPage() {
   const handleAddToCart = useCallback(() => {
     if (product) dispatch(addToCart([product, count]));
     setCount(1);
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 1000);
+    setMessage('商品已加入購物車');
     if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [dispatch, product, count, currentUser]);
 
@@ -66,7 +71,7 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto mb-32">
-      {showMessage && <Message message="商品已加入購物車" />}
+      {message && <Message message={message} />}
       {isLoading && <Loading />}
       {isSuccess
         && (
