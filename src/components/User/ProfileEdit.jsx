@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { isEqual } from 'lodash';
 import {
   getAuth,
   updatePassword,
@@ -7,6 +9,8 @@ import {
 } from 'firebase/auth';
 import Message from '../UI/Message';
 import useErrorMessage from '../../hooks/useErrorMessage';
+import ConfirmModal from '../UI/ConfirmModal';
+import history from '../../history';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData, onUpdateData } = props;
@@ -18,6 +22,31 @@ export default function ProfileEdit(props) {
     newPassword: '',
     passwordConfirmation: '',
   });
+  const [isEdited, setIsEdited] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState(false);
+  const navigate = useNavigate();
+  const [nextLocation, setNextLocation] = useState(null);
+
+  let unblock;
+  useEffect(() => {
+    if (isEdited) {
+      unblock = history.block((tx) => {
+        setIsShowConfirm(true);
+        setNextLocation(tx.location.pathname);
+        if (setIsShowConfirm) {
+          unblock();
+        }
+      });
+    }
+  }, [isEdited, history]);
+
+  useEffect(() => {
+    if (isEqual(userInputData, userData)) {
+      setIsEdited(false);
+    } else {
+      setIsEdited(true);
+    }
+  }, [userInputData, userData]);
 
   const handleInputChange = (key, e) => {
     setUserInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
@@ -54,7 +83,7 @@ export default function ProfileEdit(props) {
     }
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = () => {
     if (showChangePassword) {
       updateUserPassword();
     } else {
@@ -63,9 +92,27 @@ export default function ProfileEdit(props) {
     }
   };
 
+  const handleConfirm = () => {
+    setIsShowConfirm(false);
+    navigate(nextLocation);
+  };
+
+  const handleCancel = (e) => {
+    e.stopPropagation();
+    setIsShowConfirm(false);
+    setIsEdited(false);
+  };
+
   return (
     <>
       {message && <Message message={message} />}
+      {isShowConfirm && isEdited && (
+        <ConfirmModal
+          confirmText="編輯尚未儲存，確定要離開嗎？"
+          onCancel={handleCancel}
+          onConfirm={handleConfirm}
+        />
+      )}
       <div>
         <div className="flex mb-5 items-center">
           <div className="w-24">e-mail</div>
