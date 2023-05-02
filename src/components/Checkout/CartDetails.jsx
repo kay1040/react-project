@@ -21,8 +21,6 @@ export default function CartDetails({ item, onClose, styles }) {
   const handleCancel = (e) => {
     e.stopPropagation();
     setShowConfirm(false);
-    // 禁止頁面滾動
-    document.body.style.overflowY = 'hidden';
   };
 
   const handleIncrement = useCallback(() => {

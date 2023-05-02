@@ -58,19 +58,21 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
             </div>
           )
           : (
-            <div>
-              {cart.cartItems?.map((item) => (
-                <CartDetails
-                  key={item.id}
-                  item={item}
-                  onClose={handleClose}
-                  styles={CartDetailsStyles}
-                />
-              ))}
+            <>
+              <div className={styles.cartDataWrapper}>
+                {cart.cartItems?.map((item) => (
+                  <CartDetails
+                    key={item.id}
+                    item={item}
+                    onClose={handleClose}
+                    styles={CartDetailsStyles}
+                  />
+                ))}
+              </div>
               <Link to="/shop/cart" onClick={handleClose}>
                 <button type="button" className={styles.checkout}>前往結帳</button>
               </Link>
-            </div>
+            </>
           )}
       </div>
     </Backdrop>
