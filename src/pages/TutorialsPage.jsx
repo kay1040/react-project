@@ -21,10 +21,8 @@ export default function TutorialPage() {
   }, [isSuccess]);
 
   const handleSelectVideo = (index) => {
-    const newList = [...data];
-    const clickedTutorial = newList.splice(index, 1)[0];
-    newList.unshift(clickedTutorial);
-    setTutorialsList(newList);
+    const clickedTutorial = tutorialsList[index];
+    setTutorialsList([clickedTutorial, ...data.filter((tutorial) => tutorial.id !== clickedTutorial.id)]);
   };
 
   return (
