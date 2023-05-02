@@ -102,6 +102,9 @@ export default function NavBar() {
           <div className={styles.search}>
             <SearchProducts />
           </div>
+          <Link to="/user/profile" className={styles.user}>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
           <button
             type="button"
             className={styles.cart}
@@ -120,11 +123,6 @@ export default function NavBar() {
                 cart={cart}
               />)}
           </button>
-          <div className={styles.user}>
-            <Link to="/user/profile">
-              <FontAwesomeIcon icon={faUser} />
-            </Link>
-          </div>
         </div>
       </nav>
     </header>

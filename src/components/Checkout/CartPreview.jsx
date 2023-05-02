@@ -15,9 +15,9 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
   const { currentUser } = useAuth();
 
   const CartDetailsStyles = {
-    productImg: 'w-28 mr-4',
+    productImg: 'w-32 mr-4',
     counterButton: 'w-4 h-4 text-xs',
-    counterInput: 'mx-1 w-12 text-basic font-bold',
+    counterInput: 'mx-1 w-10 text-basic font-bold',
   };
 
   const handleClose = (e) => {

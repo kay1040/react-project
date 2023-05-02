@@ -7,7 +7,7 @@
     height: 70px;
     z-index: 99;
     user-select: none;
-    padding-right: 17px;
+    padding-right: 4px;
 }
 
 .navbarWrapper a {
@@ -129,9 +129,9 @@
 
 .totalQuantity {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
     text-align: center;
     background-color: #e60012;
     border-radius: 50%;
@@ -139,14 +139,11 @@
     font-weight: bold;
     font-size: 10px;
     margin-top: -4px;
-    margin-left: 18px;
+    margin-left: 16px;
 }
 
 .rightNav {
     display: none;
-}
-
-.rightNav a {
     font-size: 20px;
 }
 
