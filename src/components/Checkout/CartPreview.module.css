@@ -33,6 +33,7 @@
 .cartDataWrapper {
     height: calc(100vh - 160px);
     overflow: auto;
+    background-color: #fff;
 }
 
 .cartDataWrapper::-webkit-scrollbar {
@@ -49,17 +50,12 @@
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-.cartData {
-    display: flex;
-    height: 100px;
-    padding: 10px;
-    align-content: space-around;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-}
-
 .noData {
-    margin-top: 25px;
+    height: 100%;
+    padding: 10px;
+    padding-top: 25px;
+    border-bottom: 1px solid #ddd;
+    
 }
 
 .goShop,

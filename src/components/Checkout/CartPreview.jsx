@@ -49,7 +49,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
         {(cart.cartItems.length === 0)
           ? (
             <div>
-              <div className={styles.cartData}>
+              <div className={styles.cartDataWrapper}>
                 <p className={styles.noData}>您的購物車內沒有商品</p>
               </div>
               <Link to="/shop/" onClick={handleClose}>
