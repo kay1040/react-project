@@ -35,8 +35,8 @@ export default function NavBar() {
     setIsShowLeftMenu((preState) => !preState);
   };
 
-  const handleCloseLeftMenu = useCallback(() => {
-    setIsShowLeftMenu(false);
+  const handleCloseLeftMenu = useCallback((event) => {
+    if (event.target.tagName === 'a') setIsShowLeftMenu(false);
   }, []);
 
   const handleCloseCartPreview = () => {
@@ -62,25 +62,29 @@ export default function NavBar() {
           </ul>
 
           {/* 菜單 */}
-          <ul className={isShowLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}>
+          <ul
+            role="presentation"
+            className={isShowLeftMenu ? `${styles.nav} ${styles.navActive}` : styles.nav}
+            onClick={handleCloseLeftMenu}
+          >
             <li className={styles.login}>
-              <Link to="/user/profile" onClick={handleCloseLeftMenu}>
+              <Link to="/user/profile">
                 {isLogged ? '會員資料' : '登入 / 註冊'}
               </Link>
             </li>
-            <li><Link to="/about" onClick={handleCloseLeftMenu}>關於我們</Link></li>
-            <li><Link to="/intro" onClick={handleCloseLeftMenu}>認識纏花</Link></li>
-            <li><Link to="/tutorials" onClick={handleCloseLeftMenu}>纏花教學</Link></li>
-            <li><Link to="/shop" onClick={handleCloseLeftMenu}>纏花商店</Link></li>
+            <li><Link to="/about">關於我們</Link></li>
+            <li><Link to="/intro">認識纏花</Link></li>
+            <li><Link to="/tutorials">纏花教學</Link></li>
+            <li><Link to="/shop">纏花商店</Link></li>
             <li className={styles.search}>
-              <SearchProducts onCloseLeftMenu={handleCloseLeftMenu} />
+              <SearchProducts onCloseLeftMenu={() => setIsShowLeftMenu(false)} />
             </li>
           </ul>
         </div>
 
         {/* logo */}
         <div className={styles.logo}>
-          <Link to="/" onClick={handleCloseLeftMenu}>
+          <Link to="/" onClick={() => setIsShowLeftMenu(false)}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
