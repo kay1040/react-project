@@ -65,12 +65,12 @@ export default function AuthPage() {
         const userData = userSnap?.data();
         const firebaseCartData = userData?.cartData;
         if (firebaseCartData) {
-          dispatch(mergeCartData(userData.cartData));
+          dispatch(mergeCartData(firebaseCartData));
         } else {
           dispatch(saveCartData(auth.currentUser.uid));
         }
         const firebaseFavoritesList = userData?.favoritesList;
-        if (firebaseFavoritesList) {
+        if (firebaseFavoritesList.length) {
           dispatch(mergeFavoritesList(firebaseFavoritesList));
         } else {
           dispatch(saveFavoritesList(auth.currentUser.uid));
