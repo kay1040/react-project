@@ -11,6 +11,7 @@ import Loading from '../components/UI/Loading';
 import Counter from '../components/UI/Counter';
 import Message from '../components/UI/Message';
 import useAuth from '../hooks/useAuth';
+import useMessageTimer from '../hooks/useMessageTimer';
 
 export default function ProductDetailsPage() {
   const { data: products, isSuccess, isLoading } = useGetProductsQuery();
@@ -20,7 +21,7 @@ export default function ProductDetailsPage() {
   const [count, setCount] = useState(1);
   const favoritesList = useSelector((state) => state.favorites);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useMessageTimer('');
   const { currentUser } = useAuth();
 
   const index = isSuccess ? favoritesList.findIndex((item) => item.id === product.id) : null;
@@ -28,14 +29,6 @@ export default function ProductDetailsPage() {
   useEffect(() => {
     if (isSuccess && index !== -1) setIsFavorite(true);
   }, [isSuccess, index]);
-
-  useEffect(() => {
-    if (message) {
-      setTimeout(() => {
-        setMessage('');
-      }, 1500);
-    }
-  }, [message]);
 
   const handleIncreaseCount = useCallback(() => {
     setCount((prevCount) => prevCount + 1);

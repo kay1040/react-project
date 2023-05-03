@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -7,21 +7,14 @@ import { removeFromFavoritesList } from '../../store/reducers/favoritesSlice';
 import { addToCart } from '../../store/reducers/cartSlice';
 import ConfirmModal from '../UI/ConfirmModal';
 import Message from '../UI/Message';
+import useMessageTimer from '../../hooks/useMessageTimer';
 
 export default function FavoritesList() {
   const favoritesList = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
   const [isShowConfirm, setIsShowConfirm] = useState(false);
   const [deleteItem, setDeleteItem] = useState(null);
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    if (message) {
-      setTimeout(() => {
-        setMessage('');
-      }, 1500);
-    }
-  }, [message]);
+  const [message, setMessage] = useMessageTimer('');
 
   const handleShowConfirm = (item) => {
     setIsShowConfirm(true);

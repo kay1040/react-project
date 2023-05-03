@@ -16,10 +16,11 @@ import Loading from '../components/UI/Loading';
 import useErrorMessage from '../hooks/useErrorMessage';
 import { mergeCartData, saveCartData } from '../store/reducers/cartSlice';
 import { mergeFavoritesList, saveFavoritesList } from '../store/reducers/favoritesSlice';
+import useMessageTimer from '../hooks/useMessageTimer';
 
 export default function AuthPage() {
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useMessageTimer('', 2000);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -41,14 +42,6 @@ export default function AuthPage() {
       [key]: prevState[key] === 'password' ? 'text' : 'password',
     }));
   };
-
-  useEffect(() => {
-    if (message) {
-      setTimeout(() => {
-        setMessage('');
-      }, 3000);
-    }
-  }, [message]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

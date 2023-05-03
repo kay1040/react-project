@@ -11,11 +11,12 @@ import Message from '../UI/Message';
 import useErrorMessage from '../../hooks/useErrorMessage';
 import ConfirmModal from '../UI/ConfirmModal';
 import history from '../../history';
+import useMessageTimer from '../../hooks/useMessageTimer';
 
 export default function ProfileEdit(props) {
   const { onCancel, userData, onUpdateData } = props;
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useMessageTimer('');
   const [userInputData, setUserInputData] = useState(userData);
   const [passwordInputData, setPasswordInputData] = useState({
     currentPassword: '',
@@ -55,14 +56,6 @@ export default function ProfileEdit(props) {
   const handlePasswordChange = (key, value) => {
     setPasswordInputData((prevState) => ({ ...prevState, [key]: value }));
   };
-
-  useEffect(() => {
-    if (message) {
-      setTimeout(() => {
-        setMessage('');
-      }, 3000);
-    }
-  }, [message]);
 
   const updateUserPassword = async () => {
     try {
