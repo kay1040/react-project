@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -18,10 +18,6 @@ export default function FavoritesList() {
   const [message, setMessage] = useMessageTimer('');
   const { currentUser } = useAuth();
 
-  useEffect(() => {
-    if (currentUser?.uid) dispatch(saveFavoritesList(currentUser.uid));
-  }, [dispatch, currentUser]);
-
   const handleShowConfirm = (item) => {
     setIsShowConfirm(true);
     setDeleteItem({ ...item });
@@ -34,6 +30,7 @@ export default function FavoritesList() {
 
   const handleConfirm = () => {
     dispatch(removeFromFavoritesList(deleteItem));
+    if (currentUser?.uid) dispatch(saveFavoritesList(currentUser.uid));
     setIsShowConfirm(false);
   };
 

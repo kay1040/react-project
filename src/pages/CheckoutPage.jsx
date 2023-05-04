@@ -44,7 +44,7 @@ export default function CheckoutPage() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() => () => {
     if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [currentUser, dispatch, cart]);
 
