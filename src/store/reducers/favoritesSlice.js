@@ -33,6 +33,7 @@ const favoritesSlice = createSlice({
     },
     clearFavoritesList() {
       localStorage.setItem('favoritesList', JSON.stringify([]));
+      return [];
     },
     mergeFavoritesList(state, action) {
       const firebaseFavoritesList = [...action.payload];

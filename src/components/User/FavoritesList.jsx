@@ -20,7 +20,7 @@ export default function FavoritesList() {
 
   useEffect(() => {
     if (currentUser?.uid) dispatch(saveFavoritesList(currentUser.uid));
-  }, [dispatch, favoritesList, currentUser]);
+  }, [dispatch, currentUser]);
 
   const handleShowConfirm = (item) => {
     setIsShowConfirm(true);
