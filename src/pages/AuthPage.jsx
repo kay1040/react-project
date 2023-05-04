@@ -64,17 +64,11 @@ export default function AuthPage() {
         const userSnap = await getDoc(userDoc);
         const userData = userSnap?.data();
         const firebaseCartData = userData?.cartData;
-        if (firebaseCartData) {
-          dispatch(mergeCartData(firebaseCartData));
-        } else {
-          dispatch(saveCartData(auth.currentUser.uid));
-        }
+        if (firebaseCartData) dispatch(mergeCartData(firebaseCartData));
+        dispatch(saveCartData(auth.currentUser.uid));
         const firebaseFavoritesList = userData?.favoritesList;
-        if (firebaseFavoritesList.length) {
-          dispatch(mergeFavoritesList(firebaseFavoritesList));
-        } else {
-          dispatch(saveFavoritesList(auth.currentUser.uid));
-        }
+        if (firebaseFavoritesList.length) dispatch(mergeFavoritesList(firebaseFavoritesList));
+        dispatch(saveFavoritesList(auth.currentUser.uid));
       } catch (error) {
         setMessage(useErrorMessage(error));
       }
