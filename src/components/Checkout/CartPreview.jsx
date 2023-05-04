@@ -29,7 +29,7 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
     setIsShow(isShowCartPreview);
   }, [isShowCartPreview]);
 
-  useEffect(() => {
+  useEffect(() => () => {
     if (currentUser?.uid) dispatch(saveCartData(currentUser.uid));
   }, [currentUser, dispatch, cart]);
 
@@ -48,31 +48,27 @@ export default function CartPreview({ onCloseCartPreview, isShowCartPreview, car
         </div>
         {(cart.cartItems.length === 0)
           ? (
-            <div>
-              <div className={styles.cartDataWrapper}>
-                <p className={styles.noData}>您的購物車內沒有商品</p>
-              </div>
+            <div className={styles.cartDataWrapper}>
+              <p className={styles.noData}>您的購物車內沒有商品</p>
               <Link to="/shop/" onClick={handleClose}>
                 <button type="button" className={styles.goShop}>前往商店</button>
               </Link>
             </div>
           )
           : (
-            <>
-              <div className={styles.cartDataWrapper}>
-                {cart.cartItems?.map((item) => (
-                  <CartDetails
-                    key={item.id}
-                    item={item}
-                    onClose={handleClose}
-                    styles={CartDetailsStyles}
-                  />
-                ))}
-              </div>
+            <div className={styles.cartDataWrapper}>
+              {cart.cartItems?.map((item) => (
+                <CartDetails
+                  key={item.id}
+                  item={item}
+                  onClose={handleClose}
+                  styles={CartDetailsStyles}
+                />
+              ))}
               <Link to="/shop/cart" onClick={handleClose}>
                 <button type="button" className={styles.checkout}>前往結帳</button>
               </Link>
-            </>
+            </div>
           )}
       </div>
     </Backdrop>
