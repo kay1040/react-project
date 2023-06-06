@@ -116,5 +116,10 @@
 
 ### 我的收藏
 
-![myFavorites](https://github.com/kay1040/react-project/assets/112454167/11f22e39-7441-4b0c-a137-94c729d8a3c7)
+![myFavorites](https://github.com/kay1040/react-project/assets/112454167/bb6314e5-5326-4f5f-8f28-f3c5bd10b7a5)
+
+
+### 登出
+
+![logout](https://github.com/kay1040/react-project/assets/112454167/82af790a-0c15-4491-bf5d-ef83c9a5749f)
 
