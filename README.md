@@ -121,7 +121,7 @@
 
 ### 登出
 
-登出後自動挑=跳轉回首頁
+登出後自動跳轉回首頁
 
 ![logout](https://github.com/kay1040/react-project/assets/112454167/82af790a-0c15-4491-bf5d-ef83c9a5749f)
 
