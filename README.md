@@ -1,10 +1,10 @@
 # React 練習作品 - 纏花推廣網站一畝花田
 
 ### Demo: https://one-acre-flower-field.netlify.app/
-- 可以使用以下帳密登入，也可以自行註冊一個帳號
+- 測試帳號如下，也可以自行註冊一個帳號
 
   - 帳號: user01@test.com 
-  - 密碼: pwd123
+  - 密碼: pwd123 （請勿更改密碼）
 
 ## 使用技術
 - React.js
