@@ -27,6 +27,7 @@ export default function ProfileEdit(props) {
   const [isShowConfirm, setIsShowConfirm] = useState(false);
   const navigate = useNavigate();
   const [nextLocation, setNextLocation] = useState(null);
+  const [inputError, setInputError] = useState(null);
 
   let unblock;
   useEffect(() => {
@@ -49,8 +50,8 @@ export default function ProfileEdit(props) {
     }
   }, [userInputData, userData]);
 
-  const handleInputChange = (key, e) => {
-    setUserInputData((prevState) => ({ ...prevState, [key]: e.target.value }));
+  const handleInputChange = (key, value) => {
+    setUserInputData((prevState) => ({ ...prevState, [key]: value }));
   };
 
   const handlePasswordChange = (key, value) => {
@@ -76,12 +77,18 @@ export default function ProfileEdit(props) {
     }
   };
 
-  const handleUpdate = () => {
+  const handleSubmit = () => {
+    setInputError(null);
     if (showChangePassword) {
       updateUserPassword();
     } else {
-      onUpdateData(userInputData);
-      onCancel();
+      const phonePattern = /^(09\d{8})$|^0\d{1,2}-\d{6,8}$/;
+      if (!phonePattern.test(userInputData.phone)) {
+        setInputError('請輸入正確的電話號碼，市話區碼請以-隔開');
+      } else {
+        onUpdateData(userInputData);
+        onCancel();
+      }
     }
   };
 
@@ -164,7 +171,7 @@ export default function ProfileEdit(props) {
           <input
             className="input-primary p-1 w-48 md:w-72 h-8"
             type="text"
-            onChange={(e) => handleInputChange('name', e)}
+            onChange={(e) => handleInputChange('name', e.target.value)}
             value={userInputData.name || ''}
           />
         </div>
@@ -173,19 +180,20 @@ export default function ProfileEdit(props) {
           <input
             className="input-primary p-1 w-48 md:w-72 h-8"
             type="text"
-            onChange={(e) => handleInputChange('address', e)}
+            onChange={(e) => handleInputChange('address', e.target.value)}
             value={userInputData.address || ''}
           />
         </div>
-        <div className="flex my-5 items-center">
+        <div className="flex mt-5 items-center">
           <div className="w-24">電話</div>
           <input
             className="input-primary p-1 w-48 md:w-72 h-8"
             type="text"
-            onChange={(e) => handleInputChange('phone', e)}
+            onChange={(e) => handleInputChange('phone', e.target.value)}
             value={userInputData.phone || ''}
           />
         </div>
+        <div className="ml-24 mt-2 text-red-600 text-sm">{inputError}</div>
       </div>
       <br />
       <button
@@ -198,7 +206,7 @@ export default function ProfileEdit(props) {
       <button
         className="btn-primary w-24 h-8 font-bold"
         type="button"
-        onClick={handleUpdate}
+        onClick={handleSubmit}
       >
         儲存
       </button>
